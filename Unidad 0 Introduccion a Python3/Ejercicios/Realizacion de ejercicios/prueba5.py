@@ -7,8 +7,8 @@ peso = float(numbon)*75 + float(numpall)*112
 
 total = peso/1000
 
-print('Peso total en kilos es: ', total)
+print('Peso total en kilos es: ', round(total,2))
 
 precioenvio = float(total)*3.5
 
-print('El precio del envio es: ', precioenvio)
+print('El precio del envio es: ', round(precioenvio,2), '€')
