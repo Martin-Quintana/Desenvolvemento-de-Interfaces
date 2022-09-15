@@ -52,8 +52,12 @@
       <option name="presentableId" value="Default" />
       <updated>1663155219674</updated>
       <workItem from="1663155220977" duration="52000" />
+<<<<<<< HEAD
       <workItem from="1663155489810" duration="2882000" />
       <workItem from="1663168760514" duration="161000" />
+=======
+      <workItem from="1663155489810" duration="2952000" />
+>>>>>>> 19acea7de0eb17d2023a858fd77bfcec4f290bde
     </task>
     <servers />
   </component>
@@ -72,7 +76,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Realizacion_de_ejercicios$prueba2.coverage" NAME="prueba2 Coverage Results" MODIFIED="1663158290805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Enunciados 2" />
+    <SUITE FILE_PATH="coverage/Realizacion_de_ejercicios$prueba2.coverage" NAME="prueba2 Coverage Results" MODIFIED="1663158390213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Enunciados 2" />
     <SUITE FILE_PATH="coverage/Realizacion_de_ejercicios$prueba1.coverage" NAME="prueba1 Coverage Results" MODIFIED="1663155643810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Enunciados 2" />
   </component>
 </project>
