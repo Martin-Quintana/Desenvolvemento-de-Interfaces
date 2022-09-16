@@ -1,4 +1,6 @@
+
 num = int(input('Introduce un numero para hacer su factorial: '))
+
 
 fact = 1
 
