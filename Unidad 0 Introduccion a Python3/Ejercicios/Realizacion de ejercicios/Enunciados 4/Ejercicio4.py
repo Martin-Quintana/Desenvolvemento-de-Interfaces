@@ -1,12 +1,12 @@
-import matplotlib.pyplot as plt
-from pylab import *
 import random
-import tqdm
 
-resultado = {'Dos': 0,  'Tres': 0, 'Cuatro': 0,
+import tqdm
+from pylab import *
+
+resultado = {'Dos': 0, 'Tres': 0, 'Cuatro': 0,
              'Cinco': 0, 'Seis': 0, 'Siete': 0,
              'Ocho': 0, 'Nueve': 0, 'Diez': 0,
-             'Once': 0, 'Doce': 0,}
+             'Once': 0, 'Doce': 0, }
 
 grafica = []
 
@@ -14,9 +14,9 @@ var = int(input('Indica numer de tiradas: '))
 print('\n')
 
 for i in tqdm(range(var)):
-    dado1 = random(randint(1,6))
-    dado2 = random(randint(1,6))
-    dado = dado1+dado2
+    dado1 = random(randint(1, 6))
+    dado2 = random(randint(1, 6))
+    dado = dado1 + dado2
 
     if dado == 2:
         resultado['Dos'] += 1
