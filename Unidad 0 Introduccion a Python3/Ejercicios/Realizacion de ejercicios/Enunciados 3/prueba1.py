@@ -19,6 +19,10 @@ while op != 0:
             numRandom = int(random.randint(1, 49))
             print(numRandom, end=' ')
 
+        comeplementario = int(random.randint(1, 9))
+        print('El complementario es: ', comeplementario)
+
+
     # Generador de Euromillones
     elif op == 2:
 

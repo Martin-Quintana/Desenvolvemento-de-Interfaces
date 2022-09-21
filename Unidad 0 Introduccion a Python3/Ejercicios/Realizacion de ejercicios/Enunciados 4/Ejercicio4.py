@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 from pylab import *
-import random, os
+import random
 import tqdm
-os.system('csl')
+
 resultado = {'Dos': 0,  'Tres': 0, 'Cuatro': 0,
              'Cinco': 0, 'Seis': 0, 'Siete': 0,
              'Ocho': 0, 'Nueve': 0, 'Diez': 0,
@@ -34,3 +34,21 @@ for i in tqdm(range(var)):
         resultado['Ocho'] += 1
     elif dado == 9:
         resultado['Nueve'] += 1
+    elif dado == 10:
+        resultado['Diez'] += 1
+    elif dado == 11:
+        resultado['Once'] += 1
+    elif dado == 12:
+        resultado['Doce'] += 1
+    else:
+        pass
+
+    var = var - 1
+
+print('Listado : \n', resultado)
+
+for i in resultado:
+    grafica.append((resultado[i]))
+
+plot(grafica)
+show()
