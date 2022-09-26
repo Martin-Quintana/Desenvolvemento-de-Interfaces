@@ -41,5 +41,5 @@ while op != 0:
         dividendo = lista[4]
         divisor = lista[2]
         division = dividendo/divisor
-        print(division)
+        print(round(division,0))
 

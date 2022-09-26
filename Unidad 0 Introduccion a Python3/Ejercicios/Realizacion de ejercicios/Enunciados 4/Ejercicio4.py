@@ -1,21 +1,22 @@
-import random
 
-import tqdm
+
 from pylab import *
+from tqdm import tqdm
+import random
 
 resultado = {'Dos': 0, 'Tres': 0, 'Cuatro': 0,
              'Cinco': 0, 'Seis': 0, 'Siete': 0,
              'Ocho': 0, 'Nueve': 0, 'Diez': 0,
              'Once': 0, 'Doce': 0, }
 
-grafica = []
+
 
 var = int(input('Indica numer de tiradas: '))
 print('\n')
 
 for i in tqdm(range(var)):
-    dado1 = random(randint(1, 6))
-    dado2 = random(randint(1, 6))
+    dado1 = random.randint(1, 6)
+    dado2 = random.randint(1, 6)
     dado = dado1 + dado2
 
     if dado == 2:
@@ -47,8 +48,3 @@ for i in tqdm(range(var)):
 
 print('Listado : \n', resultado)
 
-for i in resultado:
-    grafica.append((resultado[i]))
-
-plot(grafica)
-show()
