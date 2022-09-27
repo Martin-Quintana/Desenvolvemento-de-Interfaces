@@ -16,7 +16,7 @@ class Ui_ventMain(object):
         self.centralwidget = QtWidgets.QWidget(ventMain)
         self.centralwidget.setObjectName("centralwidget")
         self.BtnStart = QtWidgets.QPushButton(self.centralwidget)
-        self.BtnStart.setGeometry(QtCore.QRect(280, 392, 131, 41))
+        self.BtnStart.setGeometry(QtCore.QRect(310, 330, 141, 51))
         self.BtnStart.setObjectName("BtnStart")
         ventMain.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ventMain)

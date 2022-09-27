@@ -2,10 +2,16 @@ from ventMain import *
 import sys
 
 class Main(QtWidgets.QMainWindow):
-    
+    def __int__(self):
+        super(Main, self).__int__()
+        self.ui = Ui_ventMain
+        self.ui.setupUi(self)
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    app = QtWidgets.QApplication([])
+    window = Main()
+    window.show()
+    sys.exit(app.exec())
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
