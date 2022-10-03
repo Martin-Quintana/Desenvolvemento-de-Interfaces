@@ -1,5 +1,5 @@
 from ventMain import *
-import sys,var,events
+import sys,var,events,clientes
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -10,7 +10,7 @@ class Main(QtWidgets.QMainWindow):
         Listados de eventos
         '''
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-
+        var.ui.txtDni.editingFinished.connect(clientes.Clientes.mostrarValidoDNI)
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
