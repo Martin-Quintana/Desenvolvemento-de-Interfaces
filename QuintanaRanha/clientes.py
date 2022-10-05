@@ -35,21 +35,18 @@ class Clientes():
                 var.ui.lblValidarDni.setText('X')
                 var.ui.txtDni.setText(dni.upper())
                 var.ui.txtDni.setStyleSheet('background-color: pink;')
-
         except Exception as error:
-            print('Error mostrar marcado validez DNI: ', error)
+            print('Error mostrar marcado DNI: ', error)
 
-    def selMotor(self = None):
+    def selMotor(self=None):
         try:
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
             for i in var.motor:
                 i.toggled.connect(Clientes.checkMotor)
-
-
         except Exception as error:
             print('Error selecion motor', error)
 
-    def checkMotor(self = None):
+    def checkMotor(self=None):
         try:
             if var.ui.rbtGasolina.isChecked():
                 print('Gasolina')

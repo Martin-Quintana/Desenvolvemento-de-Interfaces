@@ -25,46 +25,46 @@
   <property name="windowTitle">
    <string>Aviso</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <widget class="QLabel" name="lblSalir">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>110</y>
-     <width>351</width>
-     <height>51</height>
+     <width>241</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Comic Sans MS</family>
-     <pointsize>8</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>9</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Estas seguro que desa salir de la aplicacion</string>
+    <string>Esta seguro que desea salir de la aplicacion?</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lblImagenSalir">
+  <widget class="QLabel" name="lblImgsalir">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>10</y>
-     <width>100</width>
-     <height>100</height>
+     <y>20</y>
+     <width>90</width>
+     <height>70</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
-     <width>100</width>
-     <height>100</height>
+     <width>90</width>
+     <height>70</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>100</width>
-     <height>100</height>
+     <width>90</width>
+     <height>70</height>
     </size>
    </property>
    <property name="text">
@@ -77,11 +77,11 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnSalir">
+  <widget class="QPushButton" name="btnsalir">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>170</y>
+     <x>50</x>
+     <y>140</y>
      <width>70</width>
      <height>20</height>
     </rect>
@@ -105,8 +105,8 @@
   <widget class="QPushButton" name="btnCancelar">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>170</y>
+     <x>150</x>
+     <y>140</y>
      <width>70</width>
      <height>20</height>
     </rect>
