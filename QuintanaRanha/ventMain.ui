@@ -762,8 +762,8 @@
    <widget class="QPushButton" name="btnLimpiacli">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>150</y>
+      <x>660</x>
+      <y>190</y>
       <width>28</width>
       <height>28</height>
      </rect>
@@ -797,8 +797,8 @@
    <widget class="QPushButton" name="btnBuscacli">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>190</y>
+      <x>660</x>
+      <y>150</y>
       <width>28</width>
       <height>28</height>
      </rect>

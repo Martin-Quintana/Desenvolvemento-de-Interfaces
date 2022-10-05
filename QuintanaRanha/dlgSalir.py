@@ -21,6 +21,15 @@ class Ui_dlgSalir(object):
         self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel|QtWidgets.QDialogButtonBox.StandardButton.Ok)
         self.buttonBox.setObjectName("buttonBox")
+        self.label = QtWidgets.QLabel(dlgSalir)
+        self.label.setGeometry(QtCore.QRect(110, 120, 141, 16))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(dlgSalir)
+        self.label_2.setGeometry(QtCore.QRect(80, 20, 111, 81))
+        self.label_2.setText("")
+        self.label_2.setPixmap(QtGui.QPixmap("img/advertencia.png"))
+        self.label_2.setScaledContents(True)
+        self.label_2.setObjectName("label_2")
 
         self.retranslateUi(dlgSalir)
         self.buttonBox.accepted.connect(dlgSalir.accept) # type: ignore
@@ -30,3 +39,4 @@ class Ui_dlgSalir(object):
     def retranslateUi(self, dlgSalir):
         _translate = QtCore.QCoreApplication.translate
         dlgSalir.setWindowTitle(_translate("dlgSalir", "Dialog"))
+        self.label.setText(_translate("dlgSalir", "Desea Salir"))
