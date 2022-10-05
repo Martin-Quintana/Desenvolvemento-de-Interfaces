@@ -19,6 +19,7 @@ class Main(QtWidgets.QMainWindow):
         Listados de eventos
         '''
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.actionSalirbar.triggered.connect(events.Eventos.Salir)
         var.ui.txtDni.editingFinished.connect(clientes.Clientes.mostrarValidoDNI)
         '''
         Listados de eventos
