@@ -1,6 +1,12 @@
+from PyQt6 import QtWidgets
 import var
 
 class Clientes():
+
+
+    '''
+    Metodo para validar el DNI si existe o no
+    '''
     def validarDNI(dni):
         '''
         Modulo para la validacion de DNI
@@ -22,6 +28,9 @@ class Clientes():
         except Exception as error:
             print('Error validar DNI: ', error)
 
+    '''
+    Metodo que sirve para mostrar si el DNI es valido o no
+    '''
     def mostrarValidoDNI(self = None):
         try:
             dni = var.ui.txtDni.text()
@@ -38,25 +47,59 @@ class Clientes():
         except Exception as error:
             print('Error mostrar marcado DNI: ', error)
 
+
+    '''
+    Metodo para saber que motor has selecionado
+    '''
     def selMotor(self=None):
         try:
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
             for i in var.motor:
                 i.toggled.connect(Clientes.checkMotor)
-        except Exception as error:
-            print('Error selecion motor', error)
 
+        except Exception as error:
+            print('Error selecion motor: ', error)
+
+    '''
+    Metodo para checkear que motor has cogido
+    '''
     def checkMotor(self=None):
         try:
             if var.ui.rbtGasolina.isChecked():
-                print('Gasolina')
+                motor ='Gasolina'
             elif var.ui.rbtDiesel.isChecked():
-                print('Diesel')
+                motor = 'Diesel'
             elif var.ui.rbtHibrido.isChecked():
-                print('Hibrido')
+                motor = 'Hibrido'
             elif var.ui.rbtElectrico.isChecked():
-                print('Electrico')
+                motor = 'Electrico'
             else:
                 pass
+            return motor
         except Exception as error:
-            print('Error check motor', error)
+            print('Error check motor: ', error)
+
+
+    '''
+    Metodo para cargar los clientes 
+    '''
+    def guardaCli(self = None):
+        try:
+            newcli = []
+            cliente = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
+            for i in cliente:
+                newcli.append(i.text())
+
+            motor = Clientes.checkMotor()
+            newcli.append(motor)
+            row = 0 #Fila
+            colum = 0 #Columna
+
+            var.ui.tabClientes.insertRow(row)
+            for resgistro in newcli:
+                cell = QtWidgets.QTableWidgetItem(resgistro) #Cell = celda
+                var.ui.tabClientes.setItem(row, colum, cell)
+                colum += 1
+
+        except Exception as error:
+            print('Error en carga cliente: ', error)

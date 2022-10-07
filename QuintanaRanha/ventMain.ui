@@ -71,7 +71,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
+      <y>130</y>
       <width>771</width>
       <height>16</height>
      </rect>
@@ -87,7 +87,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>140</y>
       <width>150</width>
       <height>20</height>
      </rect>
@@ -428,7 +428,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>160</y>
+      <y>170</y>
       <width>470</width>
       <height>22</height>
      </rect>
@@ -543,7 +543,7 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>200</y>
+      <y>210</y>
       <width>340</width>
       <height>22</height>
      </rect>
@@ -688,7 +688,7 @@
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>230</y>
+      <y>240</y>
       <width>75</width>
       <height>20</height>
      </rect>
@@ -713,7 +713,7 @@
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>230</y>
+      <y>240</y>
       <width>75</width>
       <height>20</height>
      </rect>
@@ -738,7 +738,7 @@
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>230</y>
+      <y>240</y>
       <width>75</width>
       <height>20</height>
      </rect>
@@ -763,7 +763,7 @@
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>190</y>
+      <y>200</y>
       <width>28</width>
       <height>28</height>
      </rect>
@@ -798,7 +798,7 @@
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>150</y>
+      <y>160</y>
       <width>28</width>
       <height>28</height>
      </rect>
@@ -828,6 +828,52 @@
       <height>24</height>
      </size>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>110</y>
+      <width>316</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="lblFormaPago">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Forma de Pago:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="chkEfectivo">
+       <property name="text">
+        <string>Efectivo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="chkTar">
+       <property name="text">
+        <string>Tarjeta</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="chkTrans">
+       <property name="text">
+        <string>Transferencia</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
