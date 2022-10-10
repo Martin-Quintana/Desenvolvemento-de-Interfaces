@@ -83,3 +83,26 @@ class Clientes():
                 column += 1
         except Exception as error:
             print("Error en carga clientes", error)
+
+    def cargaFecha (qDate):
+        try:
+            data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            var.ui.txtFechaltacli.setText(str(data))
+            var.dlgcalendar.hide()
+
+        except Exception as error:
+            print('Error al cargar Fecha alta Cliente', error)
+
+
+    def limpiaCli (self = None):
+        try:
+            cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtDirCli, var.ui.txtFechaltacli,
+                       var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
+            for i in cliente:
+                i.setText('')
+
+            for i in var.ui.btnGroupPago.buttons():
+                i.setChecked(False)
+
+        except Exception as error:
+            print('Error al limpiar bien', error)

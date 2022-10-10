@@ -12,24 +12,16 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_dlgCalendar(object):
     def setupUi(self, dlgCalendar):
         dlgCalendar.setObjectName("dlgCalendar")
-        dlgCalendar.resize(240, 175)
-        dlgCalendar.setMinimumSize(QtCore.QSize(240, 175))
-        dlgCalendar.setMaximumSize(QtCore.QSize(240, 175))
-        self.centralwidget = QtWidgets.QWidget(dlgCalendar)
-        self.centralwidget.setObjectName("centralwidget")
-        self.Calendar = QtWidgets.QCalendarWidget(self.centralwidget)
-        self.Calendar.setGeometry(QtCore.QRect(0, 0, 240, 170))
-        self.Calendar.setMinimumSize(QtCore.QSize(240, 170))
+        dlgCalendar.resize(320, 190)
+        self.Calendar = QtWidgets.QCalendarWidget(dlgCalendar)
+        self.Calendar.setGeometry(QtCore.QRect(0, 0, 320, 190))
+        self.Calendar.setMinimumSize(QtCore.QSize(320, 190))
         self.Calendar.setMaximumSize(QtCore.QSize(240, 170))
         self.Calendar.setObjectName("Calendar")
-        dlgCalendar.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(dlgCalendar)
-        self.statusbar.setObjectName("statusbar")
-        dlgCalendar.setStatusBar(self.statusbar)
 
         self.retranslateUi(dlgCalendar)
         QtCore.QMetaObject.connectSlotsByName(dlgCalendar)
 
     def retranslateUi(self, dlgCalendar):
         _translate = QtCore.QCoreApplication.translate
-        dlgCalendar.setWindowTitle(_translate("dlgCalendar", "Calendario"))
+        dlgCalendar.setWindowTitle(_translate("dlgCalendar", "Fecha Alta"))

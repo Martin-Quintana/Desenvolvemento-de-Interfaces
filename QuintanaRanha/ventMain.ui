@@ -129,7 +129,7 @@
      <rect>
       <x>100</x>
       <y>30</y>
-      <width>594</width>
+      <width>641</width>
       <height>24</height>
      </rect>
     </property>
@@ -176,6 +176,9 @@
          <width>100</width>
          <height>20</height>
         </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -282,13 +285,13 @@
       <widget class="QLineEdit" name="txtFechaltacli">
        <property name="minimumSize">
         <size>
-         <width>60</width>
+         <width>80</width>
          <height>20</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>60</width>
+         <width>80</width>
          <height>20</height>
         </size>
        </property>
@@ -313,7 +316,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../.designer/backup/img/calendar.png</normaloff>../../../../.designer/backup/img/calendar.png</iconset>
+         <normaloff>img/calendar.png</normaloff>img/calendar.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -570,7 +573,7 @@
         <bool>true</bool>
        </property>
        <attribute name="buttonGroup">
-        <string notr="true">btnGroup</string>
+        <string notr="true">btnGroupCar</string>
        </attribute>
       </widget>
      </item>
@@ -592,7 +595,7 @@
         <string>Diesel</string>
        </property>
        <attribute name="buttonGroup">
-        <string notr="true">btnGroup</string>
+        <string notr="true">btnGroupCar</string>
        </attribute>
       </widget>
      </item>
@@ -614,7 +617,7 @@
         <string>Hibrido</string>
        </property>
        <attribute name="buttonGroup">
-        <string notr="true">btnGroup</string>
+        <string notr="true">btnGroupCar</string>
        </attribute>
       </widget>
      </item>
@@ -636,7 +639,7 @@
         <string>Electrico</string>
        </property>
        <attribute name="buttonGroup">
-        <string notr="true">btnGroup</string>
+        <string notr="true">btnGroupCar</string>
        </attribute>
       </widget>
      </item>
@@ -692,8 +695,8 @@
    <widget class="QPushButton" name="btnLimpiacli">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>210</y>
+      <x>670</x>
+      <y>180</y>
       <width>28</width>
       <height>28</height>
      </rect>
@@ -715,7 +718,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../.designer/backup/img/limpiar.png</normaloff>../../../../.designer/backup/img/limpiar.png</iconset>
+      <normaloff>img/limpiar.png</normaloff>img/limpiar.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -727,8 +730,8 @@
    <widget class="QPushButton" name="btnBuscacli">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>170</y>
+      <x>670</x>
+      <y>140</y>
       <width>28</width>
       <height>28</height>
      </rect>
@@ -750,7 +753,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../.designer/backup/img/lupa.png</normaloff>../../../../.designer/backup/img/lupa.png</iconset>
+      <normaloff>img/lupa.png</normaloff>img/lupa.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -886,6 +889,9 @@
        <property name="text">
         <string>Efectivo</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">btnGroupPago</string>
+       </attribute>
       </widget>
      </item>
      <item>
@@ -911,6 +917,9 @@
        <property name="text">
         <string>Tarjeta</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">btnGroupPago</string>
+       </attribute>
       </widget>
      </item>
      <item>
@@ -936,6 +945,9 @@
        <property name="text">
         <string>Transferencia</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">btnGroupPago</string>
+       </attribute>
       </widget>
      </item>
     </layout>
@@ -982,16 +994,21 @@
   <action name="actionSalibar">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../.designer/backup/img/salida.png</normaloff>../../../../.designer/backup/img/salida.png</iconset>
+     <normaloff>img/salir.png</normaloff>img/salir.png</iconset>
    </property>
    <property name="text">
-    <string>Salibar</string>
+    <string>Salir</string>
    </property>
   </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="btnGroup"/>
+  <buttongroup name="btnGroupCar"/>
+  <buttongroup name="btnGroupPago">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
  </buttongroups>
 </ui>

@@ -1,7 +1,8 @@
 from ventMain import *
 from dlgSalir import *
 from dlgCalendar import *
-import sys, var, events, clientes, datetime
+from datetime import *
+import sys, var, events, clientes
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
@@ -11,7 +12,7 @@ class DialogCalendar(QtWidgets.QDialog):
         dia = datetime.now().day
         mes = datetime.now().month
         ano = datetime.now().year
-        var.dlgcalendar.Calendaralendar.setSelectedDate(QtCore.QDate(ano, mes, dia))
+        var.dlgcalendar.Calendar.setSelectedDate(QtCore.QDate(ano, mes, dia))
         var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargaFecha)
 
 class DialogSalir(QtWidgets.QDialog):
@@ -29,18 +30,25 @@ class Main(QtWidgets.QMainWindow):
         var.avisosalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
         '''
-        Listados de eventos
+        Listados de eventos de texto
         '''
-        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.txtDni.editingFinished.connect(clientes.Clientes.mostrarValidoDNI)
-        var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
+        var.ui.txtNombre.editingFinished.connect(events.Eventos.letrasCapital)
+        var.ui.txtDirCli.editingFinished.connect(events.Eventos.letrasCapital)
+        var.ui.txtMatricula.editingFinished.connect(events.Eventos.letrasCapital)
+        var.ui.txtMarca.editingFinished.connect(events.Eventos.letrasCapital)
+        var.ui.txtModelo.editingFinished.connect(events.Eventos.letrasCapital)
+        '''
+        Listados de eventos de botones
+        '''
         var.ui.btnGuardacli.clicked.connect(clientes.Clientes.guardaCli)
         var.ui.btnFechaltacli.clicked.connect(events.Eventos.abrirCalendar)
+        var.ui.btnLimpiacli.clicked.connect(clientes.Clientes.limpiaCli)
         '''
-        Listados de eventos
+        Listado de eventos de acciones
         '''
-
-
+        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
