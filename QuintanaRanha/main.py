@@ -1,22 +1,18 @@
-
-
 from ventMain import *
 from dlgSalir import *
 from dlgCalendar import *
-from datetime import *
-import sys, var, events, clientes
+import sys, var, events, clientes, datetime
 
 class DialogCalendar(QtWidgets.QDialog):
-    def __int__(self):
+    def __init__(self):
         super(DialogCalendar, self).__init__()
         var.dlgcalendar = Ui_dlgCalendar()
-        var.dlgcalendar .setupUi(self)
+        var.dlgcalendar.setupUi(self)
         dia = datetime.now().day
         mes = datetime.now().month
         ano = datetime.now().year
-        var.dlgcalendar.Calendar.setSelectDate(QtCore.QDate(ano, mes, dia))
-        #var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargaFecha)
-
+        var.dlgcalendar.Calendaralendar.setSelectedDate(QtCore.QDate(ano, mes, dia))
+        var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargaFecha)
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -36,13 +32,14 @@ class Main(QtWidgets.QMainWindow):
         Listados de eventos
         '''
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.actionSalirbar.triggered.connect(events.Eventos.Salir)
         var.ui.txtDni.editingFinished.connect(clientes.Clientes.mostrarValidoDNI)
+        var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
         var.ui.btnGuardacli.clicked.connect(clientes.Clientes.guardaCli)
         var.ui.btnFechaltacli.clicked.connect(events.Eventos.abrirCalendar)
         '''
-        Llamadas a funciones
+        Listados de eventos
         '''
+
 
 
 if __name__ == '__main__':

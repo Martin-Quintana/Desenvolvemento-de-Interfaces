@@ -17,9 +17,9 @@ class Eventos:
         except Exception as error:
             print("Error en función salir %s", str(error))
 
-    def abrirCalendar(self):
+    def abrirCalendar (self = None):
         try:
             var.dlgcalendar.show()
         except Exception as error:
-            print('Error en abrir calendario: ', error)
+            print('Error abrir calendario', error)
 
