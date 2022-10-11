@@ -381,7 +381,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cmpProCli">
+      <widget class="QComboBox" name="cmbProcli">
        <property name="minimumSize">
         <size>
          <width>120</width>
@@ -1004,11 +1004,11 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="btnGroupCar"/>
   <buttongroup name="btnGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="btnGroupCar"/>
  </buttongroups>
 </ui>

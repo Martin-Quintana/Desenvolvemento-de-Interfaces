@@ -55,7 +55,7 @@ class Main(QtWidgets.QMainWindow):
         '''
 
         conexion.Conexion.conexion()
-        conexion.Conexion.cargarProvincia();
+        conexion.Conexion.cargarProvincia()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
