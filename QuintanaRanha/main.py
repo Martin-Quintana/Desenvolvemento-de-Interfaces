@@ -2,7 +2,7 @@ from ventMain import *
 from dlgSalir import *
 from dlgCalendar import *
 from datetime import *
-import sys, var, events, clientes
+import sys, var, events, clientes, conexion
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
@@ -49,6 +49,13 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
+
+        '''
+        Llamadas a funciones
+        '''
+
+        conexion.Conexion.conexion()
+        conexion.Conexion.cargarProvincia();
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
