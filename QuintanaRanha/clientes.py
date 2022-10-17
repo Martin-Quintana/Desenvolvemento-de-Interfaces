@@ -70,11 +70,24 @@ class Clientes():
     def guardaCli(self = None):
         try:
             newcli = []
-            cliente = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
+            cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtFechaltacli, var.ui.txtDirCli]
             for i in cliente:
                 newcli.append(i.text())
-            motor = Clientes.checkMotor()
-            newcli.append(motor)
+            prov = var.ui.cmbProcli.currentText()
+            newcli.append(prov)
+            muni = var.ui.cmbMunicli.currentText()
+            newcli.append(muni)
+            print(newcli)
+
+
+
+
+
+
+
+
+
+            '''
             row = 0
             column = 0
             var.ui.tabClientes.insertRow(row)
@@ -82,6 +95,7 @@ class Clientes():
                 cell = QtWidgets.QTableWidgetItem(registro)
                 var.ui.tabClientes.setItem(row, column, cell)
                 column += 1
+            '''
         except Exception as error:
             print("Error en carga clientes", error)
 
