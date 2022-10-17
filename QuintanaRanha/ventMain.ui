@@ -410,7 +410,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cmbMuniCli">
+      <widget class="QComboBox" name="cmbMunicli">
        <property name="minimumSize">
         <size>
          <width>180</width>
@@ -1004,11 +1004,11 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="btnGroupCar"/>
   <buttongroup name="btnGroupPago">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
-  <buttongroup name="btnGroupCar"/>
  </buttongroups>
 </ui>

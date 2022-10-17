@@ -53,9 +53,14 @@ class Main(QtWidgets.QMainWindow):
         '''
         Llamadas a funciones
         '''
-
         conexion.Conexion.conexion()
+
+        '''
+        Llamadas a eventos de ComboBox
+        '''
         conexion.Conexion.cargarProvincia()
+
+        var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

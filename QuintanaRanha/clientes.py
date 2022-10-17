@@ -1,5 +1,6 @@
 from PyQt6 import QtWidgets
 
+import conexion
 import var
 
 
@@ -103,6 +104,6 @@ class Clientes():
 
             for i in var.ui.btnGroupPago.buttons():
                 i.setChecked(False)
-
+            conexion.Conexion.cargarProvincia(self)
         except Exception as error:
             print('Error al limpiar bien', error)
