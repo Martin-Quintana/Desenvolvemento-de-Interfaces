@@ -53,3 +53,50 @@ class Conexion():
 
         except Exception as error:
             print('Error carga de municipios', error)
+
+    def altaCli(newcli, newcar):
+        try:
+            query = QtSql.QSqlQuery()
+            queryCli = QtSql.QSqlQuery()
+
+            query.prepare('insert into clientes (dni, nombre, alta, direccion, provincia, municipio, pago) '
+                          'values (:dni, :nombre, :alta, :direccion, :provincia, :municipio, :pago)')
+            queryCli.prepare('select dni from clientes where dni = :dni')
+
+            queryCli.bindValue(':dni', str(newcli[0]))
+            query.bindValue(':dni', str(newcli[0]))
+            query.bindValue(':nombre', str(newcli[1]))
+            query.bindValue(':alta', str(newcli[2]))
+            query.bindValue(':direccion', str(newcli[3]))
+            query.bindValue(':provincia', str(newcli[4]))
+            query.bindValue(':municipio', str(newcli[5]))
+            query.bindValue(':pago', str(newcli[6]))
+
+            if query.exec():
+                pass
+
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
+                           'values (:matricula, :dnicli, :marca, :modelo, :motor)')
+
+            query1.bindValue(':matricula', str(newcar[0]))
+            query1.bindValue(':dnicli', str(newcli[0]))
+            query1.bindValue(':marca', str(newcar[1]))
+            query1.bindValue(':modelo', str(newcar[2]))
+            query1.bindValue(':motor', str(newcar[3]))
+
+            if query1.exec():
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Coche dado de alta')
+                msg.exec()
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText(query1.lastError().text())
+                msg.exec()
+
+        except Exception as error:
+            print('Error en alta cliente: ', error)

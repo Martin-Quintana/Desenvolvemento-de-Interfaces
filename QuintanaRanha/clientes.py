@@ -70,14 +70,37 @@ class Clientes():
     def guardaCli(self = None):
         try:
             newcli = []
+            newcar = []
+            pagos = []
+
+            car = [var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
+
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtFechaltacli, var.ui.txtDirCli]
             for i in cliente:
                 newcli.append(i.text())
+            for i in car:
+                newcar.append(i.text())
+
             prov = var.ui.cmbProcli.currentText()
-            newcli.append(prov)
             muni = var.ui.cmbMunicli.currentText()
+            motor = Clientes.checkMotor()
+
+            newcli.append(prov)
             newcli.append(muni)
+            newcar.append(motor)
+
+            if var.ui.chkEfectivo.isChecked():
+                pagos.append('Efectivo')
+
+            if var.ui.chkTransferencia.isChecked():
+                pagos.append('Transeferencia')
+
+            pagos = set(pagos)  # evita duplicados
+            newcli.append('; '.join(pagos))
+
+            conexion.Conexion.altaCli(newcli, newcar)
             print(newcli)
+            print(newcar)
 
 
 
