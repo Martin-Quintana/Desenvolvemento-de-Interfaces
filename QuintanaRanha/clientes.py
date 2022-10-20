@@ -89,10 +89,10 @@ class Clientes():
             newcli.append(muni)
             newcar.append(motor)
 
-            if var.ui.chkEfectivo.isChecked():
+            if var.ui.chkEfec.isChecked():
                 pagos.append('Efectivo')
 
-            if var.ui.chkTransferencia.isChecked():
+            if var.ui.chkTar.isChecked():
                 pagos.append('Transeferencia')
 
             pagos = set(pagos)  # evita duplicados
