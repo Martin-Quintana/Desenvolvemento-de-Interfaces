@@ -80,7 +80,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../.designer/backup/img/lupa.png</normaloff>../../../../../../.designer/backup/img/lupa.png</iconset>
+        <normaloff>img/lupa.png</normaloff>img/lupa.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -322,7 +322,7 @@
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../../../../../../.designer/backup/img/calendar.png</normaloff>../../../../../../.designer/backup/img/calendar.png</iconset>
+           <normaloff>img/calendar.png</normaloff>img/calendar.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -467,7 +467,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../.designer/backup/img/limpiar.png</normaloff>../../../../../../.designer/backup/img/limpiar.png</iconset>
+        <normaloff>img/limpiar.png</normaloff>img/limpiar.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -1013,7 +1013,7 @@
   <action name="actionSalibar">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../../../.designer/backup/img/salida.png</normaloff>../../../../../../.designer/backup/img/salida.png</iconset>
+     <normaloff>img/salida.png</normaloff>img/salida.png</iconset>
    </property>
    <property name="text">
     <string>Salibar</string>
