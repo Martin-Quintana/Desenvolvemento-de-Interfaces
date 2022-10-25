@@ -2,9 +2,11 @@ from PyQt6 import QtWidgets, QtSql
 
 import var, sys
 from ventMain import *
+
+
 class Conexion():
 
-    def conexion (self = None):
+    def conexion(self=None):
         filedb = 'BBDD.sqlite'
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(filedb)
@@ -17,7 +19,7 @@ class Conexion():
             print('Conexion establecida')
             return True
 
-    def cargarProvincia (self = None):
+    def cargarProvincia(self=None):
         try:
             var.ui.cmbProcli.clear()
             query = QtSql.QSqlQuery()
@@ -30,14 +32,14 @@ class Conexion():
         except Exception as error:
             print('Error cargar provincias', error)
 
-    def selMuni(self = None):
+    def selMuni(self=None):
         try:
-            #query significa consulta :)
+            # query significa consulta :)
             id = 0
             var.ui.cmbMunicli.clear()
             prov = var.ui.cmbProcli.currentText()
             query = QtSql.QSqlQuery()
-            query.prepare('select id from provincias where provincia = :prov') #Consulta en la base de datos
+            query.prepare('select id from provincias where provincia = :prov')  # Consulta en la base de datos
             query.bindValue(':prov', prov)
             if query.exec():
                 while query.next():
@@ -56,6 +58,8 @@ class Conexion():
 
     def altaCli(newcli, newcar):
         try:
+            dnirepe = ''
+
             query = QtSql.QSqlQuery()
             queryCli = QtSql.QSqlQuery()
 
@@ -74,8 +78,9 @@ class Conexion():
 
             if query.exec():
                 pass
+
             query1 = QtSql.QSqlQuery()
-            query1.prepare('insert into coches (matricula, dnicli, marca, modelo, motor) '
+            query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
                            'values (:matricula, :dnicli, :marca, :modelo, :motor)')
 
             query1.bindValue(':matricula', str(newcar[0]))
@@ -96,28 +101,23 @@ class Conexion():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                 msg.setText(query1.lastError().text())
                 msg.exec()
-
-            Conexion.mostrarTabcarCli(self=None)
-
+            Conexion.mostrarTabcarcli(self = None)
         except Exception as error:
             print('Error en alta cliente: ', error)
 
-    def mostrarTabcarCli(self = None):
+    def mostrarTabcarcli(self):
         try:
             index = 0
             query = QtSql.QSqlQuery()
-            query.prepare('select matricula, dnicli, marca, modelo, motor from '
-                          'coches order by marca')
+            query.prepare('select matricula, dnicli, marca, modelo, motor from coches order by marca, modelo')
             if query.exec():
                 while query.next():
-                    var.ui.tabClientes.setRowCount(index + 1) #Creamos la fila
+                    var.ui.tabClientes.setRowCount(index + 1)  # Creamos la fila
                     var.ui.tabClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
                     var.ui.tabClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(0))))
                     var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
                     var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
                     var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
                     index += 1
-
-
         except Exception as error:
-            print('Problema mostrar listado coches clientes ', error)
+            print('Problema mostrar listado coches clientes')

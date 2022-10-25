@@ -59,10 +59,9 @@ class Main(QtWidgets.QMainWindow):
         Llamadas a eventos de ComboBox
         '''
         conexion.Conexion.cargarProvincia()
-        conexion.Conexion.mostrarTabcarCli()
-        events.Eventos.resizeTablacarcli()
-
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
+        conexion.Conexion.mostrarTabcarcli(self)
+        events.Eventos.resizeTablacarcli(self)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
