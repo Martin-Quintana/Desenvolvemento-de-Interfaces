@@ -1,4 +1,5 @@
 import sys
+from PyQt6 import QtWidgets, QtSql
 
 import sys,var
 
@@ -33,4 +34,16 @@ class Eventos:
         except Exception as error:
             print('Error al poner mayusculas', error)
 
+    '''
+    Poner la Tabla bonita y Fresca
+    '''
 
+    def resizeTablacarcli(self = None):
+        try:
+            header = var.ui.tabClientes.horizontalHeader()
+            for i in range(5):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                if i == 0 or i == 1:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+        except Exception as error:
+            print('', error)

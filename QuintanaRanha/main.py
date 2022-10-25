@@ -60,6 +60,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         conexion.Conexion.cargarProvincia()
         conexion.Conexion.mostrarTabcarCli()
+        events.Eventos.resizeTablacarcli()
 
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
 
