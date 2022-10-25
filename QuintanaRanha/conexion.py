@@ -74,9 +74,8 @@ class Conexion():
 
             if query.exec():
                 pass
-
             query1 = QtSql.QSqlQuery()
-            query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
+            query1.prepare('insert into coches (matricula, dnicli, marca, modelo, motor) '
                            'values (:matricula, :dnicli, :marca, :modelo, :motor)')
 
             query1.bindValue(':matricula', str(newcar[0]))
@@ -98,5 +97,27 @@ class Conexion():
                 msg.setText(query1.lastError().text())
                 msg.exec()
 
+            Conexion.mostrarTabcarCli(self=None)
+
         except Exception as error:
             print('Error en alta cliente: ', error)
+
+    def mostrarTabcarCli(self = None):
+        try:
+            index = 0
+            query = QtSql.QSqlQuery()
+            query.prepare('select matricula, dnicli, marca, modelo, motor from '
+                          'coches order by marca')
+            if query.exec():
+                while query.next():
+                    var.ui.tabClientes.setRowCount(index + 1) #Creamos la fila
+                    var.ui.tabClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
+                    var.ui.tabClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(0))))
+                    var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
+                    var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
+                    var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
+                    index += 1
+
+
+        except Exception as error:
+            print('Problema mostrar listado coches clientes ', error)

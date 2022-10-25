@@ -59,6 +59,7 @@ class Main(QtWidgets.QMainWindow):
         Llamadas a eventos de ComboBox
         '''
         conexion.Conexion.cargarProvincia()
+        conexion.Conexion.mostrarTabcarCli()
 
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
 
