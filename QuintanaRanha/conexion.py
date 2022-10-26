@@ -1,6 +1,6 @@
-from PyQt6 import QtWidgets, QtSql
+from PyQt6 import QtSql
 
-import var, sys
+import var
 from ventMain import *
 
 
@@ -10,6 +10,7 @@ class Conexion():
         filedb = 'BBDD.sqlite'
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(filedb)
+        var.bbdd = 'BBDD.sqlite'
         if not db.open():
             QtWidgets.QMessageBox.critical(None, 'No se puede abrir la base de datos',
                                            'Conexion no establecida.\n', 'Haga click para cerrar',
@@ -113,11 +114,20 @@ class Conexion():
             if query.exec():
                 while query.next():
                     var.ui.tabClientes.setRowCount(index + 1)  # Creamos la fila
+                    #Centrar la parte de arriba de la tabla
                     var.ui.tabClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
                     var.ui.tabClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(0))))
                     var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
                     var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
                     var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
+
+                    #Centrar el texto de las celdas de cada columna
+                    var.ui.tabClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
                     index += 1
         except Exception as error:
             print('Problema mostrar listado coches clientes')

@@ -551,19 +551,19 @@
         <x>10</x>
         <y>260</y>
         <width>780</width>
-        <height>260</height>
+        <height>250</height>
        </rect>
       </property>
       <property name="minimumSize">
        <size>
         <width>780</width>
-        <height>260</height>
+        <height>250</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
         <width>780</width>
-        <height>260</height>
+        <height>250</height>
        </size>
       </property>
       <column>
@@ -987,7 +987,15 @@
     </property>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionCrear_copia_seguridad"/>
+    <addaction name="actionRestaurar_copia_seguridad"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuHerramientas"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -1017,6 +1025,16 @@
    </property>
    <property name="text">
     <string>Salibar</string>
+   </property>
+  </action>
+  <action name="actionCrear_copia_seguridad">
+   <property name="text">
+    <string>Crear Copia Seguridad</string>
+   </property>
+  </action>
+  <action name="actionRestaurar_copia_seguridad">
+   <property name="text">
+    <string>Restaurar Copia Seguridad</string>
    </property>
   </action>
  </widget>

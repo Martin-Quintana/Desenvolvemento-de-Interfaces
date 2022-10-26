@@ -1,6 +1,9 @@
-from PyQt6 import QtWidgets, QtSql
+import zipfile
 
-import sys, var
+from PyQt6 import QtWidgets, QtSql
+from datetime import datetime, date
+
+import sys, var, shutil, os
 
 '''
 Eventos generales
@@ -43,3 +46,24 @@ class Eventos:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
         except Exception as error:
             print('Error dimensionar talblero coches', error)
+
+    def creaBackup(self):
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y_%m_%d_%H.%M.%S')
+            copia = (str(fecha) + '_backup.zip')
+            directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Copia',
+                                                                copia, '.zip')
+            if var.dlgabrir.accept and filename != '':
+                fichzip = zipfile.ZipFile(copia, 'w')
+                fichzip.write(var.bbdd, os.path.basename(var.bbdd), zipfile.ZIP_DEFLATED)
+                fichzip.close()
+                shutil.move(str(copia), str(directorio))
+                print('Copia de seguridad creada')
+
+
+
+
+
+        except Exception as error:
+            print('Error al crear copia de seguridad ', error)
