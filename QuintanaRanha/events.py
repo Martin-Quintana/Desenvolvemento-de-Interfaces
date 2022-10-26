@@ -50,7 +50,7 @@ class Eventos:
     def creaBackup(self):
         try:
             fecha = datetime.today()
-            fecha = fecha.strftime('%Y_%m_%d_%H.%M.%S')
+            fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
             copia = (str(fecha) + '_backup.zip')
             directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Copia',
                                                                 copia, '.zip')
@@ -59,8 +59,12 @@ class Eventos:
                 fichzip.write(var.bbdd, os.path.basename(var.bbdd), zipfile.ZIP_DEFLATED)
                 fichzip.close()
                 shutil.move(str(copia), str(directorio))
-                print('Copia de seguridad creada')
-
+                msg = QtWidgets.QMessageBox()
+                msg.setModal(True)
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Copia de Seguridad Creada')
+                msg.exec()
 
 
 
