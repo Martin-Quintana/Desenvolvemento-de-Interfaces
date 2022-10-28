@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MiSitio</title>
+</head>
+<body>
+<div>
+    <p>Esta es una pagina web</p>
+</div>
+{% for Cliente in clientes %}
+    <p>__________________________________________________________________________</p>
+<div>
+    <p>Dni: {{ Cliente.dni }}    Nombre: {{ Cliente.nombre }}     Fecha alta: {{ Cliente.fecha_alta }}</p>
+    <p>Direccion: {{ Cliente.direccion }}     Movil: {{ Cliente.mobile }}</p>
+</div>
+{% endfor %}
+</body>
+</html>

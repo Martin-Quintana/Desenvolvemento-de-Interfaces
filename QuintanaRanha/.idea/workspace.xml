@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="287ec064-c50a-4419-9471-d2390ea27aff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../DjangoMartin/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoMartin/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Proyecto/.idea/Proyecto.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../myweb/.idea/myweb.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DjangoMartin/misitio/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoMartin/misitio/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DjangoMartin/misitio/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoMartin/misitio/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DjangoMartin/myweb/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoMartin/myweb/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DjangoMartin/myweb/myweb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoMartin/myweb/myweb/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DjangoMartin/myweb/myweb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../DjangoMartin/myweb/myweb/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
