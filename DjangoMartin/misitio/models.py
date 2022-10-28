@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+from django.db import models
+
+
+class Reporter(models.Model):
+    first_name = models.CharField(max_lenght=30)
+    last_name = models.CharField(max_lenght=30)
+    email = models.EmailField()
