@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MiSitio</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/misitio.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display#swap" rel="stylesheet">
+</head>
+<body>
+<div class="page-header">
+    <h2><a href="/"> Pagina web de proyectos </a></h2>
+</div>
+    <div>
+        <div class="content">
+            <div class="row">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
