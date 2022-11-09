@@ -57,8 +57,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
         var.ui.actionCrear_copia_seguridad.triggered.connect(events.Eventos.creaBackup)
+        var.ui.actionRestaurar_copia_seguridad.triggered.connect(events.Eventos.restauraBackup)
         var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
         var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
+        var.ui.actionExportar_Datos.triggered.connect(events.Eventos.exportarDatos)
 
         '''
         Llamadas a funciones

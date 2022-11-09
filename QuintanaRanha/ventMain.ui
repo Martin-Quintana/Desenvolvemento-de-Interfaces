@@ -993,6 +993,9 @@
     </property>
     <addaction name="actionCrear_copia_seguridad"/>
     <addaction name="actionRestaurar_copia_seguridad"/>
+    <addaction name="separator"/>
+    <addaction name="actionExportar_Datos"/>
+    <addaction name="actionImportar_Datos"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuHerramientas"/>
@@ -1009,6 +1012,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSalibar"/>
+   <addaction name="separator"/>
    <addaction name="actionpushDB"/>
    <addaction name="actionpullDB"/>
   </widget>
@@ -1055,6 +1059,19 @@
    </property>
    <property name="text">
     <string>pullDB</string>
+   </property>
+  </action>
+  <action name="actionExportar_Datos">
+   <property name="text">
+    <string>Exportar Datos</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+E</string>
+   </property>
+  </action>
+  <action name="actionImportar_Datos">
+   <property name="text">
+    <string>Importar Datos</string>
    </property>
   </action>
  </widget>
