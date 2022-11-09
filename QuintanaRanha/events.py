@@ -5,6 +5,8 @@ from datetime import datetime, date
 
 import sys, var, shutil, os
 
+import conexion
+
 '''
 Eventos generales
 '''
@@ -71,3 +73,26 @@ class Eventos:
 
         except Exception as error:
             print('Error al crear copia de seguridad ', error)
+
+    def restauraBackup(self = None):
+        try:
+            filename = var.dlgabrir.getOpenFileName(None,
+                                                    'Restaurar copia de seguridad',
+                                                    '',
+                                                    'All Files (*);;zip (*.zip)')
+            if var.dlgabrir.accept and filename != '':
+                file = filename[0]
+                with zipfile.ZipFile(str(file), 'r') as bbdd:
+                    bbdd.extractall(pwd=None, path='./db')
+                bbdd.close()
+            conexion.Conexion.conexion()
+            conexion.Conexion.mostrarTabcarcli()
+
+            msg = QtWidgets.QMessageBox()
+            msg.setModal(True)
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            msg.setText('Copia de seguridad restaurada')
+            msg.exec()
+        except Exception as error:
+            print('Error al restaurar el backup', error)

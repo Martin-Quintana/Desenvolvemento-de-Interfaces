@@ -1009,6 +1009,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSalibar"/>
+   <addaction name="actionpushDB"/>
+   <addaction name="actionpullDB"/>
   </widget>
   <action name="actionSalir">
    <property name="text">
@@ -1035,6 +1037,24 @@
   <action name="actionRestaurar_copia_seguridad">
    <property name="text">
     <string>Restaurar Copia Seguridad</string>
+   </property>
+  </action>
+  <action name="actionpushDB">
+   <property name="icon">
+    <iconset>
+     <normaloff>img/pushDB.png</normaloff>img/pushDB.png</iconset>
+   </property>
+   <property name="text">
+    <string>pushDB</string>
+   </property>
+  </action>
+  <action name="actionpullDB">
+   <property name="icon">
+    <iconset>
+     <normaloff>img/pullDB.png</normaloff>img/pullDB.png</iconset>
+   </property>
+   <property name="text">
+    <string>pullDB</string>
    </property>
   </action>
  </widget>

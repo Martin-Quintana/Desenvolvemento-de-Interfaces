@@ -1,3 +1,4 @@
+import styles
 from ventMain import *
 from dlgSalir import *
 from dlgCalendar import *
@@ -56,7 +57,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
         var.ui.actionCrear_copia_seguridad.triggered.connect(events.Eventos.creaBackup)
-
+        var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
+        var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
 
         '''
         Llamadas a funciones
@@ -70,6 +72,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
         conexion.Conexion.mostrarTabcarcli(self)
         events.Eventos.resizeTablacarcli(self)
+
+        '''
+        Estilos
+        '''
+        styles.TableClientes.setRowColor()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
