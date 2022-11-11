@@ -13,6 +13,11 @@ Eventos generales
 
 
 class Eventos:
+
+    '''
+    Metodo que sirve para salir del programa y ademas llama a una ventana emergente que te pregunta si estas seguro
+    en salir del programa
+    '''
     def Salir(self):
         try:
             var.avisosalir.show()
@@ -24,12 +29,19 @@ class Eventos:
         except Exception as error:
             print("Error en función salir %s", str(error))
 
+
+    '''
+    Metodo que sirve para abrir la ventana del Calendario
+    '''
     def abrirCalendar(self=None):
         try:
             var.dlgcalendar.show()
         except Exception as error:
             print('Error abrir calendario', error)
 
+    '''
+    Metodo que sirve para poner las primeras letras de cada palabra en mayuscula
+    '''
     def letrasCapital(self=None):
         try:
             var.ui.txtNombre.setText(var.ui.txtNombre.text().title())

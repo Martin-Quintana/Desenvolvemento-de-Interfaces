@@ -6,6 +6,10 @@ from ventMain import *
 
 class Conexion():
 
+
+    '''
+    Metodo conexion, para conectar la base de datos con la aplicacion
+    '''
     def conexion(self=None):
         filedb = 'BBDD.sqlite'
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
@@ -20,6 +24,10 @@ class Conexion():
             print('Conexion establecida')
             return True
 
+
+    '''
+    Metodo que sirve para cargar la provincia de la tabla Provincias de la base de datos
+    '''
     def cargarProvincia(self=None):
         try:
             var.ui.cmbProcli.clear()
@@ -33,6 +41,10 @@ class Conexion():
         except Exception as error:
             print('Error cargar provincias', error)
 
+
+    '''
+    Metodo que sirve para seleccionar el municipio dependiendo de que provincia haya sido seleccionada
+    '''
     def selMuni(self=None):
         try:
             # query significa consulta :)
@@ -57,6 +69,10 @@ class Conexion():
         except Exception as error:
             print('Error carga de municipios', error)
 
+
+    '''
+    Metodo que sirve para dar de alta a un Cliente en la base de datos
+    '''
     def altaCli(newcli, newcar):
         try:
             dnirepe = ''
@@ -106,6 +122,9 @@ class Conexion():
         except Exception as error:
             print('Error en alta cliente: ', error)
 
+    '''
+    Metodo que sirve para mostrar los datos del Cliente en la tabla
+    '''
     def mostrarTabcarcli(self):
         try:
             index = 0

@@ -1,15 +1,14 @@
-from PyQt6 import QtWidgets
-
 import conexion
 import var
 
-
+#Clase clientes, que tiene meetodos que hace algo con los datos de los clientes
 class Clientes():
+
+    '''
+    Metodo para la validacion de DNI
+    :return: boolean
+    '''
     def validarDNI(dni):
-        '''
-        Modulo para la validacion de DNI
-        :return: boolean
-        '''
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
             dig_ext = 'XYZ'
@@ -26,6 +25,10 @@ class Clientes():
         except Exception as error:
             print('Error validar DNI: ', error)
 
+    '''
+    Metodo para mostrar que la validacion del DNI es correcta y poner la letra del DNI en mayusculas
+    Anhadimos algun color para mejorar la usabilidad
+    '''
     def mostrarValidoDNI(self=None):
         try:
             dni = var.ui.txtDni.text()
@@ -42,6 +45,10 @@ class Clientes():
         except Exception as error:
             print('Error mostrar marcado DNI: ', error)
 
+
+    '''
+    Metodo para seleccionar el tipo de motor
+    '''
     def selMotor(self=None):
         try:
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
@@ -50,6 +57,10 @@ class Clientes():
         except Exception as error:
             print('Error selecion motor', error)
 
+
+    '''
+    Metodo para chequear que el motor ha sido seleccionado correctamente
+    '''
     def checkMotor(self = None):
         try:
             if var.ui.rbtGasolina.isChecked():
@@ -67,6 +78,10 @@ class Clientes():
             print('Error check motor', error)
 
 
+
+    '''
+    Metodo que sirve para guardar el cliente en la base de datos en base a lo que escribimos en la interfaz
+    '''
     def guardaCli(self = None):
         try:
             newcli = []
@@ -101,27 +116,13 @@ class Clientes():
             conexion.Conexion.altaCli(newcli, newcar)
             print(newcli)
             print(newcar)
-
-
-
-
-
-
-
-
-
-            '''
-            row = 0
-            column = 0
-            var.ui.tabClientes.insertRow(row)
-            for registro in newcli:
-                cell = QtWidgets.QTableWidgetItem(registro)
-                var.ui.tabClientes.setItem(row, column, cell)
-                column += 1
-            '''
         except Exception as error:
             print("Error en carga clientes", error)
 
+
+    '''
+    Metodo que sirve para cargar la fecha a traves de la ventana de calendario
+    '''
     def cargaFecha (qDate):
         try:
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
@@ -132,6 +133,10 @@ class Clientes():
             print('Error al cargar Fecha alta Cliente', error)
 
 
+
+    '''
+    Metodo que sirve para limpiar las celdas de la informacion de los clientes
+    '''
     def limpiaCli (self = None):
         try:
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtDirCli, var.ui.txtFechaltacli,
