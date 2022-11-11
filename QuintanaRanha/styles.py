@@ -9,13 +9,13 @@ class TableClientes:
             '''
             QTableView
             {   
-                background-color: grey;
-                gridline-color:grey;
+                background-color: #E0E0E0;
+                gridline-color:#E0E0E0;
                 color: salmon;
             }
             QTableView::item 
             {   
-                color: white;         
+                color: black;         
             }
             QTableView::item:hover
             {   
