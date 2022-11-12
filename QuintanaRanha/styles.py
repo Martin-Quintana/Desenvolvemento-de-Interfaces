@@ -3,6 +3,9 @@ import var
 
 class TableClientes:
 
+    '''
+    Metodo que sirve para darle estilos a la tabla
+    '''
     @staticmethod
     def setRowColor():
         var.ui.tabClientes.setStyleSheet(

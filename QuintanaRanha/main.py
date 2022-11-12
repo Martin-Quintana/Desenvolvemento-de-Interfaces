@@ -5,11 +5,16 @@ from dlgCalendar import *
 from datetime import *
 import sys, var, events, clientes, conexion
 
+'''
+Clase FileDialogAbrir
+'''
 class FileDialogAbrir (QtWidgets.QFileDialog):
     def __int__(self):
         super(FileDialogAbrir, self).__int__()
 
-
+'''
+Clase DialogCalendar
+'''
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
         super(DialogCalendar, self).__init__()
@@ -21,13 +26,18 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.setSelectedDate(QtCore.QDate(ano, mes, dia))
         var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargaFecha)
 
+'''
+Clase DialogSalir
+'''
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
         super(DialogSalir, self).__init__()
         var.avisosalir = Ui_dlgSalir()
         var.avisosalir.setupUi(self)
 
-
+'''
+Clase Main
+'''
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -66,18 +76,17 @@ class Main(QtWidgets.QMainWindow):
         Llamadas a funciones
         '''
         conexion.Conexion.conexion()
-
+        conexion.Conexion.cargarProvincia()
+        conexion.Conexion.mostrarTabcarcli(self)
         '''
         Llamadas a eventos de ComboBox
         '''
-        conexion.Conexion.cargarProvincia()
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
-        conexion.Conexion.mostrarTabcarcli(self)
-        events.Eventos.resizeTablacarcli(self)
 
         '''
         Estilos
         '''
+        events.Eventos.resizeTablacarcli(self)
         styles.TableClientes.setRowColor()
 
 if __name__ == '__main__':

@@ -51,6 +51,10 @@ class Eventos:
             var.ui.txtModelo.setText(var.ui.txtModelo.text().upper())
         except Exception as error:
             print('Error al poner mayusculas', error)
+
+    '''
+    Metodo que sirve para que el tamanho de las celdas de la tabla sea el adecuado
+    '''
     def resizeTablacarcli(self):
         try:
             header = var.ui.tabClientes.horizontalHeader()
@@ -61,6 +65,10 @@ class Eventos:
         except Exception as error:
             print('Error dimensionar talblero coches', error)
 
+
+    '''
+    Metodo que sirve para crear un backup de la base de datos 
+    '''
     def creaBackup(self):
         try:
             fecha = datetime.today()
@@ -80,12 +88,13 @@ class Eventos:
                 msg.setText('Copia de Seguridad Creada')
                 msg.exec()
 
-
-
-
         except Exception as error:
             print('Error al crear copia de seguridad ', error)
 
+
+    '''
+    Metodo que sirve para restaurar las copias de seguridad
+    '''
     def restauraBackup(self = None):
         try:
             filename = var.dlgabrir.getOpenFileName(None,
@@ -110,6 +119,9 @@ class Eventos:
             print('Error al restaurar el backup', error)
 
 
+    '''
+    Metodo que sirve para exportar los datos de la base de datos
+    '''
     def exportarDatos(self = None):
         try:
             fecha = datetime.today()
