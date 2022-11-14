@@ -566,6 +566,9 @@
         <height>250</height>
        </size>
       </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
       <column>
        <property name="text">
         <string>DNI</string>
@@ -840,7 +843,7 @@
         <height>22</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <layout class="QHBoxLayout" name="btnGroupPago">
        <item>
         <widget class="QLabel" name="lblFormapagoCli">
          <property name="minimumSize">
@@ -1011,10 +1014,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSalibar"/>
-   <addaction name="separator"/>
    <addaction name="actionpushDB"/>
    <addaction name="actionpullDB"/>
+   <addaction name="separator"/>
+   <addaction name="actionSalibar"/>
   </widget>
   <action name="actionSalir">
    <property name="text">

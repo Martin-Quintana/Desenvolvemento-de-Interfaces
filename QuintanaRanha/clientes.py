@@ -143,9 +143,9 @@ class Clientes():
                        var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
             for i in cliente:
                 i.setText('')
+            btns = [var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans]
+            for btn in btns:
+                btn.setChecked(False)
 
-            for i in var.ui.btnGroupPago.buttons():
-                i.setChecked(False)
-            conexion.Conexion.cargarProvincia(self)
         except Exception as error:
             print('Error al limpiar bien', error)

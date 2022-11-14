@@ -12,9 +12,11 @@ class TableClientes:
             '''
             QTableView
             {   
+                
                 background-color: #E0E0E0;
                 gridline-color:#E0E0E0;
-                color: salmon;
+                color: black;
+                
             }
             QTableView::item 
             {   
@@ -23,12 +25,13 @@ class TableClientes:
             QTableView::item:hover
             {   
                 color: black;
-                background: #ffffff;            
+                background: #FFFFFF;            
             }
             QTableView::item:focus
             {   
                 color: black;
-                background: #ffffff;            
+                background-color: white;            
             }
+            
             '''
         )
