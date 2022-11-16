@@ -191,6 +191,8 @@ class Ui_ventMain(object):
         self.tabClientes.setMinimumSize(QtCore.QSize(780, 250))
         self.tabClientes.setMaximumSize(QtCore.QSize(780, 250))
         self.tabClientes.setAlternatingRowColors(True)
+        self.tabClientes.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.tabClientes.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tabClientes.setObjectName("tabClientes")
         self.tabClientes.setColumnCount(5)
         self.tabClientes.setRowCount(0)

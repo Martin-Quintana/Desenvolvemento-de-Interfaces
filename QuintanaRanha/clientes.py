@@ -1,13 +1,14 @@
 import conexion
 import var
 
-#Clase clientes, que tiene meetodos que hace algo con los datos de los clientes
-class Clientes():
 
+# Clase clientes, que tiene meetodos que hace algo con los datos de los clientes
+class Clientes():
     '''
     Metodo para la validacion de DNI
     :return: boolean
     '''
+
     def validarDNI(dni):
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
@@ -29,6 +30,7 @@ class Clientes():
     Metodo para mostrar que la validacion del DNI es correcta y poner la letra del DNI en mayusculas
     Anhadimos algun color para mejorar la usabilidad
     '''
+
     def mostrarValidoDNI(self=None):
         try:
             dni = var.ui.txtDni.text()
@@ -45,10 +47,10 @@ class Clientes():
         except Exception as error:
             print('Error mostrar marcado DNI: ', error)
 
-
     '''
     Metodo para seleccionar el tipo de motor
     '''
+
     def selMotor(self=None):
         try:
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
@@ -57,11 +59,11 @@ class Clientes():
         except Exception as error:
             print('Error selecion motor', error)
 
-
     '''
     Metodo para chequear que el motor ha sido seleccionado correctamente
     '''
-    def checkMotor(self = None):
+
+    def checkMotor(self=None):
         try:
             if var.ui.rbtGasolina.isChecked():
                 motor = 'Gasolina'
@@ -77,12 +79,11 @@ class Clientes():
         except Exception as error:
             print('Error check motor', error)
 
-
-
     '''
     Metodo que sirve para guardar el cliente en la base de datos en base a lo que escribimos en la interfaz
     '''
-    def guardaCli(self = None):
+
+    def guardaCli(self=None):
         try:
             newcli = []
             newcar = []
@@ -119,11 +120,11 @@ class Clientes():
         except Exception as error:
             print("Error en carga clientes", error)
 
-
     '''
     Metodo que sirve para cargar la fecha a traves de la ventana de calendario
     '''
-    def cargaFecha (qDate):
+
+    def cargaFecha(qDate):
         try:
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.txtFechaltacli.setText(str(data))
@@ -132,12 +133,11 @@ class Clientes():
         except Exception as error:
             print('Error al cargar Fecha alta Cliente', error)
 
-
-
     '''
     Metodo que sirve para limpiar las celdas de la informacion de los clientes
     '''
-    def limpiaCli (self = None):
+
+    def limpiaCli(self=None):
         try:
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtDirCli, var.ui.txtFechaltacli,
                        var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
@@ -146,6 +146,39 @@ class Clientes():
             btns = [var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans]
             for btn in btns:
                 btn.setChecked(False)
+            var.ui.cmbProcli.setCurrentText(str(''))
+            var.ui.cmbMunicli.setCurrentText(str(''))
+
 
         except Exception as error:
             print('Error al limpiar bien', error)
+
+    def cargaCliente(self=None):
+        try:
+            fila = var.ui.tabClientes.selectedItems()  #Recoge todo lo que hay en la fila seleccionada de la tabla
+            datos = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca,
+                     var.ui.txtModelo]  # Son los datos que hay en la tabla
+            row = [dato.text() for dato in fila]  # Creas un listado con los datos
+            for i, dato in enumerate(datos):
+                dato.setText(row[i])
+
+            #Checkeamos los rbtMotor dependiendo de su tipo de motor
+            if row[4] == 'Diesel':
+                var.ui.rbtDiesel.setChecked(True)
+            elif row[4] == 'Gasolina':
+                var.ui.rbtGasolina.setChecked(True)
+            elif row[4] == 'Hibrido':
+                var.ui.rbtHibrido.setChecked(True)
+            elif row[4] == 'Electrico':
+                var.ui.rbtElectrico.setChecked(True)
+
+            registro = conexion.Conexion.oneCli(row[0])#registro del cliente
+
+            var.ui.txtNombre.setText(registro[0])
+            var.ui.txtFechaltacli.setText(registro[1])
+            var.ui.txtDirCli.setText(registro[2])
+            var.ui.cmbProcli.setCurrentText(registro[3])
+            var.ui.cmbMunicli.setCurrentText(registro[4])
+
+        except Exception as error:
+            print('Error al cargar Cliente de la tabla ', error)

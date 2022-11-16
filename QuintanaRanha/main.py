@@ -13,6 +13,18 @@ class FileDialogAbrir (QtWidgets.QFileDialog):
         super(FileDialogAbrir, self).__int__()
 
 '''
+Clase DialogDatos
+
+class DialogDatos(QtWidgets.QDialog):
+    def __int__(self):
+        super(DialogDatos, self).__int__()
+        var.dlgdatos = Ui_dlgDatos()
+        var.dlgdatos.setupUi(self)
+        
+        var.dlgdatos.btnExportarDatos.clicked.connect
+'''
+
+'''
 Clase DialogCalendar
 '''
 class DialogCalendar(QtWidgets.QDialog):
@@ -77,7 +89,16 @@ class Main(QtWidgets.QMainWindow):
         '''
         conexion.Conexion.conexion()
         conexion.Conexion.cargarProvincia()
+
+
+
+        '''
+        Funciones relacionadas con las tablas
+        '''
         conexion.Conexion.mostrarTabcarcli(self)
+
+        var.ui.tabClientes.clicked.connect(clientes.Clientes.cargaCliente)
+
         '''
         Llamadas a eventos de ComboBox
         '''
@@ -88,6 +109,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         events.Eventos.resizeTablacarcli(self)
         styles.TableClientes.setRowColor()
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

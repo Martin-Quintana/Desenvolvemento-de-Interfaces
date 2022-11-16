@@ -149,4 +149,23 @@ class Conexion():
 
                     index += 1
         except Exception as error:
-            print('Problema mostrar listado coches clientes')
+            print('Problema mostrar listado coches clientes', error)
+
+
+    '''
+    Metodo que sirve para visualizar los datos del Cliente cuando seleccionas los datos de su Coche en la tabla
+    '''
+    def oneCli(dni):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('select nombre, alta, direccion, provincia, municipio, pago from clientes where dni = :dni')
+            query.bindValue(':dni', str(dni))
+
+            if query.exec():
+                while query.next():
+                    for i in range(6):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as error:
+            print('Error oneCli', error)
