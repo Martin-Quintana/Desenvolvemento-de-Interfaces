@@ -107,9 +107,10 @@ class Clientes():
 
             if var.ui.chkEfec.isChecked():
                 pagos.append('Efectivo')
-
-            if var.ui.chkTar.isChecked():
+            if var.ui.chkTrans.isChecked():
                 pagos.append('Transeferencia')
+            if var.ui.chkTar.isChecked():
+                pagos.append('Tarjeta')
 
             pagos = set(pagos)  # evita duplicados
             newcli.append('; '.join(pagos))
@@ -155,6 +156,7 @@ class Clientes():
 
     def cargaCliente(self=None):
         try:
+            Clientes.limpiaCli()
             fila = var.ui.tabClientes.selectedItems()  #Recoge todo lo que hay en la fila seleccionada de la tabla
             datos = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca,
                      var.ui.txtModelo]  # Son los datos que hay en la tabla
@@ -179,6 +181,15 @@ class Clientes():
             var.ui.txtDirCli.setText(registro[2])
             var.ui.cmbProcli.setCurrentText(registro[3])
             var.ui.cmbMunicli.setCurrentText(registro[4])
+
+            if 'Efectivo' in registro[5]:
+                var.ui.chkEfec.setChecked(True)
+            if 'Transferencia' in registro[5]:
+                var.ui.chkTrans.setChecked(True)
+            if 'Tarjeta' in registro[5]:
+                var.ui.chkTar.setChecked(True)
+
+
 
         except Exception as error:
             print('Error al cargar Cliente de la tabla ', error)
