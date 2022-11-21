@@ -150,7 +150,11 @@ class Conexion():
 
                     index += 1
         except Exception as error:
-            print('Problema mostrar listado coches clientes', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al mostrar la Tabla ', error)
+            msg.exec()
 
 
     '''
@@ -169,7 +173,11 @@ class Conexion():
                         registro.append(str(query.value(i)))
             return registro
         except Exception as error:
-            print('Error oneCli', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error oneCli', error)
+            msg.exec()
 
 
     '''
@@ -192,7 +200,11 @@ class Conexion():
 
 
         except Exception as error:
-            print('Error al dar de alta el Excel del Coche', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al dar de alta el Excel del Coche', error)
+            msg.exec()
 
 
     '''
