@@ -193,3 +193,4 @@ class Clientes():
 
         except Exception as error:
             print('Error al cargar Cliente de la tabla ', error)
+

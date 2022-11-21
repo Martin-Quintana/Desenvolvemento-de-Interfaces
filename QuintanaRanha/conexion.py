@@ -78,13 +78,17 @@ class Conexion():
         try:
             dnirepe = ''
 
+            # Creamos una variable para la consulta
             query = QtSql.QSqlQuery()
+            # Creamos una variable para la consulta
             queryCli = QtSql.QSqlQuery()
-
+            # Escribimos la consulta
             query.prepare('insert into clientes (dni, nombre, alta, direccion, provincia, municipio, pago) '
                           'values (:dni, :nombre, :alta, :direccion, :provincia, :municipio, :pago)')
+            # Escribimos la consulta
             queryCli.prepare('select dni from clientes where dni = :dni')
 
+            # Relacionar un elemento de la BBDD con uno de Python
             queryCli.bindValue(':dni', str(newcli[0]))
             query.bindValue(':dni', str(newcli[0]))
             query.bindValue(':nombre', str(newcli[1]))
@@ -94,24 +98,27 @@ class Conexion():
             query.bindValue(':municipio', str(newcli[5]))
             query.bindValue(':pago', str(newcli[6]))
 
+            # Ejecutamos la consulta
             if query.exec():
                 pass
-
+            # Creamos una variable para la consulta
             query1 = QtSql.QSqlQuery()
+            # Escribimos la consulta
             query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
                            'values (:matricula, :dnicli, :marca, :modelo, :motor)')
-
+            # Relacionar un elemento de la BBDD con uno de Python
             query1.bindValue(':matricula', str(newcar[0]))
             query1.bindValue(':dnicli', str(newcli[0]))
             query1.bindValue(':marca', str(newcar[1]))
             query1.bindValue(':modelo', str(newcar[2]))
             query1.bindValue(':motor', str(newcar[3]))
 
+            # Ejecutamos la consulta    Y mostramos un mensaje donde el decimos que el coche ha sido dado de Alta
             if query1.exec():
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle('Aviso')
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                msg.setText('Coche dado de alta')
+                msg.setText('OCHE DADO DE ALTA')
                 msg.exec()
             else:
                 msg = QtWidgets.QMessageBox()
@@ -129,7 +136,9 @@ class Conexion():
     def mostrarTabcarcli(self):
         try:
             index = 0
+            # Creamos una variable para la consulta
             query = QtSql.QSqlQuery()
+            # Escribimos la consulta
             query.prepare('select matricula, dnicli, marca, modelo, motor from coches order by marca, modelo')
             if query.exec():
                 while query.next():
@@ -162,11 +171,15 @@ class Conexion():
     '''
     def oneCli(dni):
         try:
-            registro = []
-            query = QtSql.QSqlQuery()
-            query.prepare('select nombre, alta, direccion, provincia, municipio, pago from clientes where dni = :dni')
-            query.bindValue(':dni', str(dni))
 
+            registro = []
+            # Creamos una variable para la consulta
+            query = QtSql.QSqlQuery()
+            # Escribimos la consulta
+            query.prepare('select nombre, alta, direccion, provincia, municipio, pago from clientes where dni = :dni')
+            # Relacionar un elemento de la BBDD con uno de Python
+            query.bindValue(':dni', str(dni))
+            # Ejecutamos la consulta
             if query.exec():
                 while query.next():
                     for i in range(6):
@@ -185,21 +198,24 @@ class Conexion():
     '''
     def altaExcelCoche(new):
         try:
+            #Creamos una variable para la consulta
             query1 = QtSql.QSqlQuery()
+            #Escribimos la consulta
             query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
                            'values (:matricula, :dnicli, :marca, :modelo, :motor)')
-
+            #Relacionar un elemento de la BBDD con uno de Python
             query1.bindValue(':matricula', str(new[0]))
             query1.bindValue(':dnicli', str(new[1]))
             query1.bindValue(':marca', str(new[2]))
             query1.bindValue(':modelo', str(new[3]))
             query1.bindValue(':motor', str(new[4]))
-
+            #Ejecutamos la consulta
             if query1.exec():
                 pass
 
 
         except Exception as error:
+            #Ventana de Error
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -212,18 +228,22 @@ class Conexion():
     '''
     def comprobarCamposValidos(self=None):
         try:
+            #Guardamos el DNI en una variable
             dni = var.ui.txtDni.text()
+            #Comprobamos que el DNI es correcto si lo es comprobamos que el resto de los campos no estan vacios y
+            # se guarda el Cliente
             if clientes.Clientes.validarDNI(dni) \
                     and len(var.ui.txtNombre.text()) > 0 and len(var.ui.txtDirCli.text()) > 0 \
                     and len(var.ui.txtMatricula.text()) > 0 and len(var.ui.txtMarca.text()) > 0 \
                     and len(var.ui.txtModelo.text()) > 0 and len(var.ui.cmbProcli.currentText()) > 0 \
                     and len(var.ui.cmbMunicli.currentText()) > 0 and len(var.ui.txtFechaltacli.text()) > 0:
                 clientes.Clientes.guardaCli()
+            #Salta una Ventana de error que dice 'Error al Cargar Cliente'
             else:
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle('Aviso')
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                msg.setText('Error al Cargar Cliente')
+                msg.setText('ERROR AL CARGAR CLIENTE')
                 msg.exec()
                 return False
         except Exception as error:
