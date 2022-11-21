@@ -1,3 +1,5 @@
+from PyQt6 import QtWidgets
+
 import conexion
 import var
 
@@ -192,5 +194,9 @@ class Clientes():
 
 
         except Exception as error:
-            print('Error al cargar Cliente de la tabla ', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar Cliente de la tabla')
+            msg.exec()
 

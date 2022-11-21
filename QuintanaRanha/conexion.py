@@ -162,7 +162,7 @@ class Conexion():
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText('Error al mostrar la Tabla ', error)
+            msg.setText('Error al mostrar la Tabla ')
             msg.exec()
 
 
@@ -189,7 +189,7 @@ class Conexion():
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText('Error oneCli', error)
+            msg.setText('Error oneCli')
             msg.exec()
 
 
@@ -219,7 +219,7 @@ class Conexion():
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText('Error al dar de alta el Excel del Coche', error)
+            msg.setText('Error al dar de alta el Excel del Coche')
             msg.exec()
 
 
@@ -250,5 +250,5 @@ class Conexion():
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText('Error al comprobar los Datos', error)
+            msg.setText('Error al comprobar los Datos')
             msg.exec()
