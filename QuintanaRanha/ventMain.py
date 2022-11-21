@@ -466,3 +466,4 @@ class Ui_ventMain(object):
         self.actionExportar_Datos.setText(_translate("ventMain", "Exportar Datos"))
         self.actionExportar_Datos.setShortcut(_translate("ventMain", "Alt+E"))
         self.actionImportar_Datos.setText(_translate("ventMain", "Importar Datos"))
+        self.actionImportar_Datos.setShortcut(_translate("ventMain", "Alt+I"))

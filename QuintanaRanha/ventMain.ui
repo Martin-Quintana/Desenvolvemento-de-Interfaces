@@ -1082,6 +1082,9 @@
    <property name="text">
     <string>Importar Datos</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+I</string>
+   </property>
   </action>
  </widget>
  <resources/>

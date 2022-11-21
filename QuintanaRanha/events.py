@@ -3,9 +3,9 @@ import zipfile
 from PyQt6 import QtWidgets, QtSql
 from datetime import datetime, date
 
-import sys, var, shutil, os, xlwt
+import sys, var, shutil, os, xlwt, conexion, xlrd
 
-import conexion
+import clientes
 
 '''
 Eventos generales
@@ -165,3 +165,61 @@ class Eventos:
 
         except Exception as error:
             print('Error al exportar Datos', error)
+
+
+
+    '''
+    Metodo que sirve para Importar Datos de Excel
+    '''
+    def importarDatos(self):
+        try:
+            #Llamamos al explorador de Windows para poder buscar el archivo
+            filename = var.dlgabrir.getOpenFileName(None, 'Guardar Datos ',
+                                                    '','*xls;;All Files (*)')
+            if var.dlgabrir.accept and filename != '':
+                file = filename[0]
+                documento = xlrd.open_workbook(file)
+                datos = documento.sheet_by_index(0)
+
+                filas = datos.nrows
+                columnas = datos.ncols
+
+                new = []
+                for i in range(filas):
+                    if i == 0:
+                        pass
+                    else:
+                        new =  []
+                        for j in range(columnas):
+                            new.append(str(datos.cell_value(i,j)))
+                        if clientes.Clientes.validarDNI(str(new[1])):
+                            conexion.Conexion.altaExcelCoche(new)
+
+                #Mensaje de aviso que la importacion de Datos ha sido Realizada
+                msg = QtWidgets.QMessageBox()
+                msg.setModal(True)
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Importacion de Datos Realizada')
+                msg.exec()
+                conexion.Conexion.mostrarTabcarcli(self)
+
+
+
+
+        except Exception as error:
+            print('Error al Guardar Datos', error)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

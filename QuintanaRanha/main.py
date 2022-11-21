@@ -70,9 +70,10 @@ class Main(QtWidgets.QMainWindow):
         '''
         Listados de eventos de botones
         '''
-        var.ui.btnGuardacli.clicked.connect(clientes.Clientes.guardaCli)
+
         var.ui.btnFechaltacli.clicked.connect(events.Eventos.abrirCalendar)
         var.ui.btnLimpiacli.clicked.connect(clientes.Clientes.limpiaCli)
+        var.ui.btnGuardacli.clicked.connect(conexion.Conexion.comprobarCamposValidos)
         '''
         Listado de eventos de acciones
         '''
@@ -83,7 +84,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
         var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.exportarDatos)
-
+        var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importarDatos)
         '''
         Llamadas a funciones
         '''

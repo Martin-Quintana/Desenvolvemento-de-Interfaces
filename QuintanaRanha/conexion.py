@@ -1,5 +1,6 @@
 from PyQt6 import QtSql
 
+import clientes
 import var
 from ventMain import *
 
@@ -169,3 +170,53 @@ class Conexion():
             return registro
         except Exception as error:
             print('Error oneCli', error)
+
+
+    '''
+    Metodo que sirve para dar de alta en la base de datos a traves de un Excel nuevos Coches
+    '''
+    def altaExcelCoche(new):
+        try:
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
+                           'values (:matricula, :dnicli, :marca, :modelo, :motor)')
+
+            query1.bindValue(':matricula', str(new[0]))
+            query1.bindValue(':dnicli', str(new[1]))
+            query1.bindValue(':marca', str(new[2]))
+            query1.bindValue(':modelo', str(new[3]))
+            query1.bindValue(':motor', str(new[4]))
+
+            if query1.exec():
+                pass
+
+
+        except Exception as error:
+            print('Error al dar de alta el Excel del Coche', error)
+
+
+    '''
+    Metodo que sirve para comprobar que todos los campos son validos/io estan vacios
+    '''
+    def comprobarCamposValidos(self=None):
+        try:
+            dni = var.ui.txtDni.text()
+            if clientes.Clientes.validarDNI(dni) \
+                    and len(var.ui.txtNombre.text()) > 0 and len(var.ui.txtDirCli.text()) > 0 \
+                    and len(var.ui.txtMatricula.text()) > 0 and len(var.ui.txtMarca.text()) > 0 \
+                    and len(var.ui.txtModelo.text()) > 0 and len(var.ui.cmbProcli.currentText()) > 0 \
+                    and len(var.ui.cmbMunicli.currentText()) > 0 and len(var.ui.txtFechaltacli.text()) > 0:
+                clientes.Clientes.guardaCli()
+            else:
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText('Error al Cargar Cliente')
+                msg.exec()
+                return False
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al comprobar los Datos', error)
+            msg.exec()
