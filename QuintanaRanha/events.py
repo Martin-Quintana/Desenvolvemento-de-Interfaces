@@ -39,6 +39,12 @@ class Eventos:
         except Exception as error:
             print('Error abrir calendario', error)
 
+    def abrirDatos(self=None):
+        try:
+            var.dlgdatos.show()
+        except Exception as error:
+            print('Error abrir calendario', error)
+
     '''
     Metodo que sirve para poner las primeras letras de cada palabra en mayuscula
     '''
