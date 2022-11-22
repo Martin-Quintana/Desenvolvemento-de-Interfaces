@@ -1,9 +1,9 @@
 import styles
-from dlgDatos import Ui_dlgDatos
 from ventMain import *
 from dlgSalir import *
 from dlgCalendar import *
 from datetime import *
+from dlgDatos import *
 import sys, var, events, clientes, conexion
 
 '''
@@ -17,11 +17,12 @@ class FileDialogAbrir (QtWidgets.QFileDialog):
 Clase DialogDatos
 '''
 class DialogDatos(QtWidgets.QDialog):
-    def __int__(self):
-        super(DialogDatos, self).__int__()
+    def __init__(self, parent = None):
+        super(DialogDatos, self).__init__()
         var.dlgdatos = Ui_dlgDatos()
         var.dlgdatos.setupUi(self)
-        
+
+        var.dlgdatos.btnExportaDatos.clicked.connect(events.Eventos.exportarDatos)
 
 
 
@@ -86,8 +87,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionRestaurar_copia_seguridad.triggered.connect(events.Eventos.restauraBackup)
         var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
         var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
+
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.abrirDatos)
-        var.ui.actionExportar_Datos.triggered.connect(events.Eventos.exportarDatos)
+
+
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importarDatos)
         '''
         Llamadas a funciones

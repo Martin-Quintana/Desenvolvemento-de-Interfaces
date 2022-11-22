@@ -41,13 +41,13 @@ class Clientes():
         try:
             dni = var.ui.txtDni.text()
             if Clientes.validarDNI(dni):
-                var.ui.lblValidarDni.setStyleSheet('color: green;')
-                var.ui.lblValidarDni.setText('V')
+                var.ui.lblValidardni.setStyleSheet('color: green;')
+                var.ui.lblValidardni.setText('V')
                 var.ui.txtDni.setText(dni.upper())
-                var.ui.txtDni.setStyleSheet('background-color: white;')
+                var.ui.txtDni.setStyleSheet('background-color: #fff3b5;')
             else:
-                var.ui.lblValidarDni.setStyleSheet('color: red;')
-                var.ui.lblValidarDni.setText('X')
+                var.ui.lblValidardni.setStyleSheet('color: red;')
+                var.ui.lblValidardni.setText('X')
                 var.ui.txtDni.setText(dni.upper())
                 var.ui.txtDni.setStyleSheet('background-color: pink;')
         except Exception as error:

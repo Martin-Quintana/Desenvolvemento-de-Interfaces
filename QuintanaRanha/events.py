@@ -1,5 +1,5 @@
 import zipfile
-
+from dlgDatos import *
 from PyQt6 import QtWidgets, QtSql
 from datetime import datetime, date
 
@@ -27,7 +27,11 @@ class Eventos:
                 var.avisosalir.hide()
             # sys.exit()
         except Exception as error:
-            print("Error en función salir %s", str(error))
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al Salir')
+            msg.exec()
 
 
     '''
@@ -37,13 +41,23 @@ class Eventos:
         try:
             var.dlgcalendar.show()
         except Exception as error:
-            print('Error abrir calendario', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al mostrar Calendario ')
+            msg.exec()
 
-    def abrirDatos(self=None):
+    def abrirDatos(self):
         try:
+            global dialog
+            dialog = Ui_dlgDatos()
             var.dlgdatos.show()
         except Exception as error:
-            print('Error abrir calendario', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al abrir Exportar Datos ')
+            msg.exec()
 
     '''
     Metodo que sirve para poner las primeras letras de cada palabra en mayuscula
@@ -56,7 +70,11 @@ class Eventos:
             var.ui.txtMarca.setText(var.ui.txtMarca.text().upper())
             var.ui.txtModelo.setText(var.ui.txtModelo.text().upper())
         except Exception as error:
-            print('Error al poner mayusculas', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al poner en mayusculas ')
+            msg.exec()
 
     '''
     Metodo que sirve para que el tamanho de las celdas de la tabla sea el adecuado
@@ -69,7 +87,11 @@ class Eventos:
                 if i == 1 or i == 1:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
         except Exception as error:
-            print('Error dimensionar talblero coches', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al deimensionar la table de coches')
+            msg.exec()
 
 
     '''
@@ -95,7 +117,11 @@ class Eventos:
                 msg.exec()
 
         except Exception as error:
-            print('Error al crear copia de seguridad ', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al crear una copia de seguridad ')
+            msg.exec()
 
 
     '''
@@ -122,7 +148,11 @@ class Eventos:
             msg.setText('Copia de seguridad restaurada')
             msg.exec()
         except Exception as error:
-            print('Error al restaurar el backup', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al restaurar el Backup ')
+            msg.exec()
 
 
     '''
@@ -130,6 +160,9 @@ class Eventos:
     '''
     def exportarDatos(self = None):
         try:
+            global dialog
+            dialog = Ui_dlgDatos()
+            var.dlgdatos.hide()
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
             file = (str(fecha) + '_Clientes.xls')
@@ -170,7 +203,11 @@ class Eventos:
 
 
         except Exception as error:
-            print('Error al exportar Datos', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al Exportar Datos ')
+            msg.exec()
 
 
 
@@ -214,7 +251,11 @@ class Eventos:
 
 
         except Exception as error:
-            print('Error al Guardar Datos', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al guardar la importacion de datos')
+            msg.exec()
 
 
 
