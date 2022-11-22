@@ -86,9 +86,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionRestaurar_copia_seguridad.triggered.connect(events.Eventos.restauraBackup)
         var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
         var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
-
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.abrirDatos)
-
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.exportarDatos)
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importarDatos)
         '''

@@ -26,7 +26,11 @@ class Clientes():
                 return len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control
             return False
         except Exception as error:
-            print('Error validar DNI: ', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al Validar DNI')
+            msg.exec()
 
     '''
     Metodo para mostrar que la validacion del DNI es correcta y poner la letra del DNI en mayusculas
@@ -47,7 +51,11 @@ class Clientes():
                 var.ui.txtDni.setText(dni.upper())
                 var.ui.txtDni.setStyleSheet('background-color: pink;')
         except Exception as error:
-            print('Error mostrar marcado DNI: ', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al error al mostrar color y validez del DNI')
+            msg.exec()
 
     '''
     Metodo para seleccionar el tipo de motor
@@ -55,11 +63,16 @@ class Clientes():
 
     def selMotor(self=None):
         try:
+            # Crea una tupla con los tipos de motor para comprobar cual es
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
             for i in var.motor:
                 i.toggled.connect(Clientes.checkMotor)
         except Exception as error:
-            print('Error selecion motor', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error seleccion de motor')
+            msg.exec()
 
     '''
     Metodo para chequear que el motor ha sido seleccionado correctamente
@@ -67,6 +80,7 @@ class Clientes():
 
     def checkMotor(self=None):
         try:
+            # Comprueba que motor a sido seleccionado
             if var.ui.rbtGasolina.isChecked():
                 motor = 'Gasolina'
             elif var.ui.rbtDiesel.isChecked():
@@ -79,7 +93,11 @@ class Clientes():
                 pass
             return motor
         except Exception as error:
-            print('Error check motor', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error check motor')
+            msg.exec()
 
     '''
     Metodo que sirve para guardar el cliente en la base de datos en base a lo que escribimos en la interfaz
@@ -87,26 +105,36 @@ class Clientes():
 
     def guardaCli(self=None):
         try:
+            # Creamos una lista de: Clientes nuevos, coches nuevos y pagos
             newcli = []
             newcar = []
             pagos = []
 
+            # Creamos la lista coche con sus respectivos campos
             car = [var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
 
+            #Creamos la lista Cliente con sus respectivos campos
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtFechaltacli, var.ui.txtDirCli]
+
+            # Unimos cliente con nuevo Cliente
             for i in cliente:
                 newcli.append(i.text())
+            # Unimos coche con nuevo coche
             for i in car:
                 newcar.append(i.text())
 
+            # Cogemos la provincia el municipio y el tipo de motor del Coche
             prov = var.ui.cmbProcli.currentText()
             muni = var.ui.cmbMunicli.currentText()
             motor = Clientes.checkMotor()
 
+            # Anhadimos cada uno a su respectiva lista
             newcli.append(prov)
             newcli.append(muni)
             newcar.append(motor)
 
+
+            # Comprobamos el tipo de Pago que ha seleccionado
             if var.ui.chkEfec.isChecked():
                 pagos.append('Efectivo')
             if var.ui.chkTrans.isChecked():
@@ -121,7 +149,11 @@ class Clientes():
             print(newcli)
             print(newcar)
         except Exception as error:
-            print("Error en carga clientes", error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar Cliente')
+            msg.exec()
 
     '''
     Metodo que sirve para cargar la fecha a traves de la ventana de calendario
@@ -129,12 +161,19 @@ class Clientes():
 
     def cargaFecha(qDate):
         try:
+            # Creamos tuplas de Fecha
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            # Escribimos el label de la Fecha de Alta
             var.ui.txtFechaltacli.setText(str(data))
+            # Escondemos la ventana del calendario
             var.dlgcalendar.hide()
 
         except Exception as error:
-            print('Error al cargar Fecha alta Cliente', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar Fecha alta del Cliente')
+            msg.exec()
 
     '''
     Metodo que sirve para limpiar las celdas de la informacion de los clientes
@@ -142,22 +181,33 @@ class Clientes():
 
     def limpiaCli(self=None):
         try:
+            # Creamos una lista con los campos del cliente
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtDirCli, var.ui.txtFechaltacli,
                        var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
+            # Vaciamos esa lista
             for i in cliente:
                 i.setText('')
+            # Creamos una lista con los botones de tipo de pago
             btns = [var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans]
+            # Le decimos que los botones no esta clicados
             for btn in btns:
                 btn.setChecked(False)
+            # Vaciamos las comboBox de la Provincia y del Municipio
             var.ui.cmbProcli.setCurrentText(str(''))
             var.ui.cmbMunicli.setCurrentText(str(''))
 
 
         except Exception as error:
-            print('Error al limpiar bien', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al limpiar los campos del Cliente')
+            msg.exec()
+
 
     def cargaCliente(self=None):
         try:
+            #Primero limpiamos los campos de los Clientes para que no haya ningun tipo de problema
             Clientes.limpiaCli()
             fila = var.ui.tabClientes.selectedItems()  #Recoge todo lo que hay en la fila seleccionada de la tabla
             datos = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca,
@@ -178,12 +228,14 @@ class Clientes():
 
             registro = conexion.Conexion.oneCli(row[0])#registro del cliente
 
+            # Cargamos el todas los campos del Cliente
             var.ui.txtNombre.setText(registro[0])
             var.ui.txtFechaltacli.setText(registro[1])
             var.ui.txtDirCli.setText(registro[2])
             var.ui.cmbProcli.setCurrentText(registro[3])
             var.ui.cmbMunicli.setCurrentText(registro[4])
 
+            # Comprobante de que check box esta clicada y cargamos la que esta cargada
             if 'Efectivo' in registro[5]:
                 var.ui.chkEfec.setChecked(True)
             if 'Transferencia' in registro[5]:

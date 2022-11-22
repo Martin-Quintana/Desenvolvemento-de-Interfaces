@@ -32,15 +32,22 @@ class Conexion():
     def cargarProvincia(self=None):
         try:
             var.ui.cmbProcli.clear()
+            # Creamos una variable para la consulta
             query = QtSql.QSqlQuery()
+            # Escribimos la consulta
             query.prepare('select provincia from provincias')
+            # Ejecutamos la consulta
             if query.exec():
                 var.ui.cmbProcli.addItem('')
                 while query.next():
                     var.ui.cmbProcli.addItem(query.value(0))
 
         except Exception as error:
-            print('Error cargar provincias', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar las provincias')
+            msg.exec()
 
 
     '''
@@ -52,15 +59,23 @@ class Conexion():
             id = 0
             var.ui.cmbMunicli.clear()
             prov = var.ui.cmbProcli.currentText()
+            # Creamos una variable para la consulta
             query = QtSql.QSqlQuery()
-            query.prepare('select id from provincias where provincia = :prov')  # Consulta en la base de datos
+            # Escribimos la consulta
+            query.prepare('select id from provincias where provincia = :prov')
+            # Relacionar un elemento de la BBDD con uno de Python
             query.bindValue(':prov', prov)
+            # Ejecutamos la consulta
             if query.exec():
                 while query.next():
                     id = query.value(0)
+            # Creamos una variable para la consulta
             query1 = QtSql.QSqlQuery()
+            # Escribimos la consulta
             query1.prepare('select municipio from municipios where provincia_id = :id')
+            # Relacionar un elemento de la BBDD con uno de Python
             query1.bindValue(':id', int(id))
+            # Ejecutamos la consulta
             if query1.exec():
                 var.ui.cmbMunicli.addItem('')
                 while query1.next():
@@ -68,7 +83,11 @@ class Conexion():
 
 
         except Exception as error:
-            print('Error carga de municipios', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error en la carga de Municipios')
+            msg.exec()
 
 
     '''
@@ -128,7 +147,11 @@ class Conexion():
                 msg.exec()
             Conexion.mostrarTabcarcli(self = None)
         except Exception as error:
-            print('Error en alta cliente: ', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error en el alta de Cliente')
+            msg.exec()
 
     '''
     Metodo que sirve para mostrar los datos del Cliente en la tabla
@@ -162,7 +185,7 @@ class Conexion():
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-            msg.setText('Error al mostrar la Tabla ')
+            msg.setText('Error al mostrar la Tabla ' )
             msg.exec()
 
 
