@@ -226,14 +226,15 @@ class Conexion():
             #Creamos una variable para la consulta
             query1 = QtSql.QSqlQuery()
             #Escribimos la consulta
-            query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor) '
-                           'values (:matricula, :dnicli, :marca, :modelo, :motor)')
+            query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor, fechabajacar) '
+                           'values (:matricula, :dnicli, :marca, :modelo, :motor, :fechabajacar)')
             #Relacionar un elemento de la BBDD con uno de Python
             query1.bindValue(':matricula', str(new[0]))
             query1.bindValue(':dnicli', str(new[1]))
             query1.bindValue(':marca', str(new[2]))
             query1.bindValue(':modelo', str(new[3]))
             query1.bindValue(':motor', str(new[4]))
+            query1.bindValue(':fechabajacar', str(new[5]))
             #Ejecutamos la consulta
             if query1.exec():
                 pass
