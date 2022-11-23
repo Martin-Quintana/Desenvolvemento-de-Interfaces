@@ -17,12 +17,14 @@ class FileDialogAbrir (QtWidgets.QFileDialog):
 Clase DialogDatos
 '''
 class DialogDatos(QtWidgets.QDialog):
-    def __init__(self, parent = None):
+    def __init__(self):
         super(DialogDatos, self).__init__()
         var.dlgdatos = Ui_dlgDatos()
         var.dlgdatos.setupUi(self)
-
+        var.chkClientes = var.dlgdatos.chkClientes
+        var.chkCoches = var.dlgdatos.chkCoches
         var.dlgdatos.btnExportaDatos.clicked.connect(events.Eventos.exportarDatos)
+
 
 
 
@@ -77,6 +79,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFechaltacli.clicked.connect(events.Eventos.abrirCalendar)
         var.ui.btnLimpiacli.clicked.connect(clientes.Clientes.limpiaCli)
         var.ui.btnGuardacli.clicked.connect(conexion.Conexion.comprobarCamposValidos)
+        var.ui.btnBorracli.clicked.connect(clientes.Clientes.borraCli)
 
         '''
         Listado de eventos de acciones
@@ -88,7 +91,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
         var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
 
-        var.ui.actionExportar_Datos.triggered.connect(events.Eventos.abrirDatos)
+
+        var.ui.actionExportar_Datos.triggered.connect(events.Eventos.datos)
 
 
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importarDatos)
@@ -117,6 +121,11 @@ class Main(QtWidgets.QMainWindow):
         '''
         events.Eventos.resizeTablacarcli(self)
         styles.TableClientes.setRowColor()
+
+
+
+
+
 
 
 if __name__ == '__main__':

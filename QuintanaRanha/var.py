@@ -8,3 +8,5 @@ global dlgcalendar
 global dlgabrir
 global bbdd
 global dlgdatos
+global chkCoches
+global chkClientes

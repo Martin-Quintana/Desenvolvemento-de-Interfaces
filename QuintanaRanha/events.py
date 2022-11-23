@@ -20,10 +20,12 @@ class Eventos:
     '''
     def Salir(self):
         try:
+            # Mostramos la ventana de aviso salir
             var.avisosalir.show()
             if var.avisosalir.exec():
                 sys.exit()
             else:
+                # Escondemos la ventana de aviso salir
                 var.avisosalir.hide()
             # sys.exit()
         except Exception as error:
@@ -39,6 +41,7 @@ class Eventos:
     '''
     def abrirCalendar(self=None):
         try:
+            # Mostramos la ventana del calendario
             var.dlgcalendar.show()
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -47,10 +50,8 @@ class Eventos:
             msg.setText('Error al mostrar Calendario ')
             msg.exec()
 
-    def abrirDatos(self):
+    def datos(self):
         try:
-            global dialog
-            dialog = Ui_dlgDatos()
             var.dlgdatos.show()
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -81,7 +82,9 @@ class Eventos:
     '''
     def resizeTablacarcli(self):
         try:
+            # Seleccionamos el cabecero de la tabla
             header = var.ui.tabClientes.horizontalHeader()
+            # Redimensionamos la Tabla
             for i in range(5):
                 header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
                 if i == 1 or i == 1:
@@ -99,16 +102,20 @@ class Eventos:
     '''
     def creaBackup(self):
         try:
+            # Declaramos las variables fecha, copia, directorio y filename
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
             copia = (str(fecha) + '_backup.zip')
             directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Copia',
                                                                 copia, '.zip')
+            # Creamos la Backup
             if var.dlgabrir.accept and filename != '':
                 fichzip = zipfile.ZipFile(copia, 'w')
                 fichzip.write(var.bbdd, os.path.basename(var.bbdd), zipfile.ZIP_DEFLATED)
                 fichzip.close()
                 shutil.move(str(copia), str(directorio))
+
+                # Mensaje de informacion
                 msg = QtWidgets.QMessageBox()
                 msg.setModal(True)
                 msg.setWindowTitle('Aviso')
@@ -129,6 +136,7 @@ class Eventos:
     '''
     def restauraBackup(self = None):
         try:
+            # Declaramos la variable
             filename = var.dlgabrir.getOpenFileName(None,
                                                     'Restaurar copia de seguridad',
                                                     '',
@@ -141,6 +149,7 @@ class Eventos:
             conexion.Conexion.conexion()
             conexion.Conexion.mostrarTabcarcli()
 
+            # Mensaje de informacion
             msg = QtWidgets.QMessageBox()
             msg.setModal(True)
             msg.setWindowTitle('Aviso')
@@ -160,9 +169,14 @@ class Eventos:
     '''
     def exportarDatos(self = None):
         try:
-            global dialog
-            dialog = Ui_dlgDatos()
             var.dlgdatos.hide()
+
+            if var.chkCoches.isChecked():
+                print('Coche')
+            if var.chkClientes.isChecked():
+                print('Cliente')
+
+
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
             file = (str(fecha) + '_Clientes.xls')
@@ -208,6 +222,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al Exportar Datos ')
             msg.exec()
+            print(error)
 
 
 

@@ -60,32 +60,6 @@
     <set>Qt::AlignHCenter|Qt::AlignTop</set>
    </property>
   </widget>
-  <widget class="QCheckBox" name="chkClientes">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>170</y>
-     <width>70</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Clientes</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="chkCoches">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>170</y>
-     <width>70</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Coches</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnExportaDatos">
    <property name="geometry">
     <rect>
@@ -117,6 +91,32 @@
    <property name="scaledContents">
     <bool>true</bool>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>170</y>
+     <width>127</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QCheckBox" name="chkClientes">
+      <property name="text">
+       <string>Clientes</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="chkCoches">
+      <property name="text">
+       <string>Coches</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

@@ -41,13 +41,13 @@ class Clientes():
         try:
             dni = var.ui.txtDni.text()
             if Clientes.validarDNI(dni):
-                var.ui.lblValidardni.setStyleSheet('color: green;')
-                var.ui.lblValidardni.setText('V')
+                var.ui.lblValidarDni.setStyleSheet('color: green;')
+                var.ui.lblValidarDni.setText('V')
                 var.ui.txtDni.setText(dni.upper())
                 var.ui.txtDni.setStyleSheet('background-color: #fff3b5;')
             else:
-                var.ui.lblValidardni.setStyleSheet('color: red;')
-                var.ui.lblValidardni.setText('X')
+                var.ui.lblValidarDni.setStyleSheet('color: red;')
+                var.ui.lblValidarDni.setText('X')
                 var.ui.txtDni.setText(dni.upper())
                 var.ui.txtDni.setStyleSheet('background-color: pink;')
         except Exception as error:
@@ -250,5 +250,18 @@ class Clientes():
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al cargar Cliente de la tabla')
+            msg.exec()
+
+
+    def borraCli (self):
+        try:
+            dni = var.ui.txtDni.text()
+            conexion.Conexion.borrarCli(dni)
+            conexion.Conexion.mostrarTabcarcli(self)
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al borrar el Cliente y sus Coches')
             msg.exec()
 

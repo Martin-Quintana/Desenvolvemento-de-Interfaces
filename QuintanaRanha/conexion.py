@@ -1,5 +1,7 @@
-from PyQt6 import QtSql
+import datetime
 
+from PyQt6 import QtSql
+from datetime import datetime
 import clientes
 import var
 from ventMain import *
@@ -162,7 +164,7 @@ class Conexion():
             # Creamos una variable para la consulta
             query = QtSql.QSqlQuery()
             # Escribimos la consulta
-            query.prepare('select matricula, dnicli, marca, modelo, motor from coches order by marca, modelo')
+            query.prepare('select matricula, dnicli, marca, modelo, motor from coches where fechabajacar is null order by marca, modelo')
             if query.exec():
                 while query.next():
                     var.ui.tabClientes.setRowCount(index + 1)  # Creamos la fila
@@ -275,3 +277,42 @@ class Conexion():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al comprobar los Datos')
             msg.exec()
+
+    def borrarCli(dni):
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
+
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('update clientes set fechabajacli = :fecha where dni = :dni')
+            query1.bindValue(':fecha', str(fecha))
+            query1.bindValue(':dni', str(dni))
+
+            if query1.exec():
+                pass
+
+            query = QtSql.QSqlQuery()
+            query.prepare('update coches set fechabajacar = :fecha where dnicli = :dni')
+            query.bindValue(':fecha', str(fecha))
+            query.bindValue(':dni', str(dni))
+
+            if query.exec():
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                msg.setText('Cliente dado de baja')
+                msg.exec()
+
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al borra Cliente en Conexion')
+            msg.exec()
+            print(error)
+
+
+
+
+
+
