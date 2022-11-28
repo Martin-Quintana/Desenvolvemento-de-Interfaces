@@ -31,6 +31,7 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al Validar DNI')
             msg.exec()
+            print(error)
 
     '''
     Metodo para mostrar que la validacion del DNI es correcta y poner la letra del DNI en mayusculas
@@ -56,6 +57,7 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al error al mostrar color y validez del DNI')
             msg.exec()
+            print(error)
 
     '''
     Metodo para seleccionar el tipo de motor
@@ -73,6 +75,7 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error seleccion de motor')
             msg.exec()
+            print(error)
 
     '''
     Metodo para chequear que el motor ha sido seleccionado correctamente
@@ -98,6 +101,7 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error check motor')
             msg.exec()
+            print(error)
 
     '''
     Metodo que sirve para guardar el cliente en la base de datos en base a lo que escribimos en la interfaz
@@ -154,6 +158,7 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al cargar Cliente')
             msg.exec()
+            print(error)
 
     '''
     Metodo que sirve para cargar la fecha a traves de la ventana de calendario
@@ -174,6 +179,7 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al cargar Fecha alta del Cliente')
             msg.exec()
+            print(error)
 
     '''
     Metodo que sirve para limpiar las celdas de la informacion de los clientes
@@ -203,8 +209,12 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al limpiar los campos del Cliente')
             msg.exec()
+            print(error)
 
 
+    '''
+    Metodo que sirve oara cargar el cliente de la tabla en los labels
+    '''
     def cargaCliente(self=None):
         try:
             #Primero limpiamos los campos de los Clientes para que no haya ningun tipo de problema
@@ -251,8 +261,11 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al cargar Cliente de la tabla')
             msg.exec()
+            print(error)
 
-
+    '''
+    Metodo que sirve para borrar el cliente
+    '''
     def borraCli (self):
         try:
             dni = var.ui.txtDni.text()
@@ -264,4 +277,51 @@ class Clientes():
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al borrar el Cliente y sus Coches')
             msg.exec()
+            print(error)
 
+
+    '''
+    Metodo que sirve para mdoificar clientes
+    '''
+    def modifCli(self):
+        try:
+            modcar = []
+            modcli = []
+            cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtFechaltacli,var.ui.txtDirCli]
+
+            for i in cliente:
+                modcli.append(i.text())
+            # Provincia
+            prov = var.ui.cmbProcli.currentText()
+            modcli.append(prov)
+            # Municipio
+            muni = var.ui.cmbMunicli.currentText()
+            modcli.append(muni)
+
+            # Pagos
+            pagos = []
+            if var.ui.chkEfec.isChecked():
+                pagos.append('Efectivo')
+            if var.ui.chkTrans.isChecked():
+                pagos.append('Transeferencia')
+            if var.ui.chkTar.isChecked():
+                pagos.append('Tarjeta')
+            pagos = set(pagos) # Evita duplicados
+            modcli.append('; '.join(pagos))
+
+            car = [var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
+            for i in car:
+                modcar.append(i.text())
+            motor = Clientes.checkMotor()
+            modcar.append(motor)
+
+            conexion.Conexion.modificaCli(modcli, modcar)
+            conexion.Conexion.mostrarTabcarcli(self)
+
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al modificar el Cliente')
+            msg.exec()
+            print(error)

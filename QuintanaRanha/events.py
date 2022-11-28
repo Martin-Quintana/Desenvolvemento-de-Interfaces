@@ -34,6 +34,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al Salir')
             msg.exec()
+            print(error)
 
 
     '''
@@ -49,6 +50,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al mostrar Calendario ')
             msg.exec()
+            print(error)
 
     def datos(self):
         try:
@@ -59,6 +61,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al abrir Exportar Datos ')
             msg.exec()
+            print(error)
 
     '''
     Metodo que sirve para poner las primeras letras de cada palabra en mayuscula
@@ -76,6 +79,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al poner en mayusculas ')
             msg.exec()
+            print(error)
 
     '''
     Metodo que sirve para que el tamanho de las celdas de la tabla sea el adecuado
@@ -95,6 +99,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al deimensionar la table de coches')
             msg.exec()
+            print(error)
 
 
     '''
@@ -129,6 +134,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al crear una copia de seguridad ')
             msg.exec()
+            print(error)
 
 
     '''
@@ -162,6 +168,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al restaurar el Backup ')
             msg.exec()
+            print(error)
 
 
     '''
@@ -271,6 +278,7 @@ class Eventos:
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error al guardar la importacion de datos')
             msg.exec()
+            print(error)
 
 
 

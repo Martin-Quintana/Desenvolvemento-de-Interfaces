@@ -1020,6 +1020,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actioncambioprocar"/>
+   <addaction name="separator"/>
    <addaction name="actionpushDB"/>
    <addaction name="actionpullDB"/>
    <addaction name="separator"/>
@@ -1084,6 +1086,15 @@
    </property>
    <property name="shortcut">
     <string>Alt+I</string>
+   </property>
+  </action>
+  <action name="actioncambioprocar">
+   <property name="icon">
+    <iconset>
+     <normaloff>img/cambioprocar.png</normaloff>img/cambioprocar.png</iconset>
+   </property>
+   <property name="text">
+    <string>cambioprocar</string>
    </property>
   </action>
  </widget>
