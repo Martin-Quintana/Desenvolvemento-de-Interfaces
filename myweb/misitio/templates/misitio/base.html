@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="es">
+<html lang="es" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Perykos Shop</title>
@@ -16,6 +16,10 @@
     <a href="{% url 'cliente_new' %}" class="top-menu"><span class="glyphicon-plus">Alta Cliente</span> </a>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <a href="#" class="top-menu"><span class="glyphicon-minus">Baja Cliente</span> </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'producto_new' %}" class="top-menu">Alta Producto</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'producto_list' %}" class="top-menu">Lista Producto</a>
 </div>
     <div>
         <div class="content">

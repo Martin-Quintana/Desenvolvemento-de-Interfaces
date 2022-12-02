@@ -1,0 +1,11 @@
+{% extends 'misitio/base.html' %}
+{% block content %}
+
+<h3>Nuevo Producto</h3><br>
+<div class="productoform">
+  <form method="POST"> {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Guardar</button>
+  </form>
+</div>
+{% endblock %}

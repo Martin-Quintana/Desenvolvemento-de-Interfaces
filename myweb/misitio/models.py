@@ -9,5 +9,8 @@ class Cliente(models.Model):
     direccion = models.CharField(max_length=150, blank= False, null=True)
     mobile = models.CharField(max_length=15, blank=False, null=True)
 
-
+class Productos(models.Model):
+    producto = models.CharField(max_length=20)
+    descripcion = models.CharField(max_length=75, blank=False, null=False)
+    precio = models.IntegerField(blank=False, null=False)
 

@@ -1,0 +1,11 @@
+
+{% extends 'misitio/base.html' %}
+{% block content %}
+{% for Productos in productos %}
+    <p>__________________________________________________________________________</p>
+<div class="content">
+    <p> Producto: {{ Productos.producto }}     Descripcion: {{ Productos.descripcion }}     Precio: {{ Productos.precio }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
