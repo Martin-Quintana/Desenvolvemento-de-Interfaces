@@ -177,42 +177,58 @@ class Eventos:
     def exportarDatos(self = None):
         try:
             var.dlgdatos.hide()
-
-            if var.chkCoches.isChecked():
-                print('Coche')
-            if var.chkClientes.isChecked():
-                print('Cliente')
-
-
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
-            file = (str(fecha) + '_Clientes.xls')
+            file = (str(fecha) + 'Datos exportados.xls')
 
             directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Datos',
                                                                 file, '.xls')
             wb = xlwt.Workbook()
-            sheet1 = wb.add_sheet('Clientes')
-            sheet1.write(0,0,'DNI')
-            sheet1.write(0,1,'Nombre')
-            sheet1.write(0,2,'Fecha Alta')
-            sheet1.write(0,3,'Direccion')
-            sheet1.write(0,4,'Provincia')
-            sheet1.write(0,5,'Municipio')
-            sheet1.write(0,6,'Forma de Pago')
-            fila = 1
 
-            query = QtSql.QSqlQuery()
-            query.prepare('select *  from clientes order by dni')
-            if query.exec():
-                while query.next():
-                    sheet1.write(fila, 0, str(query.value(0)))
-                    sheet1.write(fila, 1, str(query.value(1)))
-                    sheet1.write(fila, 2, str(query.value(2)))
-                    sheet1.write(fila, 3, str(query.value(3)))
-                    sheet1.write(fila, 4, str(query.value(4)))
-                    sheet1.write(fila, 5, str(query.value(5)))
-                    sheet1.write(fila, 6, str(query.value(6)))
-                    fila += 1
+            if var.chkCoches.isChecked():
+                sheet1 = wb.add_sheet('Coches')
+                sheet1.write(0, 0, 'DNI')
+                sheet1.write(0, 1, 'Matricula')
+                sheet1.write(0, 2, 'Marca')
+                sheet1.write(0, 3, 'Modelo')
+                fila = 1
+
+                query = QtSql.QSqlQuery()
+                query.prepare('select *  from coches order by matricula')
+                if query.exec():
+                    while query.next():
+                        sheet1.write(fila, 0, str(query.value(0)))
+                        sheet1.write(fila, 1, str(query.value(1)))
+                        sheet1.write(fila, 2, str(query.value(2)))
+                        sheet1.write(fila, 3, str(query.value(3)))
+                        fila += 1
+            if var.chkClientes.isChecked():
+                sheet1 = wb.add_sheet('Clientes')
+                sheet1.write(0, 0, 'DNI')
+                sheet1.write(0, 1, 'Nombre')
+                sheet1.write(0, 2, 'Fecha Alta')
+                sheet1.write(0, 3, 'Direccion')
+                sheet1.write(0, 4, 'Provincia')
+                sheet1.write(0, 5, 'Municipio')
+                sheet1.write(0, 6, 'Forma de Pago')
+                fila = 1
+
+                query = QtSql.QSqlQuery()
+                query.prepare('select *  from clientes order by dni')
+                if query.exec():
+                    while query.next():
+                        sheet1.write(fila, 0, str(query.value(0)))
+                        sheet1.write(fila, 1, str(query.value(1)))
+                        sheet1.write(fila, 2, str(query.value(2)))
+                        sheet1.write(fila, 3, str(query.value(3)))
+                        sheet1.write(fila, 4, str(query.value(4)))
+                        sheet1.write(fila, 5, str(query.value(5)))
+                        sheet1.write(fila, 6, str(query.value(6)))
+                        fila += 1
+
+
+
+
             wb.save(directorio)
 
             msg = QtWidgets.QMessageBox()

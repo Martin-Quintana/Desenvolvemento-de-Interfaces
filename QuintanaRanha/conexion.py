@@ -257,6 +257,8 @@ class Conexion():
     '''
     def altaExcelCoche(new):
         try:
+
+
             #Creamos una variable para la consulta
             query1 = QtSql.QSqlQuery()
             #Escribimos la consulta
