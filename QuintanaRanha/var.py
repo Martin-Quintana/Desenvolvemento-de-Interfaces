@@ -10,3 +10,5 @@ global bbdd
 global dlgdatos
 global chkCoches
 global chkClientes
+global statecli
+global statecar

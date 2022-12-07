@@ -4,6 +4,7 @@ from dlgSalir import *
 from dlgCalendar import *
 from datetime import *
 from dlgDatos import *
+from PyQt6 import *
 import sys, var, events, clientes, conexion
 
 '''
@@ -23,11 +24,20 @@ class DialogDatos(QtWidgets.QDialog):
         var.dlgdatos.setupUi(self)
         var.chkClientes = var.dlgdatos.chkClientes
         var.chkCoches = var.dlgdatos.chkCoches
+
+        var.statecar = 0
+        var.statecli = 0
+        var.dlgdatos.chkClientes.stateChanged.connect(
+            lambda state, chkcli=var.dlgdatos.chkClientes: self.updatecli(state, chkcli))
+        var.dlgdatos.chkCoches.stateChanged.connect(
+            lambda state, chkcar=var.dlgdatos.chkCoches: self.updatecar(state, chkcar))
         var.dlgdatos.btnExportaDatos.clicked.connect(events.Eventos.exportarDatos)
 
+    def updatecli(self, state, chk):
+        var.statecli = state
 
-
-
+    def updatecar(self, state, chk):
+        var.statecar = state
 '''
 Clase DialogCalendar
 '''
@@ -102,6 +112,8 @@ class Main(QtWidgets.QMainWindow):
         '''
         conexion.Conexion.conexion()
         conexion.Conexion.cargarProvincia()
+
+        var.ui.chkHistorico.clicked.connect(conexion.Conexion.mostrarTabcarcli)
 
 
 

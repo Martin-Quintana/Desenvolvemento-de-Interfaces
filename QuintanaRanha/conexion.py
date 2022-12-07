@@ -160,29 +160,63 @@ class Conexion():
     '''
     def mostrarTabcarcli(self):
         try:
-            index = 0
-            # Creamos una variable para la consulta
-            query = QtSql.QSqlQuery()
-            # Escribimos la consulta
-            query.prepare('select matricula, dnicli, marca, modelo, motor from coches where fechabajacar is null order by marca, modelo')
-            if query.exec():
-                while query.next():
-                    var.ui.tabClientes.setRowCount(index + 1)  # Creamos la fila
-                    #Centrar la parte de arriba de la tabla
-                    var.ui.tabClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
-                    var.ui.tabClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(0))))
-                    var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
-                    var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
-                    var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
+            #Limpiamos contenido
+            var.ui.tabClientes.clearContents()
+            if var.ui.chkHistorico.isChecked() == False:
+                index = 0
+                # Creamos una variable para la consulta
+                query = QtSql.QSqlQuery()
+                # Escribimos la consulta
+                query.prepare(
+                    'select matricula, dnicli, marca, modelo, motor from coches where fechabajacar is null order by marca, modelo')
+                if query.exec():
+                    while query.next():
+                        var.ui.tabClientes.setRowCount(index + 1)  # Creamos la fila
+                        # Centrar la parte de arriba de la tabla
+                        var.ui.tabClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
+                        var.ui.tabClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(0))))
+                        var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
+                        var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
+                        var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
 
-                    #Centrar el texto de las celdas de cada columna
-                    var.ui.tabClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    var.ui.tabClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    var.ui.tabClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    var.ui.tabClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                    var.ui.tabClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        # Centrar el texto de las celdas de cada columna
+                        var.ui.tabClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-                    index += 1
+                        index += 1
+
+            else:
+                index = 0
+                # Creamos una variable para la consulta
+                query = QtSql.QSqlQuery()
+                # Escribimos la consulta
+                query.prepare(
+                    'select matricula, dnicli, marca, modelo, motor, fechabajacar from coches order by marca, modelo')
+                if query.exec():
+                    while query.next():
+                        var.ui.tabClientes.setRowCount(index + 1)  # Creamos la fila
+                        # Centrar la parte de arriba de la tabla
+                        var.ui.tabClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
+                        var.ui.tabClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(0))))
+                        var.ui.tabClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
+                        var.ui.tabClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
+                        var.ui.tabClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(str(query.value(4))))
+                        var.ui.tabClientes.setItem(index, 5, QtWidgets.QTableWidgetItem(str(query.value(5))))
+
+                        # Centrar el texto de las celdas de cada columna
+                        var.ui.tabClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                        var.ui.tabClientes.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+                        index += 1
+
+
         except Exception as error:
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle('Aviso')
@@ -370,7 +404,6 @@ class Conexion():
             msg.setText('Error al modificar Cliente en Conexion')
             msg.exec()
             print(error)
-
 
 
 
