@@ -91,6 +91,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnGuardacli.clicked.connect(conexion.Conexion.comprobarCamposValidos)
         var.ui.btnBorracli.clicked.connect(clientes.Clientes.borraCli)
         var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCli)
+        var.ui.btnBuscacli.clicked.connect(conexion.Conexion.buscaCoche)
 
         '''
         Listado de eventos de acciones
