@@ -120,10 +120,9 @@ class Clientes():
             #Creamos la lista Cliente con sus respectivos campos
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtFechaltacli, var.ui.txtDirCli]
 
-            # Unimos cliente con nuevo Cliente
+
             for i in cliente:
                 newcli.append(i.text())
-            # Unimos coche con nuevo coche
             for i in car:
                 newcar.append(i.text())
 
@@ -223,6 +222,7 @@ class Clientes():
             datos = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca,
                      var.ui.txtModelo]  # Son los datos que hay en la tabla
             row = [dato.text() for dato in fila]  # Creas un listado con los datos
+
             for i, dato in enumerate(datos):
                 dato.setText(row[i])
 
