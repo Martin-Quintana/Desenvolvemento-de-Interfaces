@@ -153,7 +153,7 @@ class Eventos:
                     bbdd.extractall(pwd=None, path='./db')
                 bbdd.close()
             conexion.Conexion.conexion()
-            conexion.Conexion.mostrarTabcarcli()
+            conexion.Conexion.mostrarTabcarcli(self)
 
             # Mensaje de informacion
             msg = QtWidgets.QMessageBox()
@@ -191,6 +191,7 @@ class Eventos:
                 sheet1.write(0, 1, 'Matricula')
                 sheet1.write(0, 2, 'Marca')
                 sheet1.write(0, 3, 'Modelo')
+                sheet1.write(0, 4, 'Motor')
                 fila = 1
 
                 query = QtSql.QSqlQuery()
@@ -201,6 +202,7 @@ class Eventos:
                         sheet1.write(fila, 1, str(query.value(1)))
                         sheet1.write(fila, 2, str(query.value(2)))
                         sheet1.write(fila, 3, str(query.value(3)))
+                        sheet1.write(fila, 4, str(query.value(4)))
                         fila += 1
             if var.chkClientes.isChecked():
                 sheet1 = wb.add_sheet('Clientes')
