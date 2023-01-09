@@ -12,3 +12,4 @@ global chkCoches
 global chkClientes
 global statecli
 global statecar
+global report

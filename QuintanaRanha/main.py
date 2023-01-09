@@ -1,3 +1,4 @@
+import informes
 import styles
 from ventMain import *
 from dlgSalir import *
@@ -103,6 +104,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
         var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
 
+        var.ui.actionInformes_Clientes.triggered.connect(informes.Informes.listClientes)
+        var.ui.actionInforme_Vehiculos.triggered.connect(informes.Informes.listAutos)
 
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.datos)
 
