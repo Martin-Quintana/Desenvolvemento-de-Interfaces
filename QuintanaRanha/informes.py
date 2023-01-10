@@ -1,4 +1,5 @@
-import os, var
+import os, var, conexion
+from PyQt6 import QtSql
 from reportlab import *
 from datetime import datetime
 
@@ -15,6 +16,47 @@ class Informes:
             var.report.drawString(250, 685, titulo)
             Informes.pieInforme(titulo)
             Informes.cabecera(titulo)
+            items = ['DNI', 'Nombre', 'Direccion', 'Municipio', 'Provincia']
+            var.report.setFont('Helvetica-Bold', size=10)
+            var.report.line(50, 680, 525, 680)
+            var.report.drawString(60, 670, str(items[0]))
+            var.report.drawString(120, 670, str(items[1]))
+            var.report.drawString(200, 670, str(items[2]))
+            var.report.drawString(370, 670, str(items[3]))
+            var.report.drawString(460, 670, str(items[4]))
+            var.report.line(50, 667, 525, 667)
+
+            query = QtSql.QSqlQuery()
+            query.prepare('select dni, nombre, direccion, municipio, provincia from clientes order by nombre')
+            var.report.setFont('Helvetica', size=8)
+
+            if query.exec():
+                i = 55
+                j = 660
+                while query.next():
+                    if j <= 80:
+                        var.report.drawString(460, 90, 'Pagina siguiente...')
+                        var.report.showPage()
+                        Informes.cabecera(titulo)
+                        Informes.pieInforme(titulo)
+                        var.report.setFont('Helvetica-Bold', size=10)
+                        var.report.line(50, 680, 525, 680)
+                        var.report.drawString(60, 670, str(items[0]))
+                        var.report.drawString(120, 670, str(items[1]))
+                        var.report.drawString(200, 670, str(items[2]))
+                        var.report.drawString(370, 670, str(items[3]))
+                        var.report.drawString(460, 670, str(items[4]))
+                        var.report.line(50, 667, 525, 667)
+                        i = 55
+                        j = 660
+                        var.report.setFont('Helvetica', size=8)
+                        var.report.drawString(i,j, str(query.value(0)))
+                        var.report.drawString(i + 90, j, str(query.value(1)))
+                        var.report.drawString(i+ 170, j, str(query.value(2)))
+                        j = j - 20
+
+
+
             var.report.save()
             rootPath = '.\\informes'
 
@@ -57,9 +99,8 @@ class Informes:
     def cabecera(titulo):
         try:
             logo = '.\img\logo.png'
-            var.report.line(50, 800, 525, 800)
             var.report.setFont('Helvetica', size=10)
-
+            var.report.line(50, 815, 525, 815)
             var.report.setAuthor('Martin Quintana')
 
             textCIF = 'A0000000H'
@@ -74,10 +115,7 @@ class Informes:
             var.report.drawString(50, 750, textpost)
             var.report.drawString(50, 735, texttlfo)
             var.report.drawString(50, 720, textemail)
-            var.report.drawImage(logo, 400, 725, width=150, height= 70)
-            var.report.line(50, 710, 525, 710)
-
-
+            var.report.drawImage(logo, 400, 725, width=150, height=70)
 
 
         except Exception as error:
