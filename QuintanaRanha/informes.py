@@ -1,4 +1,6 @@
 import os, var, conexion
+
+import reportlab
 from PyQt6 import QtSql
 from reportlab import *
 from datetime import datetime
@@ -21,8 +23,8 @@ class Informes:
             var.report.line(50, 680, 525, 680)
             var.report.drawString(60, 670, str(items[0]))
             var.report.drawString(120, 670, str(items[1]))
-            var.report.drawString(200, 670, str(items[2]))
-            var.report.drawString(370, 670, str(items[3]))
+            var.report.drawString(225, 670, str(items[2]))
+            var.report.drawString(345, 670, str(items[3]))
             var.report.drawString(460, 670, str(items[4]))
             var.report.line(50, 667, 525, 667)
 
@@ -32,7 +34,7 @@ class Informes:
 
             if query.exec():
                 i = 55
-                j = 660
+                j = 650
                 while query.next():
                     if j <= 80:
                         var.report.drawString(460, 90, 'Pagina siguiente...')
@@ -43,26 +45,39 @@ class Informes:
                         var.report.line(50, 680, 525, 680)
                         var.report.drawString(60, 670, str(items[0]))
                         var.report.drawString(120, 670, str(items[1]))
-                        var.report.drawString(200, 670, str(items[2]))
-                        var.report.drawString(370, 670, str(items[3]))
+                        var.report.drawString(225, 670, str(items[2]))
+                        var.report.drawString(345, 670, str(items[3]))
                         var.report.drawString(460, 670, str(items[4]))
                         var.report.line(50, 667, 525, 667)
-                        i = 55
-                        j = 660
-                        var.report.setFont('Helvetica', size=8)
-                        var.report.drawString(i,j, str(query.value(0)))
-                        var.report.drawString(i + 90, j, str(query.value(1)))
-                        var.report.drawString(i+ 170, j, str(query.value(2)))
-                        j = j - 20
-
-
+                        i = 60
+                        j = 700
+                    dni = str(query.value(0))
+                    dniCensored = '*****' + dni[5] + dni[6] + dni[7] + '*'
+                    var.report.setFont('Helvetica', size=8)
+                    var.report.drawString(i, j, dniCensored)
+                    var.report.drawString(i + 65, j, str(query.value(1)))
+                    var.report.drawString(i + 170, j, str(query.value(2)))
+                    var.report.drawString(i + 290, j, str(query.value(3)))
+                    var.report.drawString(i + 405, j, str(query.value(4)))
+                    j = j - 20
 
             var.report.save()
-            rootPath = '.\\informes'
 
+
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
+            copia = (str(fecha) + '_Clientes.pdf')
+            directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Copia',
+                                                                copia, '.pdf')
+            # Creamos la Backup
+            if var.dlgabrir.accept and filename != '':
+                os.write(os.open('informes/listadoClientes.pdf', os.O_RDWR), str.encode(copia))
+
+            '''
             for file in os.listdir(rootPath):
                 if file.endswith('Clientes.pdf'):
                     os.startfile('%s\%s' % (rootPath, file))
+            '''
         except Exception as error:
             print('Error informes estado de clientes', error)
 
@@ -74,6 +89,50 @@ class Informes:
             var.report.drawString(250, 685, titulo)
             Informes.pieInforme(titulo)
             Informes.cabecera(titulo)
+            items = ['Matricula', 'DNI', 'Marca', 'Modelo', 'Motor']
+            var.report.setFont('Helvetica-Bold', size=10)
+            var.report.line(50, 680, 525, 680)
+            var.report.drawString(60, 670, str(items[0]))
+            var.report.drawString(120, 670, str(items[1]))
+            var.report.drawString(225, 670, str(items[2]))
+            var.report.drawString(345, 670, str(items[3]))
+            var.report.drawString(460, 670, str(items[4]))
+            var.report.line(50, 667, 525, 667)
+
+            query = QtSql.QSqlQuery()
+            query.prepare('select matricula, dnicli, marca, modelo, motor from coches order by marca, modelo')
+            var.report.setFont('Helvetica', size=8)
+
+            if query.exec():
+                i = 55
+                j = 650
+                while query.next():
+                    if j <= 80:
+                        var.report.drawString(460, 90, 'Pagina siguiente...')
+                        var.report.showPage()
+                        Informes.cabecera(titulo)
+                        Informes.pieInforme(titulo)
+                        var.report.setFont('Helvetica-Bold', size=10)
+                        var.report.line(50, 680, 525, 680)
+                        var.report.drawString(60, 680, str(items[0]))
+                        var.report.drawString(100, 680, str(items[1]))
+                        var.report.drawString(300, 680, str(items[2]))
+                        var.report.drawString(300, 680, str(items[3]))
+                        var.report.drawString(460, 680, str(items[4]))
+                        var.report.line(50, 667, 525, 667)
+                        i = 60
+                        j = 700
+
+                    dni = str(query.value(1))
+                    dniCensored = '*****' + dni[5] + dni[6] + dni[7] + '*'
+
+                    var.report.setFont('Helvetica', size=8)
+                    var.report.drawString(i, j, str(query.value(0)))
+                    var.report.drawString(i + 65, j, dniCensored)
+                    var.report.drawString(i + 170, j, str(query.value(2)))
+                    var.report.drawString(i + 290, j, str(query.value(3)))
+                    var.report.drawString(i + 405, j, str(query.value(4)))
+                    j = j - 20
             var.report.save()
             rootPath = '.\\informes'
 
