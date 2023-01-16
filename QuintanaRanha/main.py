@@ -94,6 +94,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCli)
         var.ui.btnBuscacli.clicked.connect(conexion.Conexion.buscaCoche)
 
+
         '''
         Listado de eventos de acciones
         '''

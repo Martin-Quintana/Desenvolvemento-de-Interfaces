@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'dlgDatos.ui'
+# Form implementation generated from reading ui file 'C:/Users/a21martinqr/Documents/GitHub/Desenvolvemento-de-Interfaces/QuintanaRanha/dlgDatos.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.0
 #
@@ -34,7 +34,7 @@ class Ui_dlgDatos(object):
         self.label_2 = QtWidgets.QLabel(dlgDatos)
         self.label_2.setGeometry(QtCore.QRect(150, 20, 101, 91))
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("img/interrogante.jpg"))
+        self.label_2.setPixmap(QtGui.QPixmap("C:/Users/a21martinqr/Documents/GitHub/Desenvolvemento-de-Interfaces/QuintanaRanha\\img/interrogante.jpg"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
         self.widget = QtWidgets.QWidget(dlgDatos)

@@ -63,21 +63,21 @@ class Informes:
 
             var.report.save()
 
-
+            rootPath = '.\informes'
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
             copia = (str(fecha) + '_Clientes.pdf')
             directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Copia',
-                                                                copia, '.pdf')
-            # Creamos la Backup
-            if var.dlgabrir.accept and filename != '':
-                os.write(os.open('informes/listadoClientes.pdf', os.O_RDWR), str.encode(copia))
+                                                                 copia, '.pdf')
+            # # Creamos la Backup
+            # if var.dlgabrir.accept and filename != '':
+            #     os.write(os.open('informes/listadoClientes.pdf', os.O_RDWR), str.encode(copia))
 
-            '''
+
             for file in os.listdir(rootPath):
                 if file.endswith('Clientes.pdf'):
                     os.startfile('%s\%s' % (rootPath, file))
-            '''
+
         except Exception as error:
             print('Error informes estado de clientes', error)
 

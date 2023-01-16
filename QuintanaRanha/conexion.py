@@ -456,8 +456,3 @@ class Conexion():
             print(error)
 
 
-
-
-
-
-
