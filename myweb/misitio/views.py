@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Cliente, Productos
 from django.utils import timezone
 from .forms import ClienteForm
@@ -18,8 +18,10 @@ def cliente_new(request):
         if form.is_valid():
             cliente = form.save(commit=False)
             cliente.save()
+            return redirect('clientes_list')
     else:
         form = ClienteForm()
+
     return render(request, 'misitio/clientes_edit.html', {'form': form})
 
 def productos_list(request):
@@ -32,6 +34,10 @@ def producto_new(request):
         if form.is_valid():
             producto = form.save(commit=False)
             producto.save()
+            return redirect('productos_list')
     else:
         form = ProductosForm()
     return render(request, 'misitio/productos_edit.html', {'form': form})
+
+def index(request):
+    return render(request, 'misitio/index.html')

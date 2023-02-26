@@ -1,0 +1,87 @@
+{% extends 'misitio/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Bienvenido a Peryko</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="{% url 'clientes_list' %}">
+                    <img src="/static/img/cliente.png" class="d-block w-100" alt="cliente" >
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="{% url 'productos_list' %}">
+                    <img src="/static/img/producto.png" class="d-block w-100" alt="producto">
+                </a>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <main class="container">
+    <section id="acerca">
+        <div class="row">
+            <div class="col">
+                <h2>Acerca de nosotros</h2>
+                <p>Somos una empresa dedicada crear clientes y productos</p>
+            </div>
+        </div>
+    </section>
+    <section id="servicios">
+        <div class="row">
+            <div class="col">
+                <h2>Servicios</h2>
+                <ul>
+                    <li>Creacion de clientes y verlos</li>
+                    <li>Creacion de productos y verlos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="contacto">
+        <div class="row">
+            <div class="col">
+                <h2>Contacto</h2>
+                <p>Ponte en contacto con nosotros a través de:</p>
+                <ul>
+                    <li>Teléfono: 123456789</li>
+                    <li>Correo electrónico: info@ventadejugadores.com</li>
+                    <li>Dirección: Calle del Perdon, 1234</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="bg-dark text-white text-center">
+    <p>Derechos reservados © 2023</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+
+
+{% endblock %}
+
+
+

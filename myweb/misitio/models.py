@@ -2,6 +2,10 @@
 from django.db import models
 
 
+
+# Create your models here.
+
+# Class Cliente
 class Cliente(models.Model):
     dni = models.CharField(max_length=9)
     nombre = models.CharField(max_length=150, blank=False, null=False)

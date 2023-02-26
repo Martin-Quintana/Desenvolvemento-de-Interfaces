@@ -1,11 +1,35 @@
-
 {% extends 'misitio/base.html' %}
 {% block content %}
-{% for Productos in productos %}
-    <p>__________________________________________________________________________</p>
-<div class="content">
-    <p> Producto: {{ Productos.producto }}     Descripcion: {{ Productos.descripcion }}     Precio: {{ Productos.precio }}</p>
-</div>
-{% endfor %}
+
+    <div class="row mt-3">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Decripcion</th>
+                    <th>Precio</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for Producto in productos %}
+                    <tr>
+
+                        <th>{{ Producto.producto }}</th>
+                        <th>{{ Producto.descripcion }}</th>
+                        <th>{{ Producto.precio }}</th>
+
+                    </tr>
+                    </tbody>
+
+                {% endfor %}
+                </tr>
+
+                </tbody>
+            </table>
+            <a class="btn btn-link" href="/logout">Salir</a></p>
+        </div>
+    </div>
 
 {% endblock %}
+
