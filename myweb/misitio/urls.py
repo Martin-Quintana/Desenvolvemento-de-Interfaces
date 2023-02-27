@@ -9,5 +9,3 @@ urlpatterns = [
     path('producto/list', views.productos_list, name='productos_list')
 ]
 
-
-
