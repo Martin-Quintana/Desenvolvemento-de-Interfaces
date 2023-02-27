@@ -1,0 +1,80 @@
+from PyQt6 import QtWidgets, QtCore
+import conexion
+import var
+
+
+class Facturas():
+    def cargaLineaVenta(index):
+        try:
+            index = 0
+            var.cmbServicio = QtWidgets.QComboBox()
+            var.txtUnidades = QtWidgets.QLineEdit()
+
+
+
+
+            var.ui.tabVentas.setRowCount(index + 1)
+            var.ui.tabVentas.setCellWidget(index, 0, var.cmbServicio)
+            var.ui.tabVentas.setCellWidget(index, 2, var.txtUnidades)
+            index += 1
+
+
+            conexion.Conexion.cargaComboFacturas()
+            conexion.Conexion.cargaPrecio()
+        except Exception as error:
+            print('error carga linea ventas', error)
+
+    def limpiaFac(self):
+        try:
+            var.ui.txtFactura.setText('')
+            var.ui.txtDniFac.setText('')
+            var.ui.txtMatriculaFac.setText('')
+            var.ui.txtFechaFac.setText('')
+            var.ui.txtDNIFactura.setText('')
+
+            btns = [var.ui.btnGuardaFac, var.ui.btnBorraFac, var.ui.btnModifFac]
+            for btn in btns:
+                btn.setChecked(False)
+
+
+        except Exception as error:
+            print('error limpia facturas', error)
+
+
+
+    def cargaCliente(self):
+        try:
+            Facturas.limpiaFac(self)
+            fila = var.ui.tabClientes.selectedItems()
+            datos = [var.ui.txtDniFac, var.ui.txtMatriculaFac]
+            row = [dato.text() for dato in fila]
+            for i, dato in enumerate(datos):
+                dato.setText(row[i])
+
+            date = QtCore.QDate.currentDate()
+            var.ui.txtFechaFac.setText(date.toString('dd/MM/yyyy'))
+
+        except Exception as error:
+            print('error carga cliente', error)
+
+    def calcularSubtotalServicio(self):
+        try:
+            index = 0
+            var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str('0')))
+
+            if var.txtUnidades.text() == '':
+                var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str('0')))
+            else:
+                precio = var.ui.tabVentas.item(index, 1)
+                precio = int(precio.text())
+                unidades = var.txtUnidades.text()
+                unidades = int(unidades)
+                subtotal = precio * unidades
+                var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(subtotal)))
+
+
+
+
+
+        except Exception as error:
+            print('error calcular subtotal', error)
