@@ -1,15 +1,14 @@
 {% extends 'misitio/base.html' %}
 {% block content %}
 
-    <h3>Nuevo Producto</h3><br>
-    <div class="productoform">
-        <form method="POST"> {% csrf_token %}
-            <div class="form-group">
-                {{ form.as_p }}
-            </div>
-
-
-            <button type="submit" class="btn btn-dark">Guardar</button>
+    <div class="contenedorFormulario">
+        <h1 style=" text-align: center">Nuevo Producto</h1>
+        <form method="post" style="text-align: center">
+            {% csrf_token %}
+            <table style=" margin: 20px auto">
+                {{ form.as_table }}
+            </table>
+            <button type="submit" class="btn btn-primary" style="margin-bottom: 5px">Guardar</button>
         </form>
     </div>
 {% endblock %}

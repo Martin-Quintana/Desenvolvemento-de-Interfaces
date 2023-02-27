@@ -17,47 +17,37 @@
             integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
             crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Abel&display#swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-          integrity="sha384-QEY+Yr+6eUN9Te9g4Gp4lW8gZ83V7nKSYYdTnFWpvPJbm2ygsXvSFwnf/UKaUaBh" crossorigin="anonymous">
     <link href="{% static '/css/micss.css' %}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js%"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slick-slider').slick();
+        });
+    </script>
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'index' %}"><h1>Menu</h1></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar">
+    <div class="container" style="color: black">
+        <a class="navbar-brand" href="{% url 'index' %}"><h1>HOME</h1></a>
 
-    </button>
-    <a class="navbar-brand" href="{% url 'cliente_new' %}">Nuevo Cliente</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <a class="navbar-brand" href="{% url 'cliente_new' %}">Nuevo Cliente</a>
 
-    <a class="navbar-brand" href="{% url 'clientes_list' %}">Ver los Clientes</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <a class="navbar-brand" href="{% url 'clientes_list' %}">Ver los Clientes</a>
 
-    <a class="navbar-brand" href="{% url 'producto_new' %}">Nuevo Producto</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <a class="navbar-brand" href="{% url 'producto_new' %}">Nuevo Producto</a>
 
-    <a class="navbar-brand" href="{% url 'productos_list' %}">Ver los Productos</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
+        <a class="navbar-brand" href="{% url 'productos_list' %}">Ver los Productos</a>
+    </div>
 </nav>
 </body>
 

@@ -18,7 +18,7 @@ class ClienteForm(forms.ModelForm):
                                              'required': True,
                                              'autofocus': True}),
             'fecha_alta': forms.TextInput(attrs={'class': 'form-control',
-                                                 'placeholder': 'Fecha de alta del cliente',
+                                                 'placeholder': 'yyyy-mm-dd',
                                                  'required': True,
                                                  'autofocus': True}),
             'direccion': forms.TextInput(attrs={'class': 'form-control',

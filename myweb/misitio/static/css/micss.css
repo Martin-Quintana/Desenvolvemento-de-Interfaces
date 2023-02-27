@@ -1,9 +1,44 @@
-header{
+header {
     background-color: #67e5d5;
     color: #000000;
 }
 
-body{
+body {
     background-color: #67e5d5;
     color: #000000;
+}
+
+.navbar {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+.containercarrousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contenedorFormulario {
+    background-color: #fff593;
+    width: 50%;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 5px 3px;
+    color: black;
+
 }
