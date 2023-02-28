@@ -48,7 +48,6 @@ class Conexion():
             msg.exec()
             print(error)
 
-
     '''
     Seleccionar municipio segun provincia
     '''
@@ -81,7 +80,6 @@ class Conexion():
             msg.setText('Error carga municipios')
             msg.exec()
             print(error)
-
 
     '''
     Alta en la bbdd de cliente
@@ -419,19 +417,18 @@ class Conexion():
             msg.exec()
             print(error)
 
-
-#=================================================== SERVICIOS ===================================================
-
+    # =================================================== SERVICIOS ===================================================
 
     '''
     Mostrar tabla servicios
     '''
+
     def mostrarTabservicios(self):
         try:
             index = 0
             query = QtSql.QSqlQuery()
             query.prepare(
-                    'select codigo, concepto, preciounidad from servicios order by codigo, concepto ')
+                'select codigo, concepto, preciounidad from servicios order by codigo, concepto ')
 
             if query.exec():
                 while query.next():
@@ -477,8 +474,6 @@ class Conexion():
                 msg.setText('Servicio dado de alta')
                 msg.exec()
 
-
-
             Conexion.mostrarTabservicios(self=None)
             Conexion.cargaComboFacturas(self=None)
 
@@ -493,6 +488,7 @@ class Conexion():
     '''
     Eliminar un servicio
     '''
+
     def delServicio(Self):
         try:
             codigo = Conexion.mostrarServicio()
@@ -524,17 +520,18 @@ class Conexion():
             concepto = var.ui.txtConcepto.text()
             precio = var.ui.txtPrecio.text()
             query = QtSql.QSqlQuery()
-            query.prepare('UPDATE servicios SET concepto= :concepto, preciounidad = :preciounidad WHERE codigo= :codigo')
+            query.prepare(
+                'UPDATE servicios SET concepto= :concepto, preciounidad = :preciounidad WHERE codigo= :codigo')
             query.bindValue(':concepto', concepto)
             query.bindValue(':preciounidad', precio)
             query.bindValue(':codigo', codigo)
 
-            if query.exec() :
-                    msg = QtWidgets.QMessageBox()
-                    msg.setWindowTitle('Aviso')
-                    msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                    msg.setText('Cambios realizados con éxito !!')
-                    msg.exec()
+            if query.exec():
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle('Aviso')
+                msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                msg.setText('Cambios realizados con éxito !!')
+                msg.exec()
 
             Conexion.mostrarTabservicios(self=None)
             Conexion.mostrarTabVentas(self=None)
@@ -546,6 +543,7 @@ class Conexion():
     '''
     Mostrar servicio seleccionado en la tabla
     '''
+
     def mostrarServicio(self=None):
         try:
             codigo = var.ui.tabServicios.selectedItems()[0].data(0)
@@ -585,7 +583,7 @@ class Conexion():
             msg.exec()
             print(error)
 
-#=================================================== FACTURAS ===================================================
+    # =================================================== FACTURAS ===================================================
 
     def mostrarTabVentas(idVentas):
         try:
@@ -654,10 +652,6 @@ class Conexion():
                     var.ui.tabVentas.setItem(0, 1, QtWidgets.QTableWidgetItem(str(precio)))
 
 
-
-
-
-
             # concepto = var.cmbServicio.currentText()
             # query = QtSql.QSqlQuery()
             # query.prepare('select preciounidad from servicios where concepto = :concepto')
@@ -671,3 +665,21 @@ class Conexion():
 
         except Exception as error:
             print(error)
+
+    # def add_Venta(self):
+    #     try:
+    #         index = 1
+    #         var.cmbServicio = QtWidgets.QComboBox()
+    #         var.txtUnidades = QtWidgets.QLineEdit()
+    #         var.ui.tabVentas.setRowCount(index + 1)
+    #         var.ui.tabVentas.setCellWidget(index, 0, var.cmbServicio)
+    #         var.ui.tabVentas.setCellWidget(index, 2, var.txtUnidades)
+    #         index += 1
+    #
+    #         Conexion.cargaComboFacturas()
+    #         Conexion.cargaPrecio()
+    #
+    #
+    #
+    #     except Exception as error:
+    #         print(error)

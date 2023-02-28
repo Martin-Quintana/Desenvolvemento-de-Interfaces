@@ -9,10 +9,6 @@ class Facturas():
             index = 0
             var.cmbServicio = QtWidgets.QComboBox()
             var.txtUnidades = QtWidgets.QLineEdit()
-
-
-
-
             var.ui.tabVentas.setRowCount(index + 1)
             var.ui.tabVentas.setCellWidget(index, 0, var.cmbServicio)
             var.ui.tabVentas.setCellWidget(index, 2, var.txtUnidades)
@@ -71,6 +67,11 @@ class Facturas():
                 unidades = int(unidades)
                 subtotal = precio * unidades
                 var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(subtotal)))
+
+
+
+
+
 
 
 

@@ -103,7 +103,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtMatricula.editingFinished.connect(events.Eventos.letrasCapital)
         var.ui.txtMarca.editingFinished.connect(events.Eventos.letrasCapital)
         var.ui.txtModelo.editingFinished.connect(events.Eventos.letrasCapital)
-
         '''
         Listados de eventos de botones
         '''
@@ -171,6 +170,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
         var.cmbServicio.currentIndexChanged.connect(conexion.Conexion.cargaPrecio)
         var.txtUnidades.textChanged.connect(facturas.Facturas.calcularSubtotalServicio)
+        # var.ui.btnAddFila.clicked.connect(conexion.Conexion.add_Venta)
 
 
         '''
