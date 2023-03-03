@@ -39,7 +39,7 @@ class DialogDatos(QtWidgets.QDialog):
             lambda state, chkcli=var.dlgdatos.chkClientes: self.updatecli(state, chkcli))
         var.dlgdatos.chkCoches.stateChanged.connect(
             lambda state, chkcar=var.dlgdatos.chkCoches: self.updatecar(state, chkcar))
-        var.dlgdatos.btnExportaDatos.clicked.connect(events.Eventos.exportarDatos)
+        var.dlgdatos.btnExportaDatos.clicked.connect(events.Eventos.exportar_datos)
 
     def updatecli(self, state, chk):
         var.statecli = state
@@ -62,7 +62,7 @@ class DialogCalendar(QtWidgets.QDialog):
         mes = datetime.now().month
         ano = datetime.now().year
         var.dlgcalendar.Calendar.setSelectedDate(QtCore.QDate(ano, mes, dia))
-        var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargaFecha)
+        var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargar_fecha)
 
 
 '''
@@ -97,93 +97,94 @@ class Main(QtWidgets.QMainWindow):
         '''
 
         # Eventos tipo texto de la pestaña de clientes
-        var.ui.txtDni.editingFinished.connect(clientes.Clientes.mostrarValidoDNI)
-        var.ui.txtNombre.editingFinished.connect(events.Eventos.letrasCapital)
-        var.ui.txtDirCli.editingFinished.connect(events.Eventos.letrasCapital)
-        var.ui.txtMatricula.editingFinished.connect(events.Eventos.letrasCapital)
-        var.ui.txtMarca.editingFinished.connect(events.Eventos.letrasCapital)
-        var.ui.txtModelo.editingFinished.connect(events.Eventos.letrasCapital)
+        var.ui.txtDni.editingFinished.connect(clientes.Clientes.mostrar_valido_dni)
+        var.ui.txtNombre.editingFinished.connect(events.Eventos.letras_capital)
+        var.ui.txtDirCli.editingFinished.connect(events.Eventos.letras_capital)
+        var.ui.txtMatricula.editingFinished.connect(events.Eventos.letras_capital)
+        var.ui.txtMarca.editingFinished.connect(events.Eventos.letras_capital)
+        var.ui.txtModelo.editingFinished.connect(events.Eventos.letras_capital)
         '''
         Listados de eventos de botones
         '''
         # Botones de la pestaña de clientes
-        var.ui.btnFechaltacli.clicked.connect(events.Eventos.abrirCalendar)
-        var.ui.btnLimpiacli.clicked.connect(clientes.Clientes.limpiaCli)
-        var.ui.btnGuardacli.clicked.connect(conexion.Conexion.comprobarCamposValidos)
-        var.ui.btnBorracli.clicked.connect(clientes.Clientes.borraCli)
-        var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCli)
-        var.ui.btnBuscacli.clicked.connect(conexion.Conexion.buscaCoche)
+        var.ui.btnFechaltacli.clicked.connect(events.Eventos.abrir_calendario)
+        var.ui.btnLimpiacli.clicked.connect(clientes.Clientes.limpiar_cliente)
+        var.ui.btnGuardacli.clicked.connect(conexion.Conexion.comprobar_campos_validos)
+        var.ui.btnBorracli.clicked.connect(clientes.Clientes.borrar_cliente)
+        var.ui.btnModifcli.clicked.connect(clientes.Clientes.modificar_cliente)
+        var.ui.btnBuscacli.clicked.connect(conexion.Conexion.buscar_coche)
 
         # Botones de la pestaña de Servicios
-        var.ui.btnLimpiaSer.clicked.connect(servicios.Servicios.limpiaServicio)
-        var.ui.btnGuardaservicio.clicked.connect(servicios.Servicios.guardaServicio)
-        var.ui.btnModifservicio.clicked.connect(conexion.Conexion.modServicio)
-        var.ui.btnBorraservicio.clicked.connect(conexion.Conexion.delServicio)
-        var.ui.btnGuardaservicio.clicked.connect(conexion.Conexion.mostrarTabVentas)
+        var.ui.btnLimpiaSer.clicked.connect(servicios.Servicios.limpia_servicio)
+        var.ui.btnGuardaservicio.clicked.connect(servicios.Servicios.guarda_servicio)
+        var.ui.btnModifservicio.clicked.connect(conexion.Conexion.modificar_servicio)
+        var.ui.btnBorraservicio.clicked.connect(conexion.Conexion.eliminar_servicio)
+        var.ui.btnGuardaservicio.clicked.connect(conexion.Conexion.mostrar_tab_ventas)
 
         # Botones de la pestaña de Facturas
-        var.ui.btnAltaFac.clicked.connect(conexion.Conexion.alta_Factura)
+        var.ui.btnAltaFac.clicked.connect(conexion.Conexion.alta_factura)
         '''
         Listado de eventos de acciones
         '''
 
-        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-        var.ui.actionSalibar.triggered.connect(events.Eventos.Salir)
-        var.ui.actionCrear_copia_seguridad.triggered.connect(events.Eventos.creaBackup)
-        var.ui.actionRestaurar_copia_seguridad.triggered.connect(events.Eventos.restauraBackup)
-        var.ui.actionpushDB.triggered.connect(events.Eventos.creaBackup)
-        var.ui.actionpullDB.triggered.connect(events.Eventos.restauraBackup)
+        var.ui.actionSalir.triggered.connect(events.Eventos.salir)
+        var.ui.actionSalibar.triggered.connect(events.Eventos.salir)
+        var.ui.actionCrear_copia_seguridad.triggered.connect(events.Eventos.crea_backup)
+        var.ui.actionRestaurar_copia_seguridad.triggered.connect(events.Eventos.restaura_backup)
+        var.ui.actionpushDB.triggered.connect(events.Eventos.crea_backup)
+        var.ui.actionpullDB.triggered.connect(events.Eventos.restaura_backup)
         var.ui.actionExportar_Datos.triggered.connect(events.Eventos.datos)
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importarDatos)
-        var.ui.actionInformes_Clientes.triggered.connect(informes.Informes.listClientes)
-        var.ui.actionInformes_Vehiculos.triggered.connect(informes.Informes.listAutos)
+        var.ui.actionInformes_Clientes.triggered.connect(informes.Informes.list_clientes)
+        var.ui.actionInformes_Vehiculos.triggered.connect(informes.Informes.list_autos)
 
         '''
         Llamadas a funciones
         '''
 
         conexion.Conexion.conexion()
-        conexion.Conexion.cargarProvincia()
-        var.ui.chkHistorico.clicked.connect(conexion.Conexion.mostrarTabcarcli)
+        conexion.Conexion.cargar_provincia()
+        var.ui.chkHistorico.clicked.connect(conexion.Conexion.mostrar_tabla_coches_cliente)
 
         '''
         Funciones relacionadas con las tablas
         '''
 
         # Tabla de clientes
-        conexion.Conexion.mostrarTabcarcli(self)
-        var.ui.tabClientes.clicked.connect(clientes.Clientes.cargaCliente)
-        var.ui.tabClientes.clicked.connect(facturas.Facturas.cargaCliente)
-        var.ui.tabFacturas.clicked.connect(conexion.Conexion.cargar_Factura)
+        conexion.Conexion.mostrar_tabla_coches_cliente(self)
+        var.ui.tabClientes.clicked.connect(clientes.Clientes.cargar_cliente)
+        var.ui.tabClientes.clicked.connect(facturas.Facturas.cargar_cliente)
+        var.ui.tabFacturas.clicked.connect(conexion.Conexion.cargar_factura)
 
         # Tabla de Facturas
-        conexion.Conexion.mostrarTabVentas(self)
-        facturas.Facturas.cargaLineaVenta(self)
-        conexion.Conexion.mostrar_Tab_Facturas(self)
+        conexion.Conexion.mostrar_tab_ventas(self)
+        facturas.Facturas.carga_linea_venta(self)
+        conexion.Conexion.mostrar_tab_facturas(self)
 
         # Tabla de Servicios
-        conexion.Conexion.mostrarTabservicios(self)
-        var.ui.tabServicios.clicked.connect(servicios.Servicios.cargaServicio)
+        conexion.Conexion.mostrar_tab_servicios(self)
+        var.ui.tabServicios.clicked.connect(servicios.Servicios.carga_servicio)
 
 
         '''
         Llamadas a eventos de ComboBox
         '''
 
-        var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
-        var.cmbServicio.currentIndexChanged.connect(conexion.Conexion.cargaPrecio)
-        var.txtUnidades.textChanged.connect(facturas.Facturas.calcularSubtotalServicio)
-        var.ui.btnAddFila.clicked.connect(conexion.Conexion.add_Venta)
+        var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.seleccionar_municipio)
+        var.cmbServicio.currentIndexChanged.connect(conexion.Conexion.cargar_precio)
+        var.txtUnidades.textChanged.connect(facturas.Facturas.calcular_subtotal_servicio)
+        var.ui.btnAddFila.clicked.connect(conexion.Conexion.add_venta)
 
 
         '''
         Estilos
         '''
 
-        events.Eventos.resizeTablacarcli(self)
+        events.Eventos.resize_tab_coche_cliente(self)
         events.Eventos.resizeTabVentas(self)
         events.Eventos.resizeTabServicios(self)
-        styles.TableClientes.setRowColor()
+        events.Eventos.resize_Tab_Facturas(self)
+        styles.TableClientes.set_row_color()
 
 
 if __name__ == '__main__':

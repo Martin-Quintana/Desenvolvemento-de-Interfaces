@@ -7,12 +7,12 @@ import conexion
 
 
 class Informes:
-    def listClientes(self):
+    def list_clientes(self):
         try:
             var.report = canvas.Canvas('informes/listadoClientes.pdf')
             titulo = 'LISTADO CLIENTES'
-            Informes.pieInforme(titulo)
-            Informes.topInforme(titulo)
+            Informes.pie_informe(titulo)
+            Informes.top_informe(titulo)
 
             items = ['DNI', 'Nombre', 'Direccion', 'Municipio', 'Provincia']
             var.report.setFont('Helvetica-Bold', size=10)
@@ -34,8 +34,8 @@ class Informes:
                     if j <= 80:
                         var.report.drawString(460, 90, 'Página siquiente... ')
                         var.report.showPage()
-                        Informes.topInforme(titulo)
-                        Informes.pieInforme(titulo)
+                        Informes.top_informe(titulo)
+                        Informes.pie_informe(titulo)
                         var.report.setFont('Helvetica-Bold', size=10)
                         var.report.drawString(70, 692, str(items[0]))
                         var.report.drawString(140, 692, str(items[1]))
@@ -71,12 +71,12 @@ class Informes:
         except Exception as error:
             print('Error informes estado cliente', error)
 
-    def listAutos(self):
+    def list_autos(self):
         try:
             var.report = canvas.Canvas('informes/listadoAutos.pdf')
             titulo = 'LISTADO VEHICULOS'
-            Informes.pieInforme(titulo)
-            Informes.topInforme(titulo)
+            Informes.pie_informe(titulo)
+            Informes.top_informe(titulo)
 
             items = ['Matricula', 'DNI', 'Marca', 'Modelo', 'Motor']
             var.report.setFont('Helvetica-Bold', size=10)
@@ -98,8 +98,8 @@ class Informes:
                     if j <= 80:
                         var.report.drawString(460, 90, 'Página siquiente... ')
                         var.report.showPage()
-                        Informes.topInforme(titulo)
-                        Informes.pieInforme(titulo)
+                        Informes.top_informe(titulo)
+                        Informes.pie_informe(titulo)
                         var.report.setFont('Helvetica-Bold', size=10)
                         var.report.drawString(55, 692, str(items[0]))
                         var.report.drawString(147, 692, str(items[1]))
@@ -129,7 +129,7 @@ class Informes:
         except Exception as error:
             print('Error informes estado vehiculos', error)
 
-    def topInforme(titulo):
+    def top_informe(titulo):
         try:
             logo = '.\img\logo-taller.png'
             var.report.line(50, 800, 525, 800)
@@ -147,7 +147,7 @@ class Informes:
         except Exception as error:
             print("Error en cabecera de informe", error)
 
-    def pieInforme(titulo):
+    def pie_informe(titulo):
         try:
             var.report.line(50, 50, 525, 50)
             fecha = datetime.today()
@@ -164,8 +164,8 @@ class Informes:
         try:
             var.report = canvas.Canvas('Informes/factura.pdf')
             titulo = 'FACTURA'
-            Informes.pieInforme(titulo)
-            Informes.topInforme(titulo)
+            Informes.pie_informe(titulo)
+            Informes.top_informe(titulo)
             cliente = []
             dni = str(var.ui.lblDnifac.text())
             nfac = str(var.ui.lblNumfac.text())
@@ -177,7 +177,7 @@ class Informes:
                 msg.setText('Debe seleccionar una factura')
                 msg.exec()
             else:
-                cliente = conexion.Conexion.oneCli(dni)
+                cliente = conexion.Conexion.one_cliente(dni)
                 var.report.setFont('Helvetica-Bold', size=9)
                 var.report.drawString(55, 680, 'DATOS CLIENTE')
                 var.report.drawString(400, 660, 'N Factura: ')

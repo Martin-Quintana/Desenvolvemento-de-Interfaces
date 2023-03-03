@@ -30,7 +30,7 @@ class Conexion():
     Cargar provincias
     '''
 
-    def cargarProvincia(self=None):
+    def cargar_provincia(self=None):
         try:
             var.ui.cmbProcli.clear()
             query = QtSql.QSqlQuery()
@@ -52,7 +52,7 @@ class Conexion():
     Seleccionar municipio segun provincia
     '''
 
-    def selMuni(self=None):
+    def seleccionar_municipio(self=None):
         try:
             id = 0
             var.ui.cmbMunicli.clear()
@@ -85,7 +85,7 @@ class Conexion():
     Alta en la bbdd de cliente
     '''
 
-    def altaCli(newcli, newcar):
+    def alta_cliente(newcli, newcar):
         try:
             query = QtSql.QSqlQuery()
             queryCli = QtSql.QSqlQuery()
@@ -125,7 +125,7 @@ class Conexion():
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
                 msg.setText(query1.lastError().text())
                 msg.exec()
-            Conexion.mostrarTabcarcli(self=None)
+            Conexion.mostrar_tabla_coches_cliente(self=None)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -139,7 +139,7 @@ class Conexion():
     Mostrar clientes en la tabla
     '''
 
-    def mostrarTabcarcli(self):
+    def mostrar_tabla_coches_cliente(self):
         try:
             var.ui.tabClientes.clearContents()
             if var.ui.chkHistorico.isChecked() == False:
@@ -202,7 +202,7 @@ class Conexion():
     Caragar cliente seleccionado en tabla en las celdas
     '''
 
-    def oneCli(dni):
+    def one_cliente(dni):
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -227,7 +227,7 @@ class Conexion():
     Alta coches con Excel
     '''
 
-    def altaExcelCoche(new):
+    def alta_excel_coche(new):
         try:
             query1 = QtSql.QSqlQuery()
             query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor, fechabajacar) '
@@ -254,16 +254,16 @@ class Conexion():
     Campos validos
     '''
 
-    def comprobarCamposValidos(self=None):
+    def comprobar_campos_validos(self=None):
         try:
             dni = var.ui.txtDni.text()
 
-            if clientes.Clientes.validarDNI(dni) \
+            if clientes.Clientes.validar_dni(dni) \
                     and len(var.ui.txtNombre.text()) > 0 and len(var.ui.txtDirCli.text()) > 0 \
                     and len(var.ui.txtMatricula.text()) > 0 and len(var.ui.txtMarca.text()) > 0 \
                     and len(var.ui.txtModelo.text()) > 0 and len(var.ui.cmbProcli.currentText()) > 0 \
                     and len(var.ui.cmbMunicli.currentText()) > 0 and len(var.ui.txtFechaltacli.text()) > 0:
-                clientes.Clientes.guardaCli()
+                clientes.Clientes.guardar_cliente()
 
             else:
                 msg = QtWidgets.QMessageBox()
@@ -285,7 +285,7 @@ class Conexion():
     Borrar cliente en la bbdd
     '''
 
-    def borrarCli(dni):
+    def borrar_cliente(dni):
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
@@ -322,7 +322,7 @@ class Conexion():
     Modificar cliente en la bbdd
     '''
 
-    def modificaCli(modcli, modcar):
+    def modificar_cliente(modcli, modcar):
         try:
             query = QtSql.QSqlQuery()
             query.prepare('update clientes set nombre = :nombre, alta = :alta,'
@@ -362,7 +362,7 @@ class Conexion():
                 msg.setText('Error al modificar Cliente')
                 msg.exec()
 
-            Conexion.mostrarTabcarcli(self=None)
+            Conexion.mostrar_tabla_coches_cliente(self=None)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -376,7 +376,7 @@ class Conexion():
     Buscar coche por matricula
     '''
 
-    def buscaCoche(self):
+    def buscar_coche(self):
         try:
 
             var.ui.tabClientes.clearContents()
@@ -423,7 +423,7 @@ class Conexion():
     Mostrar tabla servicios
     '''
 
-    def mostrarTabservicios(self):
+    def mostrar_tab_servicios(self):
         try:
             index = 0
             query = QtSql.QSqlQuery()
@@ -456,7 +456,7 @@ class Conexion():
     Dar de alta un servicio
     '''
 
-    def altaServicio(newservicio):
+    def alta_servicio(newservicio):
         try:
             query = QtSql.QSqlQuery()
             queryCli = QtSql.QSqlQuery()
@@ -474,8 +474,8 @@ class Conexion():
                 msg.setText('Servicio dado de alta')
                 msg.exec()
 
-            Conexion.mostrarTabservicios(self=None)
-            Conexion.cargaComboFacturas(self=None)
+            Conexion.mostrar_tab_servicios(self=None)
+            Conexion.carga_combo_facturas(self=None)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -489,9 +489,9 @@ class Conexion():
     Eliminar un servicio
     '''
 
-    def delServicio(Self):
+    def eliminar_servicio(Self):
         try:
-            codigo = Conexion.mostrarServicio()
+            codigo = Conexion.mostrar_servicio()
             query = QtSql.QSqlQuery()
             query.prepare('DELETE  from servicios where codigo = :codigo')
             query.bindValue(':codigo', codigo)
@@ -504,8 +504,8 @@ class Conexion():
                 msg.setText('Producto eliminado con éxito')
                 msg.exec()
 
-            Conexion.mostrarTabservicios(self=None)
-            Conexion.mostrarTabVentas()
+            Conexion.mostrar_tab_servicios(self=None)
+            Conexion.mostrar_tab_ventas()
 
         except Exception as error:
             print('Error en alta Productos: ', error)
@@ -514,7 +514,7 @@ class Conexion():
     Modificar un servicio
     '''
 
-    def modServicio(self=None):
+    def modificar_servicio(self=None):
         try:
             codigo = var.ui.tabServicios.selectedItems()[0].data(0)
             concepto = var.ui.txtConcepto.text()
@@ -533,8 +533,8 @@ class Conexion():
                 msg.setText('Cambios realizados con éxito !!')
                 msg.exec()
 
-            Conexion.mostrarTabservicios(self=None)
-            Conexion.mostrarTabVentas(self=None)
+            Conexion.mostrar_tab_servicios(self=None)
+            Conexion.mostrar_tab_ventas(self=None)
 
 
         except Exception as error:
@@ -544,7 +544,7 @@ class Conexion():
     Mostrar servicio seleccionado en la tabla
     '''
 
-    def mostrarServicio(self=None):
+    def mostrar_servicio(self=None):
         try:
             codigo = var.ui.tabServicios.selectedItems()[0].data(0)
             query = QtSql.QSqlQuery()
@@ -562,7 +562,7 @@ class Conexion():
     Caragar servicio seleccionado en tabla en las celdas
     '''
 
-    def oneServicio(codigo):
+    def one_servicio(codigo):
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -585,7 +585,7 @@ class Conexion():
 
     # =================================================== FACTURAS ===================================================
 
-    def mostrarTabVentas(idVentas):
+    def mostrar_tab_ventas(idVentas):
         try:
             index = 1
             query = QtSql.QSqlQuery()
@@ -617,7 +617,7 @@ class Conexion():
             msg.exec()
             print(error)
 
-    def cargaComboFacturas(self=None):
+    def carga_combo_facturas(self=None):
         try:
             query = QtSql.QSqlQuery()
             query.prepare('select concepto from servicios order by concepto')
@@ -629,7 +629,7 @@ class Conexion():
         except Exception as error:
             print(error)
 
-    def cargaPrecio(self=None):
+    def cargar_precio(self=None):
         try:
 
             codigo = 0
@@ -658,9 +658,9 @@ class Conexion():
         except Exception as error:
             print(error)
 
-    def add_Venta(self):
+    def add_venta(self):
         try:
-            Conexion.mostrarTabVentas(self)
+            Conexion.mostrar_tab_ventas(self)
 
             concepto = var.cmbServicio.currentText()
             query = QtSql.QSqlQuery()
@@ -713,7 +713,7 @@ class Conexion():
 
                             index += 1
 
-            Conexion.mostrarTabVentas(self)
+            Conexion.mostrar_tab_ventas(self)
 
             query3 = QtSql.QSqlQuery()
             query3.prepare('select sum(subtotal) from ventas')
@@ -728,7 +728,7 @@ class Conexion():
             print(error)
 
 
-    def alta_Factura(idFactura):
+    def alta_factura(idFactura):
 
         try:
             query = QtSql.QSqlQuery()
@@ -746,14 +746,14 @@ class Conexion():
             if query.exec():
                 print('Factura dada de alta')
 
-            Conexion.mostrar_Tab_Facturas(self = None)
+            Conexion.mostrar_tab_facturas(self = None)
 
 
 
         except Exception as error:
             print(error)
 
-    def mostrar_Tab_Facturas(self):
+    def mostrar_tab_facturas(self):
 
         try:
             index = 0
@@ -774,10 +774,10 @@ class Conexion():
         except Exception as error:
             print(error)
 
-    def cargar_Factura(self):
+    def cargar_factura(self):
 
         try:
-            Conexion.limpia_Factura(self)
+            Conexion.limpia_factura(self)
             fila = var.ui.tabFacturas.selectedItems()
             datos = [var.ui.txtDniFac, var.ui.txtMatriculaFac]
             row = [dato.text() for dato in fila]
@@ -801,12 +801,12 @@ class Conexion():
                     var.ui.txtDniFac.setText(str(dni))
                     var.ui.txtFechaFac.setText(str(fecha))
 
-            Conexion.mostrarTabVentas(self)
+            Conexion.mostrar_tab_ventas(self)
 
         except Exception as error:
             print(error)
 
-    def limpia_Factura(self):
+    def limpia_factura(self):
 
         try:
             var.ui.txtDniFac.setText('')

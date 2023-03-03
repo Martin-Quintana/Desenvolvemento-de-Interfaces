@@ -17,7 +17,7 @@ class Eventos:
     Salir del programa con ventana emergente de confirmacion
     '''
 
-    def Salir(self):
+    def salir(self):
         try:
             var.avisosalir.show()
             if var.avisosalir.exec():
@@ -37,7 +37,7 @@ class Eventos:
     Abrir calendario
     '''
 
-    def abrirCalendar(self=None):
+    def abrir_calendario(self=None):
         try:
             var.dlgcalendar.show()
 
@@ -68,7 +68,7 @@ class Eventos:
     Primera letra de cada palabra en mayus
     '''
 
-    def letrasCapital(self=None):
+    def letras_capital(self=None):
         try:
             var.ui.txtNombre.setText(var.ui.txtNombre.text().title())
             var.ui.txtDirCli.setText(var.ui.txtDirCli.text().title())
@@ -88,7 +88,7 @@ class Eventos:
     Celdas con tamaño correcto
     '''
 
-    def resizeTablacarcli(self):
+    def resize_tab_coche_cliente(self):
         try:
             header = var.ui.tabClientes.horizontalHeader()
             for i in range(5):
@@ -108,7 +108,7 @@ class Eventos:
     Crear BackUp 
     '''
 
-    def creaBackup(self):
+    def crea_backup(self):
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
@@ -140,7 +140,7 @@ class Eventos:
     Restaurar BackUp
     '''
 
-    def restauraBackup(self=None):
+    def restaura_backup(self=None):
         try:
             filename = var.dlgabrir.getOpenFileName(None, 'Restaurar copia de seguridad', '', 'All Files (*);;zip (*.zip)')
 
@@ -151,7 +151,7 @@ class Eventos:
                 bbdd.close()
 
             conexion.Conexion.conexion()
-            conexion.Conexion.mostrarTabcarcli(self)
+            conexion.Conexion.mostrar_tabla_coches_cliente(self)
 
             msg = QtWidgets.QMessageBox()
             msg.setModal(True)
@@ -172,7 +172,7 @@ class Eventos:
     Exportar datos
     '''
 
-    def exportarDatos(self=None):
+    def exportar_datos(self=None):
         try:
             var.dlgdatos.hide()
             fecha = datetime.today()
@@ -265,8 +265,8 @@ class Eventos:
                         new = []
                         for j in range(columnas):
                             new.append(str(datos.cell_value(i, j)))
-                        if clientes.Clientes.validarDNI(str(new[1])):
-                            conexion.Conexion.altaExcelCoche(new)
+                        if clientes.Clientes.validar_dni(str(new[1])):
+                            conexion.Conexion.alta_excel_coche(new)
 
 
                 msg = QtWidgets.QMessageBox()
@@ -275,7 +275,7 @@ class Eventos:
                 msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 msg.setText('Importacion realizada')
                 msg.exec()
-                conexion.Conexion.mostrarTabcarcli(self)
+                conexion.Conexion.mostrar_tabla_coches_cliente(self)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -315,5 +315,21 @@ class Eventos:
             msg.setWindowTitle('Aviso')
             msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
             msg.setText('Error dimensionar tabla Servicios')
+            msg.exec()
+            print(error)
+
+    def resize_Tab_Facturas(self):
+        try:
+            header = var.ui.tabFacturas.horizontalHeader()
+            for i in range(2):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                if i == 1 or i == 1:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+
+        except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error dimensionar tabla Facturas')
             msg.exec()
             print(error)

@@ -3,7 +3,7 @@ import conexion
 import var
 
 class Servicios():
-    def guardaServicio(self=None):
+    def guarda_servicio(self=None):
         try:
             newservicio = []
 
@@ -12,7 +12,7 @@ class Servicios():
             for i in servicio:
                 newservicio.append(i.text())
 
-            conexion.Conexion.altaServicio(newservicio)
+            conexion.Conexion.alta_servicio(newservicio)
             print(newservicio)
 
 
@@ -28,7 +28,7 @@ class Servicios():
     Limpiar celdas
     '''
 
-    def limpiaServicio(self=None):
+    def limpia_servicio(self=None):
         try:
             servicio = [var.ui.txtCodigo, var.ui.txtConcepto, var.ui.txtPrecio]
             for i in servicio:
@@ -46,16 +46,16 @@ class Servicios():
     Caragar servicio seleccionado en tabla en las celdas
     '''
 
-    def cargaServicio(self=None):
+    def carga_servicio(self=None):
         try:
-            Servicios.limpiaServicio()
+            Servicios.limpia_servicio()
             fila = var.ui.tabServicios.selectedItems()
             datos = [var.ui.txtCodigo, var.ui.txtConcepto, var.ui.txtPrecio]
             row = [dato.text() for dato in fila]
             for i, dato in enumerate(datos):
                 dato.setText(row[i])
 
-            registro = conexion.Conexion.oneServicio(row[0])
+            registro = conexion.Conexion.one_servicio(row[0])
 
             var.ui.txtCodigo.setText(registro[0])
             var.ui.txtConcepto.setText(registro[1])
@@ -74,11 +74,11 @@ class Servicios():
     Borrar servicio
     '''
 
-    def borraServicio(self):
+    def borra_servicio(self):
         try:
             codigo = var.ui.txtCodigo.text()
-            conexion.Conexion.delServicio(codigo)
-            conexion.Conexion.mostrarTabservicios(self)
+            conexion.Conexion.eliminar_servicio(codigo)
+            conexion.Conexion.mostrar_tab_servicios(self)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -92,7 +92,7 @@ class Servicios():
     Modificar servicio
     '''
 
-    def modifServicio(self):
+    def modificar_servicio(self):
         try:
             modservicio = []
             servicio = [var.ui.txtCodigo, var.ui.txtConcepto, var.ui.txtPrecio]
@@ -100,8 +100,8 @@ class Servicios():
             for i in servicio:
                 modservicio.append(i.text())
 
-            conexion.Conexion.modServicio(modservicio)
-            conexion.Conexion.mostrarTabservicios(self)
+            conexion.Conexion.modificar_servicio(modservicio)
+            conexion.Conexion.mostrar_tab_servicios(self)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()

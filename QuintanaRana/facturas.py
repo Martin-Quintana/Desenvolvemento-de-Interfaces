@@ -4,7 +4,7 @@ import var
 
 
 class Facturas():
-    def cargaLineaVenta(index):
+    def carga_linea_venta(index):
         try:
             index = 0
             var.cmbServicio = QtWidgets.QComboBox()
@@ -14,13 +14,12 @@ class Facturas():
             var.ui.tabVentas.setCellWidget(index, 2, var.txtUnidades)
             index += 1
 
-
-            conexion.Conexion.cargaComboFacturas()
-            conexion.Conexion.cargaPrecio()
+            conexion.Conexion.carga_combo_facturas()
+            conexion.Conexion.cargar_precio()
         except Exception as error:
             print('error carga linea ventas', error)
 
-    def limpiaFac(self):
+    def limpiar_factura(self):
         try:
             var.ui.txtFactura.setText('')
             var.ui.txtDniFac.setText('')
@@ -28,19 +27,14 @@ class Facturas():
             var.ui.txtFechaFac.setText('')
             var.ui.txtDNIFactura.setText('')
 
-            btns = [var.ui.btnGuardaFac, var.ui.btnBorraFac, var.ui.btnModifFac]
-            for btn in btns:
-                btn.setChecked(False)
-
-
         except Exception as error:
             print('error limpia facturas', error)
 
 
 
-    def cargaCliente(self):
+    def cargar_cliente(self):
         try:
-            Facturas.limpiaFac(self)
+            Facturas.limpiar_factura(self)
             fila = var.ui.tabClientes.selectedItems()
             datos = [var.ui.txtDniFac, var.ui.txtMatriculaFac]
             row = [dato.text() for dato in fila]
@@ -53,7 +47,7 @@ class Facturas():
         except Exception as error:
             print('error carga cliente', error)
 
-    def calcularSubtotalServicio(self):
+    def calcular_subtotal_servicio(self):
         try:
             index = 0
             var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str('0')))
@@ -67,15 +61,6 @@ class Facturas():
                 unidades = int(unidades)
                 subtotal = precio * unidades
                 var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(subtotal)))
-
-
-
-
-
-
-
-
-
 
         except Exception as error:
             print('error calcular subtotal', error)

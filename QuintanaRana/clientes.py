@@ -8,7 +8,7 @@ class Clientes():
     Validar DNI
     '''
 
-    def validarDNI(dni):
+    def validar_dni(dni):
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
             dig_ext = 'XYZ'
@@ -34,10 +34,10 @@ class Clientes():
     DNI valido y letra mayus
     '''
 
-    def mostrarValidoDNI(self=None):
+    def mostrar_valido_dni(self=None):
         try:
             dni = var.ui.txtDni.text()
-            if Clientes.validarDNI(dni):
+            if Clientes.validar_dni(dni):
                 var.ui.lblValidarDni.setStyleSheet('color: green;')
                 var.ui.lblValidarDni.setText('V')
                 var.ui.txtDni.setText(dni.upper())
@@ -61,11 +61,11 @@ class Clientes():
     Seleccionar motor
     '''
 
-    def selMotor(self=None):
+    def seleccionar_motor(self=None):
         try:
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
             for i in var.motor:
-                i.toggled.connect(Clientes.checkMotor)
+                i.toggled.connect(Clientes.checkear_motor)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -79,7 +79,7 @@ class Clientes():
     Validar motor seleccionado
     '''
 
-    def checkMotor(self=None):
+    def checkear_motor(self=None):
         try:
             if var.ui.rbtGasolina.isChecked():
                 motor = 'Gasolina'
@@ -105,7 +105,7 @@ class Clientes():
     Guardar clinte
     '''
 
-    def guardaCli(self=None):
+    def guardar_cliente(self=None):
         try:
             newcli = []
             newcar = []
@@ -121,7 +121,7 @@ class Clientes():
 
             prov = var.ui.cmbProcli.currentText()
             muni = var.ui.cmbMunicli.currentText()
-            motor = Clientes.checkMotor()
+            motor = Clientes.checkear_motor()
 
             newcli.append(prov)
             newcli.append(muni)
@@ -137,7 +137,7 @@ class Clientes():
             pagos = set(pagos)
             newcli.append('; '.join(pagos))
 
-            conexion.Conexion.altaCli(newcli, newcar)
+            conexion.Conexion.alta_cliente(newcli, newcar)
             print(newcli)
             print(newcar)
 
@@ -153,7 +153,7 @@ class Clientes():
     Cargar fecha
     '''
 
-    def cargaFecha(qDate):
+    def cargar_fecha(qDate):
         try:
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.txtFechaltacli.setText(str(data))
@@ -171,7 +171,7 @@ class Clientes():
     Limpiar celdas
     '''
 
-    def limpiaCli(self=None):
+    def limpiar_cliente(self=None):
         try:
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtDirCli, var.ui.txtFechaltacli, var.ui.txtMatricula,
                        var.ui.txtMarca, var.ui.txtModelo]
@@ -198,9 +198,9 @@ class Clientes():
     Caragar cliente seleccionado en tabla en las celdas
     '''
 
-    def cargaCliente(self=None):
+    def cargar_cliente(self=None):
         try:
-            Clientes.limpiaCli()
+            Clientes.limpiar_cliente()
             fila = var.ui.tabClientes.selectedItems()
             datos = [var.ui.txtDni, var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
             row = [dato.text() for dato in fila]
@@ -218,7 +218,7 @@ class Clientes():
             elif row[4] == 'Electrico':
                 var.ui.rbtElectrico.setChecked(True)
 
-            registro = conexion.Conexion.oneCli(row[0])
+            registro = conexion.Conexion.one_cliente(row[0])
 
             var.ui.txtNombre.setText(registro[0])
             var.ui.txtFechaltacli.setText(registro[1])
@@ -247,11 +247,11 @@ class Clientes():
     Borrar cliente
     '''
 
-    def borraCli(self):
+    def borrar_cliente(self):
         try:
             dni = var.ui.txtDni.text()
-            conexion.Conexion.borrarCli(dni)
-            conexion.Conexion.mostrarTabcarcli(self)
+            conexion.Conexion.borrar_cliente(dni)
+            conexion.Conexion.mostrar_tabla_coches_cliente(self)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()
@@ -265,7 +265,7 @@ class Clientes():
     Modificar cliente
     '''
 
-    def modifCli(self):
+    def modificar_cliente(self):
         try:
             modcar = []
             modcli = []
@@ -295,11 +295,11 @@ class Clientes():
             car = [var.ui.txtMatricula, var.ui.txtMarca, var.ui.txtModelo]
             for i in car:
                 modcar.append(i.text())
-            motor = Clientes.checkMotor()
+            motor = Clientes.checkear_motor()
             modcar.append(motor)
 
-            conexion.Conexion.modificaCli(modcli, modcar)
-            conexion.Conexion.mostrarTabcarcli(self)
+            conexion.Conexion.modificar_cliente(modcli, modcar)
+            conexion.Conexion.mostrar_tabla_coches_cliente(self)
 
         except Exception as error:
             msg = QtWidgets.QMessageBox()

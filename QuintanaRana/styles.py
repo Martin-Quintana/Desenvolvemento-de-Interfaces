@@ -7,7 +7,7 @@ class TableClientes:
     Metodo que sirve para darle estilos a la tabla
     '''
     @staticmethod
-    def setRowColor():
+    def set_row_color():
         var.ui.tabClientes.setStyleSheet(
             '''
             QTableView
