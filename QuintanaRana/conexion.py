@@ -587,7 +587,7 @@ class Conexion():
 
     def mostrarTabVentas(idVentas):
         try:
-            index = 0
+            index = 1
             query = QtSql.QSqlQuery()
             query.prepare(
                 'select concepto, precio, unidades, subtotal from ventas order by concepto ')
@@ -652,34 +652,170 @@ class Conexion():
                     var.ui.tabVentas.setItem(0, 1, QtWidgets.QTableWidgetItem(str(precio)))
 
 
-            # concepto = var.cmbServicio.currentText()
-            # query = QtSql.QSqlQuery()
-            # query.prepare('select preciounidad from servicios where concepto = :concepto')
-            # query.bindValue(':concepto', concepto)
-            # if query.exec():
-            #     while query.next():
-            #
-            #         var.ui.tabVentas.setItem(0,1, QtWidgets.QTableWidgetItem(str(query.value(0))))
-            #         return query.value(0)
+
 
 
         except Exception as error:
             print(error)
 
-    # def add_Venta(self):
-    #     try:
-    #         index = 1
-    #         var.cmbServicio = QtWidgets.QComboBox()
-    #         var.txtUnidades = QtWidgets.QLineEdit()
-    #         var.ui.tabVentas.setRowCount(index + 1)
-    #         var.ui.tabVentas.setCellWidget(index, 0, var.cmbServicio)
-    #         var.ui.tabVentas.setCellWidget(index, 2, var.txtUnidades)
-    #         index += 1
-    #
-    #         Conexion.cargaComboFacturas()
-    #         Conexion.cargaPrecio()
-    #
-    #
-    #
-    #     except Exception as error:
-    #         print(error)
+    def add_Venta(self):
+        try:
+            Conexion.mostrarTabVentas(self)
+
+            concepto = var.cmbServicio.currentText()
+            query = QtSql.QSqlQuery()
+            query.prepare('select codigo from servicios where concepto = :concepto')
+            query.bindValue(':concepto', concepto)
+            if query.exec():
+                while query.next():
+                    codigo = query.value(0)
+
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('select preciounidad from servicios where codigo = :codigo')
+            query1.bindValue(':codigo', int(codigo))
+
+            index = 1
+            if query1.exec():
+                while query1.next():
+                    precio = query1.value(0)
+                    unidades = var.txtUnidades.text()
+                    subtotal = float(precio) * float(unidades)
+                    var.ui.tabVentas.setRowCount(index + 1)
+                    var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(concepto)))
+                    var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(precio)))
+                    var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(unidades)))
+                    var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(subtotal)))
+
+                    var.ui.tabVentas.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabVentas.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabVentas.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+                    query2 = QtSql.QSqlQuery()
+                    query2.prepare('insert into ventas (concepto, precio, unidades, subtotal) values (:concepto, :precio, :unidades, :subtotal)')
+                    query2.bindValue(':concepto', concepto)
+                    query2.bindValue(':precio', precio)
+                    query2.bindValue(':unidades', unidades)
+                    query2.bindValue(':subtotal', subtotal)
+
+                    if query2.exec():
+                        while query2.next():
+                            var.ui.tabVentas.setRowCount(index + 1)
+                            var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query2.value(0))))
+                            var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query2.value(1))))
+                            var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query2.value(2))))
+                            var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query2.value(3))))
+
+                            var.ui.tabVentas.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                            var.ui.tabVentas.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                            var.ui.tabVentas.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                            var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+                            index += 1
+
+            Conexion.mostrarTabVentas(self)
+
+            query3 = QtSql.QSqlQuery()
+            query3.prepare('select sum(subtotal) from ventas')
+            if query3.exec():
+                while query3.next():
+                    total = query3.value(0)
+                    var.ui.lblSubtotal.setText(str(total))
+
+
+
+        except Exception as error:
+            print(error)
+
+
+    def alta_Factura(idFactura):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('insert into facturas (idFactura, dniCli, fechaFac, matricula) values (:idFactura, :dniCli, :fechaFac, :matricula)')
+            query.bindValue(':idFactura', idFactura)
+
+            dniCli = var.ui.txtDni.text()
+            fechaFac = var.ui.txtFechaFac.text()
+            matricula = var.ui.txtMatricula.text()
+
+            query.bindValue(':dniCli', dniCli)
+            query.bindValue(':fechaFac', fechaFac)
+            query.bindValue(':matricula', matricula)
+
+            if query.exec():
+                print('Factura dada de alta')
+
+            Conexion.mostrar_Tab_Facturas(self = None)
+
+
+
+        except Exception as error:
+            print(error)
+
+    def mostrar_Tab_Facturas(self):
+
+        try:
+            index = 0
+            query = QtSql.QSqlQuery()
+            query.prepare('select * from facturas')
+            if query.exec():
+
+                while query.next():
+                    var.ui.tabFacturas.setRowCount(index + 1)
+                    var.ui.tabFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(0))))
+                    var.ui.tabFacturas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(3))))
+
+                    var.ui.tabFacturas.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tabFacturas.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+                    index += 1
+
+        except Exception as error:
+            print(error)
+
+    def cargar_Factura(self):
+
+        try:
+            Conexion.limpia_Factura(self)
+            fila = var.ui.tabFacturas.selectedItems()
+            datos = [var.ui.txtDniFac, var.ui.txtMatriculaFac]
+            row = [dato.text() for dato in fila]
+            for i, dato in enumerate(datos):
+                dato.setText(row[i])
+
+            var.ui.txtFechaFac.setText('')
+            var.ui.txtDniFac.setText('')
+
+            idFactura = var.ui.tabFacturas.item(var.ui.tabFacturas.currentRow(), 0).text()
+
+            query = QtSql.QSqlQuery()
+            query.prepare('select idFactura, dniCli, fechafac from facturas where idFactura = :idFactura')
+            query.bindValue(':idFactura', idFactura)
+            if query.exec():
+                while query.next():
+                    idFactura = query.value(0)
+                    dni = query.value(1)
+                    fecha = query.value(2)
+                    var.ui.txtFactura.setText(str(idFactura))
+                    var.ui.txtDniFac.setText(str(dni))
+                    var.ui.txtFechaFac.setText(str(fecha))
+
+            Conexion.mostrarTabVentas(self)
+
+        except Exception as error:
+            print(error)
+
+    def limpia_Factura(self):
+
+        try:
+            var.ui.txtDniFac.setText('')
+            var.ui.txtMatriculaFac.setText('')
+            var.ui.txtFechaFac.setText('')
+
+        except Exception as error:
+            print(error)
+
+
+
+

@@ -1012,6 +1012,9 @@
         <height>401</height>
        </rect>
       </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
       <column>
        <property name="text">
         <string>Num Factura</string>
@@ -1034,7 +1037,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
-        <widget class="QPushButton" name="btnGuardaFac">
+        <widget class="QPushButton" name="btnAltaFac">
          <property name="minimumSize">
           <size>
            <width>75</width>
@@ -1048,7 +1051,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Guardar</string>
+          <string>Alta</string>
          </property>
         </widget>
        </item>
@@ -1361,7 +1364,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnBuscacli_2">
+     <widget class="QPushButton" name="btn">
       <property name="geometry">
        <rect>
         <x>640</x>
@@ -1467,19 +1470,6 @@
          <string>Subtotal</string>
         </property>
        </column>
-      </widget>
-      <widget class="QPushButton" name="btnProecesarVenta">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>360</y>
-         <width>91</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Procesar Venta</string>
-       </property>
       </widget>
       <widget class="QLabel" name="lbl">
        <property name="geometry">

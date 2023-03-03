@@ -121,6 +121,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBorraservicio.clicked.connect(conexion.Conexion.delServicio)
         var.ui.btnGuardaservicio.clicked.connect(conexion.Conexion.mostrarTabVentas)
 
+        # Botones de la pestaña de Facturas
+        var.ui.btnAltaFac.clicked.connect(conexion.Conexion.alta_Factura)
         '''
         Listado de eventos de acciones
         '''
@@ -152,11 +154,12 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.mostrarTabcarcli(self)
         var.ui.tabClientes.clicked.connect(clientes.Clientes.cargaCliente)
         var.ui.tabClientes.clicked.connect(facturas.Facturas.cargaCliente)
+        var.ui.tabFacturas.clicked.connect(conexion.Conexion.cargar_Factura)
 
         # Tabla de Facturas
         conexion.Conexion.mostrarTabVentas(self)
         facturas.Facturas.cargaLineaVenta(self)
-
+        conexion.Conexion.mostrar_Tab_Facturas(self)
 
         # Tabla de Servicios
         conexion.Conexion.mostrarTabservicios(self)
@@ -170,7 +173,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProcli.currentIndexChanged.connect(conexion.Conexion.selMuni)
         var.cmbServicio.currentIndexChanged.connect(conexion.Conexion.cargaPrecio)
         var.txtUnidades.textChanged.connect(facturas.Facturas.calcularSubtotalServicio)
-        # var.ui.btnAddFila.clicked.connect(conexion.Conexion.add_Venta)
+        var.ui.btnAddFila.clicked.connect(conexion.Conexion.add_Venta)
 
 
         '''
