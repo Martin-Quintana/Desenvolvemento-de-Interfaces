@@ -728,31 +728,6 @@ class Conexion():
             print(error)
 
 
-    def alta_factura(idFactura):
-
-        try:
-            query = QtSql.QSqlQuery()
-            query.prepare('insert into facturas (idFactura, dniCli, fechaFac, matricula) values (:idFactura, :dniCli, :fechaFac, :matricula)')
-            query.bindValue(':idFactura', idFactura)
-
-            dniCli = var.ui.txtDni.text()
-            fechaFac = var.ui.txtFechaFac.text()
-            matricula = var.ui.txtMatricula.text()
-
-            query.bindValue(':dniCli', dniCli)
-            query.bindValue(':fechaFac', fechaFac)
-            query.bindValue(':matricula', matricula)
-
-            if query.exec():
-                print('Factura dada de alta')
-
-            Conexion.mostrar_tab_facturas(self = None)
-
-
-
-        except Exception as error:
-            print(error)
-
     def mostrar_tab_facturas(self):
 
         try:
@@ -760,7 +735,6 @@ class Conexion():
             query = QtSql.QSqlQuery()
             query.prepare('select * from facturas')
             if query.exec():
-
                 while query.next():
                     var.ui.tabFacturas.setRowCount(index + 1)
                     var.ui.tabFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(0))))
@@ -768,8 +742,40 @@ class Conexion():
 
                     var.ui.tabFacturas.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     var.ui.tabFacturas.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-
                     index += 1
+
+        except Exception as error:
+            print(error)
+
+    def alta_factura(idFactura):
+
+        try:
+            dniCli = var.ui.txtDniFac.text()
+            fecha = var.ui.txtFechaFac.text()
+            matricula = var.ui.txtMatriculaFac.text()
+            query1 = QtSql.QSqlQuery()
+            query1.prepare('select count(idFactura) from facturas')
+
+            if query1.exec():
+                while query1.next():
+                    idFactura = query1.value(0)
+                    idFactura += 1
+
+
+                    query = QtSql.QSqlQuery()
+                    query.prepare('insert into facturas (idFactura, dniCli, fechafac, matricula) '
+                                  'values (:idFactura, :dniCli, :fechafac, :matricula')
+
+                    query.bindValue(':idFactura', idFactura)
+                    query.bindValue(':dniCli', dniCli)
+                    query.bindValue(':fechafac', fecha)
+                    query.bindValue(':matricula', matricula)
+
+                    if query.exec():
+                        while query.next():
+                            print('Factura dada de alta correctamente')
+
+
 
         except Exception as error:
             print(error)
