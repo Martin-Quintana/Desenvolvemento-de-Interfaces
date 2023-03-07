@@ -63,17 +63,13 @@ class Informes:
                     j = j - 20
 
             var.report.save()
-            rootPath = '.\\informes'
 
-            file = ('Informe Clientes.pdf')
+            rootpath = '.\\informes\\'
+            ruta_informe = os.path.join(rootpath, 'listadoClientes.pdf')
+            os.startfile(ruta_informe)
 
-            directorio, filename = var.dlgabrir.getSaveFileName(None, 'Guardar Datos', file, '.pdf')
-            #wb = pdf.Workbook()
-            #wb.save(directorio)
 
-            #for file in os.listdir(rootPath):
-            #    if file.endswith('Clientes.pdf'):
-            #        os.startfile('%s\%s' % (rootPath, file))
+
         except Exception as error:
             print('Error informes estado cliente', error)
 
@@ -134,10 +130,11 @@ class Informes:
                     j = j - 20
 
             var.report.save()
-            rootPath = '.\\informes'
-            for file in os.listdir(rootPath):
-                if file.endswith('Autos.pdf'):
-                    os.startfile('%s\%s' % (rootPath, file))
+
+
+            rootpath = '.\\informes\\'
+            ruta_informe = os.path.join(rootpath, 'listadoAutos.pdf')
+            os.startfile(ruta_informe)
         except Exception as error:
             print('Error informes estado vehiculos', error)
 
@@ -193,14 +190,14 @@ class Informes:
 
         """
         try:
-            var.report = canvas.Canvas('Informes/factura.pdf')
+            var.report = canvas.Canvas('informes/factura.pdf')
             titulo = 'FACTURA'
             Informes.pie_informe(titulo)
             Informes.top_informe(titulo)
             cliente = []
-            dni = str(var.ui.lblDnifac.text())
-            nfac = str(var.ui.lblNumfac.text())
-            fechafac = str(var.ui.lblFechafac.txt())
+            dni = var.ui.txtDniFac.text()
+            nfac = var.ui.txtFactura.text()
+            fechafac = var.ui.txtFechaFac.txt()
             if nfac == '':
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowTitle('Aviso')
@@ -224,9 +221,10 @@ class Informes:
 
                 #para abrir la factura
                 var.report.save()
-                rootPath = '.\\informes'
-                for file in os.listdir(rootPath):
-                    if file.endswith('factura.pdf'):
-                        os.startfile('%s\%s' % (rootPath, file))
+
+                rootpath = '.\\informes\\'
+                ruta_informe = os.path.join(rootpath, 'factura.pdf')
+                os.startfile(ruta_informe)
+
         except Exception as error:
             print("Error factura: ", error)

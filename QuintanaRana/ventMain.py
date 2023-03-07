@@ -467,7 +467,7 @@ class Ui_ventMain(object):
         self.txtFactura.setStyleSheet("background-color: rgb(197, 236, 230);")
         self.txtFactura.setObjectName("txtFactura")
         self.btnInformeCliente = QtWidgets.QPushButton(self.tab2)
-        self.btnInformeCliente.setGeometry(QtCore.QRect(650, 40, 28, 28))
+        self.btnInformeCliente.setGeometry(QtCore.QRect(640, 40, 28, 28))
         self.btnInformeCliente.setMinimumSize(QtCore.QSize(28, 28))
         self.btnInformeCliente.setMaximumSize(QtCore.QSize(28, 28))
         self.btnInformeCliente.setText("")

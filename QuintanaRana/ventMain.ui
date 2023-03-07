@@ -1303,7 +1303,7 @@
      <widget class="QPushButton" name="btnInformeCliente">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>640</x>
         <y>40</y>
         <width>28</width>
         <height>28</height>
