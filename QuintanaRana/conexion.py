@@ -9,10 +9,19 @@ from ventMain import *
 
 class Conexion():
     '''
-    Conectar con bbdd
+    Clase conexion
+
+    Esta clase se encarga de realizar la conexion con la base de datos
+
     '''
 
     def conexion(self=None):
+        """
+
+        Funcion que realiza la conexion con la base de datos y devuelve un booleano
+        :return: True si la conexion es correcta, False si no lo es
+
+        """
         filedb = 'bbdd.sqlite'
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(filedb)
@@ -26,11 +35,15 @@ class Conexion():
             print('Conexion establecida')
             return True
 
-    '''
-    Cargar provincias
-    '''
 
     def cargar_provincia(self=None):
+        """
+
+        Funcion que carga las provincias en el combobox de provincias de la ventana de clientes
+        :return:
+
+
+        """
         try:
             var.ui.cmbProcli.clear()
             query = QtSql.QSqlQuery()
@@ -48,11 +61,14 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Seleccionar municipio segun provincia
-    '''
-
     def seleccionar_municipio(self=None):
+        """
+
+        Funcion que carga los municipios en el combobox de municipios de la ventana de clientes en funcion de la provincia
+        seleccionada
+        :return:
+
+        """
         try:
             id = 0
             var.ui.cmbMunicli.clear()
@@ -81,11 +97,15 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Alta en la bbdd de cliente
-    '''
 
     def alta_cliente(newcli, newcar):
+        """
+
+        Funcion que da de alta un cliente y su vehiculo en la base de datos
+        :param newcar:
+        :param newcli:
+        :return:
+        """
         try:
             query = QtSql.QSqlQuery()
             queryCli = QtSql.QSqlQuery()
@@ -135,11 +155,14 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Mostrar clientes en la tabla
-    '''
 
     def mostrar_tabla_coches_cliente(self):
+        """
+
+        Funcion que muestra los coches de un cliente en la tabla de la ventana de clientes
+        :return:
+
+        """
         try:
             var.ui.tabClientes.clearContents()
             if var.ui.chkHistorico.isChecked() == False:
@@ -198,11 +221,13 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Caragar cliente seleccionado en tabla en las celdas
-    '''
 
     def one_cliente(dni):
+        """
+
+        Funcion que devuelve un registro de un cliente en una lista
+        :return:
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -223,11 +248,14 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Alta coches con Excel
-    '''
 
     def alta_excel_coche(new):
+        """
+
+        Funcion que da de alta un coche en la base de datos a partir de un excel
+        :return:
+
+        """
         try:
             query1 = QtSql.QSqlQuery()
             query1.prepare('insert into coches(matricula, dnicli, marca, modelo, motor, fechabajacar) '
@@ -250,11 +278,14 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Campos validos
-    '''
 
     def comprobar_campos_validos(self=None):
+        """
+
+        Funcion que comprueba que los campos de la ventana de clientes estan rellenos
+        :return:
+
+        """
         try:
             dni = var.ui.txtDni.text()
 
@@ -281,11 +312,13 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Borrar cliente en la bbdd
-    '''
-
     def borrar_cliente(dni):
+        """
+
+        Funcion que da de baja un cliente y sus coches
+        :return:
+
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
@@ -318,11 +351,15 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Modificar cliente en la bbdd
-    '''
 
     def modificar_cliente(modcli, modcar):
+        """
+
+        Funcion que modifica un cliente y sus coches
+        :param modcar:
+        :return:
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare('update clientes set nombre = :nombre, alta = :alta,'
@@ -372,11 +409,13 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Buscar coche por matricula
-    '''
-
     def buscar_coche(self):
+        """
+
+        Funcion que busca un coche por su matricula
+        :return:  tabla con los datos del coche
+
+        """
         try:
 
             var.ui.tabClientes.clearContents()
@@ -419,11 +458,14 @@ class Conexion():
 
     # =================================================== SERVICIOS ===================================================
 
-    '''
-    Mostrar tabla servicios
-    '''
-
     def mostrar_tab_servicios(self):
+        """
+
+        Funcion que muestra los servicios en la tabla de servicios
+        :rtype: object
+        :return:
+
+        """
         try:
             index = 0
             query = QtSql.QSqlQuery()
@@ -452,11 +494,13 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Dar de alta un servicio
-    '''
-
     def alta_servicio(newservicio):
+        """
+
+        Funcion que da de alta un nuevo servicio
+        :return:  mensaje de alta correcta
+
+        """
         try:
             query = QtSql.QSqlQuery()
             queryCli = QtSql.QSqlQuery()
@@ -485,11 +529,14 @@ class Conexion():
             msg.exec()
             print(error)
 
-    '''
-    Eliminar un servicio
-    '''
 
     def eliminar_servicio(Self):
+        """
+
+        Funcion que elimina un servicio
+        :return:  mensaje de eliminacion correcta
+
+        """
         try:
             codigo = Conexion.mostrar_servicio()
             query = QtSql.QSqlQuery()
@@ -510,11 +557,14 @@ class Conexion():
         except Exception as error:
             print('Error en alta Productos: ', error)
 
-    '''
-    Modificar un servicio
-    '''
 
     def modificar_servicio(self=None):
+        """
+
+        Funcion que modifica un servicio
+        :return:  mensaje de modificacion correcta
+
+        """
         try:
             codigo = var.ui.tabServicios.selectedItems()[0].data(0)
             concepto = var.ui.txtConcepto.text()
@@ -540,11 +590,12 @@ class Conexion():
         except Exception as error:
             print(error)
 
-    '''
-    Mostrar servicio seleccionado en la tabla
-    '''
-
     def mostrar_servicio(self=None):
+        """
+
+        Funcion que muestra el servicio seleccionado en la tabla en las celdas
+        :return:  codigo del servicio seleccionado
+        """
         try:
             codigo = var.ui.tabServicios.selectedItems()[0].data(0)
             query = QtSql.QSqlQuery()
@@ -558,11 +609,14 @@ class Conexion():
         except Exception as error:
             print(error)
 
-    '''
-    Caragar servicio seleccionado en tabla en las celdas
-    '''
 
     def one_servicio(codigo):
+        """
+
+        Funcion que devuelve un registro de la tabla servicios en una lista
+        :return:  lista con los datos del registro
+
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -585,21 +639,28 @@ class Conexion():
 
     # =================================================== FACTURAS ===================================================
 
-    def mostrar_tab_ventas(idVentas):
+    def mostrar_tab_ventas(self):
+        """
+
+        Funcion que muestra los datos de la tabla ventas en la tabla de la ventana principal
+        :return:  tabla con los datos de la tabla ventas
+
+        """
         try:
             index = 1
+            idVentas = var.ui.txtFactura.text()
             query = QtSql.QSqlQuery()
             query.prepare(
-                'select concepto, precio, unidades, subtotal from ventas order by concepto ')
+                'select idVentas, concepto, precio, unidades, subtotal from ventas  where idVentas = :idVentas ')
             query.bindValue(':idVentas', str(idVentas))
 
             if query.exec():
                 while query.next():
                     var.ui.tabVentas.setRowCount(index + 1)
-                    var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(0))))
-                    var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(1))))
-                    var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(2))))
-                    var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(3))))
+                    var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
+                    var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(2))))
+                    var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
+                    var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query.value(4))))
 
                     var.ui.tabVentas.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     var.ui.tabVentas.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -618,6 +679,12 @@ class Conexion():
             print(error)
 
     def carga_combo_facturas(self=None):
+        """
+
+        Funcion que carga el combo de facturas con los datos de la tabla facturas
+        :return:  combo con los datos de la tabla facturas
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare('select concepto from servicios order by concepto')
@@ -630,6 +697,12 @@ class Conexion():
             print(error)
 
     def cargar_precio(self=None):
+        """
+
+        Funcion que carga el precio del servicio seleccionado en el combo
+        :return:  precio del servicio seleccionado
+
+        """
         try:
 
             codigo = 0
@@ -651,14 +724,16 @@ class Conexion():
                     precio = query1.value(0)
                     var.ui.tabVentas.setItem(0, 1, QtWidgets.QTableWidgetItem(str(precio)))
 
-
-
-
-
         except Exception as error:
             print(error)
 
     def add_venta(self):
+        """
+
+        Funcion que añade un registro a la tabla ventas
+        :return:  registro añadido a la tabla ventas
+
+        """
         try:
             Conexion.mostrar_tab_ventas(self)
 
@@ -692,7 +767,8 @@ class Conexion():
                     var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
                     query2 = QtSql.QSqlQuery()
-                    query2.prepare('insert into ventas (concepto, precio, unidades, subtotal) values (:concepto, :precio, :unidades, :subtotal)')
+                    query2.prepare(
+                        'insert into ventas (concepto, precio, unidades, subtotal) values (:concepto, :precio, :unidades, :subtotal)')
                     query2.bindValue(':concepto', concepto)
                     query2.bindValue(':precio', precio)
                     query2.bindValue(':unidades', unidades)
@@ -727,8 +803,13 @@ class Conexion():
         except Exception as error:
             print(error)
 
-
     def mostrar_tab_facturas(self):
+        """
+
+        Funcion que muestra los registros de la tabla facturas en la tabla de la pestaña facturas
+        :return:  registros de la tabla facturas en la tabla de la pestaña facturas
+
+        """
 
         try:
             index = 0
@@ -747,33 +828,29 @@ class Conexion():
         except Exception as error:
             print(error)
 
-    def alta_factura(idFactura):
+    def alta_factura(self):
+        """
+
+        Funcion que da de alta una factura en la tabla facturas
+        :return:  factura dada de alta en la tabla facturas
+
+        """
 
         try:
-            dniCli = var.ui.txtDniFac.text()
+
+            dni = var.ui.txtDniFac.text()
             fecha = var.ui.txtFechaFac.text()
             matricula = var.ui.txtMatriculaFac.text()
-            query1 = QtSql.QSqlQuery()
-            query1.prepare('select count(idFactura) from facturas')
+            query = QtSql.QSqlQuery()
+            query.prepare('insert into facturas (dniCli, fechafac, matricula) values ( :dniCli, :fechafac, :matricula)')
+            query.bindValue(':dniCli', dni)
+            query.bindValue(':fechafac', fecha)
+            query.bindValue(':matricula', matricula)
+            if query.exec():
+                while query.next():
+                    print('Factura dada de alta correctamente')
 
-            if query1.exec():
-                while query1.next():
-                    idFactura = query1.value(0)
-                    idFactura += 1
-
-
-                    query = QtSql.QSqlQuery()
-                    query.prepare('insert into facturas (idFactura, dniCli, fechafac, matricula) '
-                                  'values (:idFactura, :dniCli, :fechafac, :matricula')
-
-                    query.bindValue(':idFactura', idFactura)
-                    query.bindValue(':dniCli', dniCli)
-                    query.bindValue(':fechafac', fecha)
-                    query.bindValue(':matricula', matricula)
-
-                    if query.exec():
-                        while query.next():
-                            print('Factura dada de alta correctamente')
+            Conexion.mostrar_tab_facturas(self=None)
 
 
 
@@ -781,6 +858,12 @@ class Conexion():
             print(error)
 
     def cargar_factura(self):
+        """
+
+        Funcion que carga los datos de la factura seleccionada en la tabla de la pestaña facturas en los campos de la pestaña facturas
+        :return:  datos de la factura seleccionada en la tabla de la pestaña facturas en los campos de la pestaña facturas
+
+        """
 
         try:
             Conexion.limpia_factura(self)
@@ -796,16 +879,18 @@ class Conexion():
             idFactura = var.ui.tabFacturas.item(var.ui.tabFacturas.currentRow(), 0).text()
 
             query = QtSql.QSqlQuery()
-            query.prepare('select idFactura, dniCli, fechafac from facturas where idFactura = :idFactura')
+            query.prepare('select idFactura, dniCli, fechafac, matricula from facturas where idFactura = :idFactura')
             query.bindValue(':idFactura', idFactura)
             if query.exec():
                 while query.next():
                     idFactura = query.value(0)
                     dni = query.value(1)
                     fecha = query.value(2)
+                    matricula = query.value(3)
                     var.ui.txtFactura.setText(str(idFactura))
                     var.ui.txtDniFac.setText(str(dni))
                     var.ui.txtFechaFac.setText(str(fecha))
+                    var.ui.txtMatriculaFac.setText(str(matricula))
 
             Conexion.mostrar_tab_ventas(self)
 
@@ -813,6 +898,12 @@ class Conexion():
             print(error)
 
     def limpia_factura(self):
+        """
+
+        Funcion que limpia los campos de la pestaña facturas
+        :return:  campos de la pestaña facturas limpios
+
+        """
 
         try:
             var.ui.txtDniFac.setText('')
@@ -821,7 +912,3 @@ class Conexion():
 
         except Exception as error:
             print(error)
-
-
-
-

@@ -14,10 +14,19 @@ Eventos generales
 
 class Eventos:
     '''
-    Salir del programa con ventana emergente de confirmacion
+
+    Class Eventos
+    Esta clase se encarga de los eventos de la aplicacion
+
     '''
 
     def salir(self):
+        """
+
+        Funcion que cierra la aplicacion
+        :return:  None
+
+        """
         try:
             var.avisosalir.show()
             if var.avisosalir.exec():
@@ -38,6 +47,11 @@ class Eventos:
     '''
 
     def abrir_calendario(self=None):
+        """
+
+        Funcion que abre el calendario
+        :return:  None
+        """
         try:
             var.dlgcalendar.show()
 
@@ -49,11 +63,13 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Abrir datos
-    '''
 
     def datos(self):
+        """
+
+        Funcion que abre la ventana de datos de la aplicacion
+        :return:  None
+        """
         try:
             var.dlgdatos.show()
         except Exception as error:
@@ -64,11 +80,14 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Primera letra de cada palabra en mayus
-    '''
 
     def letras_capital(self=None):
+        """
+
+        Funcion que pone en mayusculas el texto de los campos de texto
+        :return:  None
+
+        """
         try:
             var.ui.txtNombre.setText(var.ui.txtNombre.text().title())
             var.ui.txtDirCli.setText(var.ui.txtDirCli.text().title())
@@ -84,11 +103,15 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Celdas con tamaño correcto
-    '''
+
 
     def resize_tab_coche_cliente(self):
+        """
+
+        Funcion que redimensiona la tabla de coches de los clientes
+        :return:  None
+
+        """
         try:
             header = var.ui.tabClientes.horizontalHeader()
             for i in range(5):
@@ -104,11 +127,15 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Crear BackUp 
-    '''
+
 
     def crea_backup(self):
+        """
+
+        Funcion que crea un backup de la base de datos
+        :return:  None
+
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y-%m-%d-%H.%M.%S')
@@ -136,11 +163,14 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Restaurar BackUp
-    '''
 
     def restaura_backup(self=None):
+        """
+
+        Funcion que restaura un backup de la base de datos
+        :return: None
+
+        """
         try:
             filename = var.dlgabrir.getOpenFileName(None, 'Restaurar copia de seguridad', '', 'All Files (*);;zip (*.zip)')
 
@@ -168,11 +198,14 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Exportar datos
-    '''
 
     def exportar_datos(self=None):
+        """
+
+        Funcion que exporta los datos de la base de datos a un fichero excel
+        :return:  None
+
+        """
         try:
             var.dlgdatos.hide()
             fecha = datetime.today()
@@ -243,11 +276,14 @@ class Eventos:
             msg.exec()
             print(error)
 
-    '''
-    Importar Excel
-    '''
 
     def importarDatos(self):
+        """
+
+        Funcion que importa los datos de un fichero excel a la base de datos
+        :return None
+
+        """
         try:
             filename = var.dlgabrir.getOpenFileName(None, 'Guardar Datos ', '', '*xls;;All Files (*)')
             if var.dlgabrir.accept and filename != '':
@@ -287,6 +323,11 @@ class Eventos:
 
 
     def resizeTabVentas(self):
+        """
+
+        Funcion que redimensiona la tabla de ventas
+        :return:  None
+        """
         try:
             header = var.ui.tabVentas.horizontalHeader()
             for i in range(3):
@@ -303,6 +344,12 @@ class Eventos:
             print(error)
 
     def resizeTabServicios(self):
+        """
+
+        Funcion que redimensiona la tabla de servicios
+        :return:  None
+
+        """
         try:
             header = var.ui.tabServicios.horizontalHeader()
             for i in range(2):
@@ -319,6 +366,11 @@ class Eventos:
             print(error)
 
     def resize_Tab_Facturas(self):
+        """
+
+        Funcion que redimensiona la tabla de facturas
+        :return:  None
+        """
         try:
             header = var.ui.tabFacturas.horizontalHeader()
             for i in range(2):

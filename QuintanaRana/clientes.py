@@ -2,13 +2,24 @@ from PyQt6 import QtWidgets
 import conexion
 import var
 
-
 class Clientes():
     '''
-    Validar DNI
+
+    Class Clientes
+    Esta clase se encarga de gestionar los clientes
+
     '''
 
+
     def validar_dni(dni):
+        """
+
+        Funcion que valida el DNI de una persona fisica española (NIF)
+        :param dni: DNI a validar
+        :type dni: str
+        :return: True si es correcto, False si no lo es
+
+        """
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
             dig_ext = 'XYZ'
@@ -30,11 +41,14 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    DNI valido y letra mayus
-    '''
-
     def mostrar_valido_dni(self=None):
+
+        """
+        Funcion que muestra si el DNI es valido o no en el label lblValidarDni
+        :return: None
+        :rtype: None
+
+        """
         try:
             dni = var.ui.txtDni.text()
             if Clientes.validar_dni(dni):
@@ -57,11 +71,13 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Seleccionar motor
-    '''
-
     def seleccionar_motor(self=None):
+        """
+
+        Funcion que selecciona el tipo de motor del vehiculo del cliente
+        :rtype: object
+
+        """
         try:
             var.motor = (var.ui.rbtGasolina, var.ui.rbtDiesel, var.ui.rbtHibrido, var.ui.rbtElectrico)
             for i in var.motor:
@@ -75,11 +91,14 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Validar motor seleccionado
-    '''
-
     def checkear_motor(self=None):
+        """
+
+        Funcion que comprueba el tipo de motor del vehiculo del cliente
+        :return: motor
+        :rtype: str
+
+        """
         try:
             if var.ui.rbtGasolina.isChecked():
                 motor = 'Gasolina'
@@ -101,11 +120,15 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Guardar clinte
-    '''
 
     def guardar_cliente(self=None):
+        """
+
+        Funcion que guarda los datos del cliente y llama a una funcion de la clase conexion para guardar en la base de datos
+        :return: None
+        :rtype: None
+
+        """
         try:
             newcli = []
             newcar = []
@@ -149,11 +172,16 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Cargar fecha
-    '''
 
     def cargar_fecha(qDate):
+        """
+
+        Funcion que carga la fecha seleccionada en el calendario en el campo txtFechaltacli
+        :param qDate: fecha seleccionada
+        :type qDate: QDate
+        :return: None
+
+        """
         try:
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.txtFechaltacli.setText(str(data))
@@ -167,11 +195,13 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Limpiar celdas
-    '''
-
     def limpiar_cliente(self=None):
+        """
+
+        Funcion que limpia los campos de la ventana clientes
+        :return: None
+
+        """
         try:
             cliente = [var.ui.txtDni, var.ui.txtNombre, var.ui.txtDirCli, var.ui.txtFechaltacli, var.ui.txtMatricula,
                        var.ui.txtMarca, var.ui.txtModelo]
@@ -194,11 +224,14 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Caragar cliente seleccionado en tabla en las celdas
-    '''
 
     def cargar_cliente(self=None):
+        """
+
+        Funcion que carga los datos del cliente seleccionado en la tabla en los campos de la ventana clientes
+        :return: None
+
+        """
         try:
             Clientes.limpiar_cliente()
             fila = var.ui.tabClientes.selectedItems()
@@ -226,8 +259,6 @@ class Clientes():
             var.ui.cmbProcli.setCurrentText(registro[3])
             var.ui.cmbMunicli.setCurrentText(registro[4])
 
-
-
             if 'Efectivo' in registro[5]:
                 var.ui.chkEfec.setChecked(True)
             if 'Transferencia' in registro[5]:
@@ -243,11 +274,13 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Borrar cliente
-    '''
-
     def borrar_cliente(self):
+        """
+
+        Funcion que borra el cliente seleccionado en la tabla de la ventana clientes
+        :return: None
+
+        """
         try:
             dni = var.ui.txtDni.text()
             conexion.Conexion.borrar_cliente(dni)
@@ -261,11 +294,14 @@ class Clientes():
             msg.exec()
             print(error)
 
-    '''
-    Modificar cliente
-    '''
 
     def modificar_cliente(self):
+        """
+
+        Funcion que modifica los datos del cliente seleccionado en la tabla de la ventana clientes
+        :return: None
+
+        """
         try:
             modcar = []
             modcli = []

@@ -8,6 +8,12 @@ import conexion
 
 class Informes:
     def list_clientes(self):
+        """
+
+        Funcion que genera el listado de clientes en un pdf con reportlab
+        :return:  pdf con listado de clientes
+
+        """
         try:
             var.report = canvas.Canvas('informes/listadoClientes.pdf')
             titulo = 'LISTADO CLIENTES'
@@ -72,6 +78,12 @@ class Informes:
             print('Error informes estado cliente', error)
 
     def list_autos(self):
+        """
+
+        Funcion que genera el listado de vehiculos en un pdf con reportlab
+        :return:  pdf con listado de vehiculos
+
+        """
         try:
             var.report = canvas.Canvas('informes/listadoAutos.pdf')
             titulo = 'LISTADO VEHICULOS'
@@ -130,6 +142,13 @@ class Informes:
             print('Error informes estado vehiculos', error)
 
     def top_informe(titulo):
+        """
+
+        Funcion que genera el top del informe
+        :param titulo: titulo del informe
+        :return:  top del informe
+
+        """
         try:
             logo = '.\img\logo-taller.png'
             var.report.line(50, 800, 525, 800)
@@ -148,6 +167,12 @@ class Informes:
             print("Error en cabecera de informe", error)
 
     def pie_informe(titulo):
+        """
+
+        Funcion que genera el pie del informe
+        :return:  pie del informe
+
+        """
         try:
             var.report.line(50, 50, 525, 50)
             fecha = datetime.today()
@@ -161,6 +186,12 @@ class Informes:
             print('Error en pie informes estado cliente', error)
 
     def factura(self):
+        """
+
+        Funcion que genera el informe de la factura
+        :return:  informe de la factura
+
+        """
         try:
             var.report = canvas.Canvas('Informes/factura.pdf')
             titulo = 'FACTURA'

@@ -6,26 +6,33 @@ from dlgSalir import *
 from dlgCalendar import *
 from datetime import *
 from dlgDatos import *
-from PyQt6 import *
 import sys, var, events, clientes, conexion, informes
-
-'''
-FileDialogAbrir
-'''
-
+from PyQt6 import QtWidgets, QtCore, QtGui, QtSql
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
+    '''
+
+    Class FileDialogAbrir inherits from QFileDialog
+    Esta clase se encarga de abrir el dialogo de abrir fichero
+
+    '''
     def __int__(self):
         super(FileDialogAbrir, self).__int__()
 
-
-'''
-DialogDatos
-'''
-
-
 class DialogDatos(QtWidgets.QDialog):
+    '''
+
+    Class DialogDatos inherits from QDialog
+    Esta clase se encarga de abrir el dialogo de datos a exportar
+
+    '''
+
     def __init__(self):
+        '''
+
+        Funcion que inicializa el dialogo de datos a exportar
+
+        '''
         super(DialogDatos, self).__init__()
         var.dlgdatos = Ui_dlgDatos()
         var.dlgdatos.setupUi(self)
@@ -42,18 +49,31 @@ class DialogDatos(QtWidgets.QDialog):
         var.dlgdatos.btnExportaDatos.clicked.connect(events.Eventos.exportar_datos)
 
     def updatecli(self, state, chk):
+        '''
+
+        Funcion que actualiza el estado del checkbox de clientes
+
+        '''
         var.statecli = state
 
     def updatecar(self, state, chk):
+        '''
+
+        Funcion que actualiza el estado del checkbox de coches
+
+        '''
         var.statecar = state
 
 
-'''
-DialogCalendar
-'''
 
 
 class DialogCalendar(QtWidgets.QDialog):
+    '''
+
+    Class DialogCalendar inherits from QDialog
+    Esta clase se encarga de abrir el dialogo de calendario
+
+    '''
     def __init__(self):
         super(DialogCalendar, self).__init__()
         var.dlgcalendar = Ui_dlgCalendar()
@@ -64,26 +84,34 @@ class DialogCalendar(QtWidgets.QDialog):
         var.dlgcalendar.Calendar.setSelectedDate(QtCore.QDate(ano, mes, dia))
         var.dlgcalendar.Calendar.clicked.connect(clientes.Clientes.cargar_fecha)
 
-
-'''
-DialogSalir
-'''
-
-
 class DialogSalir(QtWidgets.QDialog):
+    '''
+
+    Class DialogSalir inherits from QDialog
+    Esta clase se encarga de abrir el dialogo de salir
+
+    '''
     def __init__(self):
+        '''
+
+        Funcion que inicializa el dialogo de salir
+        '''
         super(DialogSalir, self).__init__()
         var.avisosalir = Ui_dlgSalir()
         var.avisosalir.setupUi(self)
 
-
-'''
-Main
-'''
-
-
 class Main(QtWidgets.QMainWindow):
+    '''
+
+    Class Main inherits from QMainWindow
+    Esta clase se encarga de abrir la ventana principal y contiene todas las acciones de los botones y eventos
+    '''
     def __init__(self):
+        '''
+
+        Funcion que inicializa la ventana principal
+
+        '''
         super(Main, self).__init__()
         var.ui = Ui_ventMain()
         var.ui.setupUi(self)

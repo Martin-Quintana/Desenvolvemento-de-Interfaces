@@ -5,6 +5,13 @@ import var
 
 class Facturas():
     def carga_linea_venta(index):
+        """
+
+        Carga una linea de venta en la tabla de ventas
+        :param index:
+        :return:  None
+
+        """
         try:
             index = 0
             var.cmbServicio = QtWidgets.QComboBox()
@@ -20,6 +27,12 @@ class Facturas():
             print('error carga linea ventas', error)
 
     def limpiar_factura(self):
+        """
+
+        Limpia los campos de la ventana de facturas
+        :return None
+
+        """
         try:
             var.ui.txtFactura.setText('')
             var.ui.txtDniFac.setText('')
@@ -33,6 +46,11 @@ class Facturas():
 
 
     def cargar_cliente(self):
+        """
+
+        Carga los datos del cliente seleccionado en la tabla de clientes en los campos de la ventana de facturas
+        :return:  None
+        """
         try:
             Facturas.limpiar_factura(self)
             fila = var.ui.tabClientes.selectedItems()
@@ -48,6 +66,12 @@ class Facturas():
             print('error carga cliente', error)
 
     def calcular_subtotal_servicio(self):
+        """
+
+        Calcula el subtotal de la linea de venta seleccionada
+        :return:  None
+        
+        """
         try:
             index = 0
             var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str('0')))

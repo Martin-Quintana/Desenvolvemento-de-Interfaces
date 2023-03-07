@@ -8,6 +8,11 @@ class TableClientes:
     '''
     @staticmethod
     def set_row_color():
+        """
+
+        Funcion que cambia el color de las filas de la tabla de clientes
+        :return:
+        """
         var.ui.tabClientes.setStyleSheet(
             '''
             QTableView

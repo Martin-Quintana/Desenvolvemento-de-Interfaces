@@ -4,6 +4,12 @@ import var
 
 class Servicios():
     def guarda_servicio(self=None):
+        """
+
+        Guardar servicio en la base de datos y en la tabla de servicios
+        :return:  None
+
+        """
         try:
             newservicio = []
 
@@ -24,11 +30,12 @@ class Servicios():
             msg.exec()
             print(error)
 
-    '''
-    Limpiar celdas
-    '''
-
     def limpia_servicio(self=None):
+        """
+
+        Limpia los campos de la ventana de servicios
+        :return:  None
+        """
         try:
             servicio = [var.ui.txtCodigo, var.ui.txtConcepto, var.ui.txtPrecio]
             for i in servicio:
@@ -42,11 +49,13 @@ class Servicios():
             msg.exec()
             print(error)
 
-    '''
-    Caragar servicio seleccionado en tabla en las celdas
-    '''
-
     def carga_servicio(self=None):
+        """
+
+        Carga los datos del servicio seleccionado en la tabla de servicios en los campos de la ventana de servicios
+        :return:  None
+
+        """
         try:
             Servicios.limpia_servicio()
             fila = var.ui.tabServicios.selectedItems()
@@ -70,11 +79,14 @@ class Servicios():
             msg.exec()
             print(error)
 
-    '''
-    Borrar servicio
-    '''
 
     def borra_servicio(self):
+        """
+
+        Borra el servicio seleccionado en la tabla de servicios de la base de datos y de la tabla de servicios
+        :return:  None
+
+        """
         try:
             codigo = var.ui.txtCodigo.text()
             conexion.Conexion.eliminar_servicio(codigo)
@@ -88,11 +100,15 @@ class Servicios():
             msg.exec()
             print(error)
 
-    '''
-    Modificar servicio
-    '''
+
 
     def modificar_servicio(self):
+        """
+
+        Modifica el servicio seleccionado en la tabla de servicios de la base de datos y de la tabla de servicios
+        :return None
+
+        """
         try:
             modservicio = []
             servicio = [var.ui.txtCodigo, var.ui.txtConcepto, var.ui.txtPrecio]
@@ -100,7 +116,7 @@ class Servicios():
             for i in servicio:
                 modservicio.append(i.text())
 
-            conexion.Conexion.modificar_servicio(modservicio)
+            conexion.Conexion.modificar_servicio()
             conexion.Conexion.mostrar_tab_servicios(self)
 
         except Exception as error:
