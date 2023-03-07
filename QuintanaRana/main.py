@@ -151,6 +151,7 @@ class Main(QtWidgets.QMainWindow):
 
         # Botones de la pestaña de Facturas
         var.ui.btnAltaFac.clicked.connect(conexion.Conexion.alta_factura)
+        var.ui.btnBorraFac.clicked.connect(conexion.Conexion.borrar_factura)
         '''
         Listado de eventos de acciones
         '''
@@ -165,6 +166,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionImportar_Datos.triggered.connect(events.Eventos.importarDatos)
         var.ui.actionInformes_Clientes.triggered.connect(informes.Informes.list_clientes)
         var.ui.actionInformes_Vehiculos.triggered.connect(informes.Informes.list_autos)
+
+        var.ui.btnInformeCoche.clicked.connect(informes.Informes.list_autos)
+        var.ui.btnInformeCliente.clicked.connect(informes.Informes.list_clientes)
 
         '''
         Llamadas a funciones

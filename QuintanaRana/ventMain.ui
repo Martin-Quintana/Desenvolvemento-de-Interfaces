@@ -1300,56 +1300,11 @@
        <string notr="true">background-color: rgb(197, 236, 230);</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lblFactura_2">
+     <widget class="QPushButton" name="btnInformeCliente">
       <property name="geometry">
        <rect>
         <x>650</x>
-        <y>10</y>
-        <width>91</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>30</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>DNI/N Factura</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtDNIFactura">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>30</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(197, 236, 230);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>60</y>
+        <y>40</y>
         <width>28</width>
         <height>28</height>
        </rect>
@@ -1371,7 +1326,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../.designer/backup/img/lupa.png</normaloff>../../../../../.designer/backup/img/lupa.png</iconset>
+        <normaloff>img/informe-cliente.png</normaloff>img/informe-cliente.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -1504,46 +1459,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="btnBuscacli_3">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>60</y>
-        <width>28</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>28</width>
-        <height>28</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>28</width>
-        <height>28</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../../../../../.designer/backup/img/lupa.png</normaloff>../../../../../.designer/backup/img/lupa.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnBuscacli_4">
+     <widget class="QPushButton" name="btnInformeCoche">
       <property name="geometry">
        <rect>
         <x>720</x>
-        <y>60</y>
+        <y>40</y>
         <width>28</width>
         <height>28</height>
        </rect>
@@ -1565,7 +1485,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../.designer/backup/img/lupa.png</normaloff>../../../../../.designer/backup/img/lupa.png</iconset>
+        <normaloff>img/informe-coche.png</normaloff>img/informe-coche.png</iconset>
       </property>
       <property name="iconSize">
        <size>

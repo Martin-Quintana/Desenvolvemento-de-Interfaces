@@ -905,3 +905,23 @@ class Conexion():
 
         except Exception as error:
             print(error)
+
+    def borrar_factura(self):
+        """
+
+        Funcion que borra una factura de la tabla facturas
+        :return:  factura borrada de la tabla facturas
+        
+        """
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('delete from facturas where idVenta = :idVenta')
+            query.bindValue(':idVenta', var.ui.txtFactura.text())
+            if query.exec():
+                print('Factura borrada correctamente')
+            Conexion.mostrar_tab_facturas(self=None)
+            Conexion.limpia_factura(self=None)
+            Conexion.mostrar_tab_ventas(self=None)
+            var.ui.lblSubtotal.setText('0')
+        except Exception as error:
+            print(error)
