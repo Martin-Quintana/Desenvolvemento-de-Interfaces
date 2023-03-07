@@ -38,7 +38,7 @@ class Facturas():
             var.ui.txtDniFac.setText('')
             var.ui.txtMatriculaFac.setText('')
             var.ui.txtFechaFac.setText('')
-            var.ui.txtDNIFactura.setText('')
+            var.ui.txtDniFac.setText('')
 
         except Exception as error:
             print('error limpia facturas', error)
