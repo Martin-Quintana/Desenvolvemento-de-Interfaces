@@ -3,6 +3,7 @@ import datetime
 from PyQt6 import QtSql
 from datetime import datetime
 import clientes
+import facturas
 import var
 from ventMain import *
 
@@ -648,11 +649,11 @@ class Conexion():
         """
         try:
             index = 1
-            idVentas = var.ui.txtFactura.text()
+            codFac = var.ui.txtFactura.text()
             query = QtSql.QSqlQuery()
             query.prepare(
-                'select idVentas, concepto, precio, unidades, subtotal from ventas  where idVentas = :idVentas ')
-            query.bindValue(':idVentas', str(idVentas))
+                'select idVentas, concepto, precio, unidades, subtotal from ventas  where codFac = :codFac ')
+            query.bindValue(':codFac', codFac)
 
             if query.exec():
                 while query.next():
@@ -768,24 +769,21 @@ class Conexion():
 
                     query2 = QtSql.QSqlQuery()
                     query2.prepare(
-                        'insert into ventas (concepto, precio, unidades, subtotal) values (:concepto, :precio, :unidades, :subtotal)')
+                        'insert into ventas (concepto, precio, unidades, subtotal, codFac, codServ) values (  :concepto, :precio, :unidades, :subtotal, :codFac, :codServ)')
+
+                    id = var.ui.txtFactura.text()
                     query2.bindValue(':concepto', concepto)
                     query2.bindValue(':precio', precio)
                     query2.bindValue(':unidades', unidades)
                     query2.bindValue(':subtotal', subtotal)
+                    query2.bindValue(':codFac', str(id))
+                    query2.bindValue(':codServ', codigo)
+
 
                     if query2.exec():
                         while query2.next():
-                            var.ui.tabVentas.setRowCount(index + 1)
-                            var.ui.tabVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query2.value(0))))
-                            var.ui.tabVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query2.value(1))))
-                            var.ui.tabVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query2.value(2))))
-                            var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(query2.value(3))))
-
-                            var.ui.tabVentas.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                            var.ui.tabVentas.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                            var.ui.tabVentas.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                            var.ui.tabVentas.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                            print('Registro añadido')
+                            Conexion.mostrar_tab_ventas(self)
 
                             index += 1
 
@@ -837,17 +835,18 @@ class Conexion():
         """
 
         try:
-
             dni = var.ui.txtDniFac.text()
             fecha = var.ui.txtFechaFac.text()
             matricula = var.ui.txtMatriculaFac.text()
+
+
             query = QtSql.QSqlQuery()
             query.prepare('insert into facturas (dniCli, fechafac, matricula) values ( :dniCli, :fechafac, :matricula)')
             query.bindValue(':dniCli', dni)
             query.bindValue(':fechafac', fecha)
             query.bindValue(':matricula', matricula)
+
             if query.exec():
-                while query.next():
                     print('Factura dada de alta correctamente')
 
             Conexion.mostrar_tab_facturas(self=None)
@@ -866,33 +865,27 @@ class Conexion():
         """
 
         try:
-            Conexion.limpia_factura(self)
+
             fila = var.ui.tabFacturas.selectedItems()
-            datos = [var.ui.txtDniFac, var.ui.txtMatriculaFac]
+            datos = [var.ui.txtFactura, var.ui.txtMatriculaFac]
             row = [dato.text() for dato in fila]
             for i, dato in enumerate(datos):
                 dato.setText(row[i])
 
-            var.ui.txtFechaFac.setText('')
-            var.ui.txtDniFac.setText('')
-
-            idFactura = var.ui.tabFacturas.item(var.ui.tabFacturas.currentRow(), 0).text()
-
             query = QtSql.QSqlQuery()
-            query.prepare('select idFactura, dniCli, fechafac, matricula from facturas where idFactura = :idFactura')
-            query.bindValue(':idFactura', idFactura)
+            query.prepare('select idVenta, dniCli, fechafac, matricula from facturas where idVenta = :idVenta')
+            query.bindValue(':idVenta', var.ui.txtFactura.text())
             if query.exec():
                 while query.next():
-                    idFactura = query.value(0)
-                    dni = query.value(1)
-                    fecha = query.value(2)
-                    matricula = query.value(3)
-                    var.ui.txtFactura.setText(str(idFactura))
-                    var.ui.txtDniFac.setText(str(dni))
-                    var.ui.txtFechaFac.setText(str(fecha))
-                    var.ui.txtMatriculaFac.setText(str(matricula))
+                    var.ui.txtDniFac.setText(str(query.value(1)))
+                    var.ui.txtFechaFac.setText(str(query.value(2)))
+                    var.ui.txtMatriculaFac.setText(str(query.value(3)))
+            # Vaciamos la tabla de ventas menos la primera fila
+            for index in range(var.ui.tabVentas.rowCount() - 1, 0, -1):
+                var.ui.tabVentas.removeRow(index)
 
-            Conexion.mostrar_tab_ventas(self)
+
+            Conexion.mostrar_tab_ventas(self=None)
 
         except Exception as error:
             print(error)

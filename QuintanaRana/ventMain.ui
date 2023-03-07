@@ -1046,7 +1046,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>275</width>
+           <width>75</width>
            <height>20</height>
           </size>
          </property>
@@ -1056,26 +1056,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btnModifcli_2">
-         <property name="minimumSize">
-          <size>
-           <width>75</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>75</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Modificar</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnBorracli_2">
+        <widget class="QPushButton" name="btnBorraFac">
          <property name="minimumSize">
           <size>
            <width>75</width>

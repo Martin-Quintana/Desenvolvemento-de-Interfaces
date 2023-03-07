@@ -188,6 +188,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.mostrar_tab_ventas(self)
         facturas.Facturas.carga_linea_venta(self)
         conexion.Conexion.mostrar_tab_facturas(self)
+        var.ui.tabFacturas.clicked.connect(conexion.Conexion.cargar_precio)
 
         # Tabla de Servicios
         conexion.Conexion.mostrar_tab_servicios(self)
