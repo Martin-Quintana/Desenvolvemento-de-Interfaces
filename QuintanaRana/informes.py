@@ -182,7 +182,7 @@ class Informes:
         except Exception as error:
             print('Error en pie informes estado cliente', error)
 
-    def factura(self):
+    def imprimir_factura(self):
         """
 
         Funcion que genera el informe de la factura
@@ -259,4 +259,4 @@ class Informes:
             os.startfile(ruta_informe)
 
         except Exception as error:
-            print("Error factura: ", error)
+            print('Error al crear la factura', error)
