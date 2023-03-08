@@ -147,7 +147,7 @@ class Informes:
 
         """
         try:
-            logo = '.\img\logo-taller.png'
+            logo = '.\img\logo-aston-martin.png'
             var.report.line(50, 800, 525, 800)
             var.report.setFont('Helvetica-Bold', size=14)
             var.report.drawString(55, 785, 'Taller Mecanico Teis')
