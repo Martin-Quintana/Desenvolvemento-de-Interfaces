@@ -197,9 +197,6 @@ class Informes:
             Informes.pie_informe(titulo)
             Informes.top_informe(titulo)
 
-            items = ['ID', 'SERVICIO', 'PRECIO', 'CANTIDAD', 'TOTAL']
-
-            cliente = []
 
             dni = str(var.ui.txtDniFac.text())
 

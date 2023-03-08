@@ -718,7 +718,7 @@ class Ui_ventMain(object):
         self.toolBar.addAction(self.actionSalibar)
 
         self.retranslateUi(ventMain)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(ventMain)
 
     def retranslateUi(self, ventMain):

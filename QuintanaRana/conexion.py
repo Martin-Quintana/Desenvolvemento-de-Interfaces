@@ -925,3 +925,4 @@ class Conexion():
             var.ui.lblSubtotal.setText('0')
         except Exception as error:
             print(error)
+
