@@ -695,6 +695,11 @@ class Conexion():
 
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar combo Facturas ')
+            msg.exec()
             print(error)
 
     def cargar_precio(self=None):
@@ -726,6 +731,11 @@ class Conexion():
                     var.ui.tabVentas.setItem(0, 1, QtWidgets.QTableWidgetItem(str(precio)))
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error carga precio ')
+            msg.exec()
             print(error)
 
     def add_venta(self):
@@ -799,6 +809,11 @@ class Conexion():
 
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al anhadir nueva fila de venta ')
+            msg.exec()
             print(error)
 
     def mostrar_tab_facturas(self):
@@ -824,6 +839,11 @@ class Conexion():
                     index += 1
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error mostrar tabla facturas ')
+            msg.exec()
             print(error)
 
     def alta_factura(self):
@@ -854,6 +874,11 @@ class Conexion():
 
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al dar de alta una factura ')
+            msg.exec()
             print(error)
 
     def cargar_factura(self):
@@ -888,6 +913,11 @@ class Conexion():
             Conexion.mostrar_tab_ventas(self=None)
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar la factura ')
+            msg.exec()
             print(error)
 
     def limpia_factura(self):
@@ -904,6 +934,11 @@ class Conexion():
             var.ui.txtFechaFac.setText('')
 
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al limpiar la factura ')
+            msg.exec()
             print(error)
 
     def borrar_factura(self):
@@ -924,5 +959,10 @@ class Conexion():
             Conexion.mostrar_tab_ventas(self=None)
             var.ui.lblSubtotal.setText('0')
         except Exception as error:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al borrar la factura')
+            msg.exec()
             print(error)
 

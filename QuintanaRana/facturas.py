@@ -24,7 +24,12 @@ class Facturas():
             conexion.Conexion.carga_combo_facturas()
             conexion.Conexion.cargar_precio()
         except Exception as error:
-            print('error carga linea ventas', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar linea ventas ')
+            msg.exec()
+            print(error)
 
     def limpiar_factura(self):
         """
@@ -41,7 +46,12 @@ class Facturas():
             var.ui.txtDniFac.setText('')
 
         except Exception as error:
-            print('error limpia facturas', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al limpiar factura ')
+            msg.exec()
+            print(error)
 
 
 
@@ -63,7 +73,12 @@ class Facturas():
             var.ui.txtFechaFac.setText(date.toString('dd/MM/yyyy'))
 
         except Exception as error:
-            print('error carga cliente', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar clientee ')
+            msg.exec()
+            print(error)
 
     def calcular_subtotal_servicio(self):
         """
@@ -87,4 +102,9 @@ class Facturas():
                 var.ui.tabVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(subtotal)))
 
         except Exception as error:
-            print('error calcular subtotal', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al cargar subtotal servicio ')
+            msg.exec()
+            print(error)

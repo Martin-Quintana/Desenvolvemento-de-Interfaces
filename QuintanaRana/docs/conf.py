@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import os
 import sys
-sys.path.insert(0, os.path.abspath('C:\\Users\\marti\\Documents\\GitHub\\Desenvolvemento-de-Interfaces\\QuintanaRana'))
+sys.path.insert(0, os.path.abspath('C:\\Users\\a21martinqr\\Documents\\GitHub\\Desenvolvemento-de-Interfaces\\QuintanaRana'))
 project = 'DAM2223'
 copyright = '2023, Martin Quintana'
 author = 'Martin Quintana'

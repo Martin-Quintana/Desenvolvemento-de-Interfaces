@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="37c90535-1906-4797-af1a-f957967f5c45" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexion.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/facturas.py" beforeDir="false" afterPath="$PROJECT_DIR$/facturas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/informes.py" beforeDir="false" afterPath="$PROJECT_DIR$/informes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/informes/factura.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/informes/factura.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +124,7 @@
       <workItem from="1678199202980" duration="12216000" />
       <workItem from="1678214158746" duration="1377000" />
       <workItem from="1678217474619" duration="1562000" />
-      <workItem from="1678260066934" duration="6068000" />
+      <workItem from="1678260066934" duration="9687000" />
     </task>
     <servers />
   </component>
@@ -130,6 +132,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/QuintanaRana$main.coverage" NAME="main Coverage Results" MODIFIED="1678265601104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/QuintanaRana$main.coverage" NAME="main Coverage Results" MODIFIED="1678270219527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

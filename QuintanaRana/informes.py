@@ -71,7 +71,12 @@ class Informes:
 
 
         except Exception as error:
-            print('Error informes estado cliente', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al crear el informes del cliente ')
+            msg.exec()
+            print(error)
 
     def list_autos(self):
         """
@@ -136,7 +141,12 @@ class Informes:
             ruta_informe = os.path.join(rootpath, 'listadoAutos.pdf')
             os.startfile(ruta_informe)
         except Exception as error:
-            print('Error informes estado vehiculos', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al crear informe de vehiculos ')
+            msg.exec()
+            print(error)
 
     def top_informe(titulo):
         """
@@ -259,4 +269,10 @@ class Informes:
             os.startfile(ruta_informe)
 
         except Exception as error:
-            print('Error al crear la factura', error)
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Aviso')
+            msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+            msg.setText('Error al imprimir la factura ,'
+                        'tiene que selecionar una factura ')
+            msg.exec()
+            print(error)
