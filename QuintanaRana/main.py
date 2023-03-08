@@ -169,7 +169,7 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnInformeCoche.clicked.connect(informes.Informes.list_autos)
         var.ui.btnInformeCliente.clicked.connect(informes.Informes.list_clientes)
-
+        var.ui.btnFactura.clicked.connect(informes.Informes.factura)
         '''
         Llamadas a funciones
         '''

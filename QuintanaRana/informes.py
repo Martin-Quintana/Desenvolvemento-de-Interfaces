@@ -190,41 +190,76 @@ class Informes:
 
         """
         try:
+            i = 60
+            j = 530
             var.report = canvas.Canvas('informes/factura.pdf')
             titulo = 'FACTURA'
             Informes.pie_informe(titulo)
             Informes.top_informe(titulo)
+
+            items = ['ID', 'SERVICIO', 'PRECIO', 'CANTIDAD', 'TOTAL']
+
             cliente = []
-            dni = var.ui.txtDniFac.text()
-            nfac = var.ui.txtFactura.text()
-            fechafac = var.ui.txtFechaFac.txt()
-            if nfac == '':
-                msg = QtWidgets.QMessageBox()
-                msg.setWindowTitle('Aviso')
-                msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                msg.setText('Debe seleccionar una factura')
-                msg.exec()
-            else:
-                cliente = conexion.Conexion.one_cliente(dni)
-                var.report.setFont('Helvetica-Bold', size=9)
-                var.report.drawString(55, 680, 'DATOS CLIENTE')
-                var.report.drawString(400, 660, 'N Factura: ')
-                var.report.drawString(400, 645, 'Fecha Factura: ')
-                var.report.setFont('Helvetica', size=9)
-                var.report.drawString(55, 660, 'DNI/CIF: ', str(dni))
-                var.report.drawString(480, 660, str(nfac))
-                var.report.drawString(480, 645, str(fechafac))
-                var.report.drawString(55, 645, 'Nombre: ', str(cliente[0]))
-                var.report.drawString(55, 630, 'Direccion: ', str(cliente[2]))
-                var.report.drawString(55, 615, 'Municipio: ', str(cliente[4]))
-                var.report.drawString(55, 600, 'Provincia: ', str(cliente[3]))
 
-                #para abrir la factura
-                var.report.save()
+            dni = str(var.ui.txtDniFac.text())
 
-                rootpath = '.\\informes\\'
-                ruta_informe = os.path.join(rootpath, 'factura.pdf')
-                os.startfile(ruta_informe)
+            query3 = QtSql.QSqlQuery()
+            query3.prepare('select dni, nombre, alta, direccion, provincia, municipio, pago from clientes where dni = :dni')
+            query3.bindValue(':dni', dni)
+
+            if query3.exec():
+                while query3.next():
+                    dni = str(query3.value(0))
+                    nombre = str(query3.value(1))
+                    alta = str(query3.value(2))
+                    direccion = str(query3.value(3))
+                    provincia = str(query3.value(4))
+                    municipio = str(query3.value(5))
+                    pago = str(query3.value(6))
+
+
+
+            dni = str(var.ui.txtDniFac.text())
+            nfac = str(var.ui.txtFactura.text())
+            fechafac = str(var.ui.txtFechaFac.text())
+
+            var.report.setFont('Helvetica-Bold', size=10)
+            var.report.drawString(55, 660, 'DATOS DEL CLIENTE')
+            var.report.line(50, 650, 525, 650)
+            var.report.drawString(55, 640, 'DNI: ' + dni)
+            var.report.drawString(55, 630, 'Nombre: ' + nombre)
+            var.report.drawString(55, 620, 'Fecha de alta: ' + alta)
+            var.report.drawString(55, 610, 'Direccion: ' + direccion)
+            var.report.drawString(55, 600, 'Provincia: ' + provincia)
+            var.report.drawString(55, 590, 'Municipio: ' + municipio)
+            var.report.drawString(55, 580, 'Forma de pago: ' + pago)
+            var.report.line(50, 560, 525, 560)
+
+            query3 = QtSql.QSqlQuery()
+            query3.prepare('select idVentas, codServ, unidades, precio, subtotal from ventas where codFac = :codFac')
+            query3.bindValue(':codFac', int(nfac))
+
+            if query3.exec():
+                while query3.next():
+                    query2 = QtSql.QSqlQuery()
+                    query2.prepare('select concepto from servicios where codigo = :codServ')
+                    query2.bindValue(':codServ', query3.value(1))
+                    if query2.exec():
+                        while query2.next():
+                            var.report.drawString(i, j, 'ID: ' + str(query3.value(0)))
+                            var.report.drawString(i + 50, j, 'Servicio: ' + str(query2.value(0)))
+                            var.report.drawString(i + 200, j, 'Precio: ' + str(query3.value(3)))
+                            var.report.drawString(i + 300, j, 'Cantidad: ' + str(query3.value(2)))
+                            var.report.drawString(i + 400, j, 'Total: ' + str(query3.value(4)))
+
+                            j -= 20
+
+
+
+            var.report.save()
+            rootpath = '.\\informes'
+            ruta_informe = os.path.join(rootpath, 'factura.pdf')
+            os.startfile(ruta_informe)
 
         except Exception as error:
             print("Error factura: ", error)

@@ -1494,6 +1494,41 @@
        </size>
       </property>
      </widget>
+     <widget class="QPushButton" name="btnFactura">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>40</y>
+        <width>28</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>28</width>
+        <height>28</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>img/impresora.png</normaloff>img/impresora.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -1690,7 +1725,7 @@
         <x>10</x>
         <y>140</y>
         <width>780</width>
-        <height>250</height>
+        <height>370</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -1702,7 +1737,7 @@
       <property name="maximumSize">
        <size>
         <width>780</width>
-        <height>250</height>
+        <height>370</height>
        </size>
       </property>
       <property name="alternatingRowColors">
